@@ -18,6 +18,57 @@
       </tags>
   </entry>
   <entry>
+    <title>Hexo &amp; NexT 设置头像</title>
+    <url>/2022/07/14/hexo-next-avatar/</url>
+    <content><![CDATA[<p>在主題配置文件  _config.next.yaml 中找到以下内容：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Sidebar Avatar</span></span><br><span class="line"><span class="attr">avatar:</span></span><br><span class="line">  <span class="comment"># Replace the default image and set the url here.</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">/images/avatar/avatar-1.jpg</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be displayed in circle.</span></span><br><span class="line">  <span class="attr">rounded:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be rotated with the cursor.</span></span><br><span class="line">  <span class="attr">rotated:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>設置<code>url</code>的值，<code>/images</code>对应的是<code>theme/next/source/images/</code>。也就是说把图片放置在<code>theme/next/source/images/</code>目录下，就能根据配置好的 <code>url</code>找到。<br>例如，这里的 <code>/images/avatar/avatar-1.jpg</code>，就是<code>theme/next/source/images/avatar/</code>下的<code>avatar-1.jpg</code>文件。</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>theme</category>
+        <category>NexT</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Hexo-theme</tag>
+        <tag>NexT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>git</title>
+    <url>/2022/07/16/git/</url>
+    <content><![CDATA[<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1. </p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Hexo Issues</title>
+    <url>/2022/07/14/hexo-issues/</url>
+    <content><![CDATA[<h4 id="fatal-in-unpopulated-submodule-‘-deploy-git’"><a href="#fatal-in-unpopulated-submodule-‘-deploy-git’" class="headerlink" title="fatal: in unpopulated submodule ‘.deploy_git’"></a>fatal: in unpopulated submodule ‘.deploy_git’</h4><h5 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h5><h5 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h5><p>刪掉 <code>.deploy_git</code>文件，再重新部署</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rm -rf .deploy_git</span><br><span class="line">hexo clean</span><br><span class="line">hexo d -g</span><br></pre></td></tr></table></figure>
+
+<h4 id="err-YAMLException-duplicated-mapping-key"><a href="#err-YAMLException-duplicated-mapping-key" class="headerlink" title="err: YAMLException: duplicated mapping key"></a>err: YAMLException: duplicated mapping key</h4><h5 id="原因-1"><a href="#原因-1" class="headerlink" title="原因"></a>原因</h5><p>出现了不知名的符号，比如多余了空格之类的。通常是由于复制粘贴产生的。</p>
+<h5 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h5><p>检查错误前后是否有多余空格。如果反复修改，仍然报错。建议使用<code>hexo new [layout] &lt;filename&gt;</code>重新生成一个文档，这样的文档里的<code>Front-Matter</code>通常是没有问题的。</p>
+<h4 id="tags-与-categories-页面无内容"><a href="#tags-与-categories-页面无内容" class="headerlink" title="tags 与 categories 页面无内容"></a>tags 与 categories 页面无内容</h4><h5 id="原因-2"><a href="#原因-2" class="headerlink" title="原因"></a>原因</h5><p>沒有設置<code>type</code>屬性</p>
+<h5 id="解决-1"><a href="#解决-1" class="headerlink" title="解决"></a>解决</h5><p>在页面的<code>Front-Matter</code>中添加<code>type</code>属性，后面的值分别为<code>tags</code> 与 <code>categories</code>:</p>
+<p><code>/source/tags/index.md</code>：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">标签</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">tags</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+
+<p><code>/source/categories/index.md</code>：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">分类</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">categories</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>issues</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Hexo-issues</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo Installation &amp; Deployment</title>
     <url>/2022/07/13/hexo-installation-deployment/</url>
     <content><![CDATA[<h2 id="Requirements"><a href="#Requirements" class="headerlink" title="Requirements"></a>Requirements</h2><p>安装<code>Hexo</code>需要先安装好<code>Node.js</code>和<code>Git</code>，在下面地址下载然后傻瓜式安装即可：</p>
@@ -61,57 +112,6 @@
       </categories>
       <tags>
         <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo Issues</title>
-    <url>/2022/07/14/hexo-issues/</url>
-    <content><![CDATA[<h4 id="fatal-in-unpopulated-submodule-‘-deploy-git’"><a href="#fatal-in-unpopulated-submodule-‘-deploy-git’" class="headerlink" title="fatal: in unpopulated submodule ‘.deploy_git’"></a>fatal: in unpopulated submodule ‘.deploy_git’</h4><h5 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h5><h5 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h5><p>刪掉 <code>.deploy_git</code>文件，再重新部署</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rm -rf .deploy_git</span><br><span class="line">hexo clean</span><br><span class="line">hexo d -g</span><br></pre></td></tr></table></figure>
-
-<h4 id="err-YAMLException-duplicated-mapping-key"><a href="#err-YAMLException-duplicated-mapping-key" class="headerlink" title="err: YAMLException: duplicated mapping key"></a>err: YAMLException: duplicated mapping key</h4><h5 id="原因-1"><a href="#原因-1" class="headerlink" title="原因"></a>原因</h5><p>出现了不知名的符号，比如多余了空格之类的。通常是由于复制粘贴产生的。</p>
-<h5 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h5><p>检查错误前后是否有多余空格。如果反复修改，仍然报错。建议使用<code>hexo new [layout] &lt;filename&gt;</code>重新生成一个文档，这样的文档里的<code>Front-Matter</code>通常是没有问题的。</p>
-<h4 id="tags-与-categories-页面无内容"><a href="#tags-与-categories-页面无内容" class="headerlink" title="tags 与 categories 页面无内容"></a>tags 与 categories 页面无内容</h4><h5 id="原因-2"><a href="#原因-2" class="headerlink" title="原因"></a>原因</h5><p>沒有設置<code>type</code>屬性</p>
-<h5 id="解决-1"><a href="#解决-1" class="headerlink" title="解决"></a>解决</h5><p>在页面的<code>Front-Matter</code>中添加<code>type</code>属性，后面的值分别为<code>tags</code> 与 <code>categories</code>:</p>
-<p><code>/source/tags/index.md</code>：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">标签</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">tags</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
-
-<p><code>/source/categories/index.md</code>：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">分类</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">categories</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Hexo</category>
-        <category>issues</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Hexo-issues</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>git</title>
-    <url>/2022/07/16/git/</url>
-    <content><![CDATA[<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1. </p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Hexo &amp; NexT 设置头像</title>
-    <url>/2022/07/14/hexo-next-avatar/</url>
-    <content><![CDATA[<p>在主題配置文件  _config.next.yaml 中找到以下内容：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Sidebar Avatar</span></span><br><span class="line"><span class="attr">avatar:</span></span><br><span class="line">  <span class="comment"># Replace the default image and set the url here.</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">/images/avatar/avatar-1.jpg</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be displayed in circle.</span></span><br><span class="line">  <span class="attr">rounded:</span> <span class="literal">false</span></span><br><span class="line">  <span class="comment"># If true, the avatar will be rotated with the cursor.</span></span><br><span class="line">  <span class="attr">rotated:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-
-<p>設置<code>url</code>的值，<code>/images</code>对应的是<code>theme/next/source/images/</code>。也就是说把图片放置在<code>theme/next/source/images/</code>目录下，就能根据配置好的 <code>url</code>找到。<br>例如，这里的 <code>/images/avatar/avatar-1.jpg</code>，就是<code>theme/next/source/images/avatar/</code>下的<code>avatar-1.jpg</code>文件。</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-        <category>theme</category>
-        <category>NexT</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Hexo-theme</tag>
-        <tag>NexT</tag>
       </tags>
   </entry>
   <entry>
@@ -286,6 +286,45 @@
       </tags>
   </entry>
   <entry>
+    <title>NexT Installation</title>
+    <url>/2022/07/13/hexo-theme-next-installation/</url>
+    <content><![CDATA[<h2 id="NexT-Installation"><a href="#NexT-Installation" class="headerlink" title="NexT Installation"></a>NexT Installation</h2><h3 id="Downloading-NexT"><a href="#Downloading-NexT" class="headerlink" title="Downloading NexT"></a>Downloading NexT</h3><p>打开终端，切换到 <code>Hexo 站点根目录下</code> ，然后安装 <code>NexT</code> 主题。</p>
+<h4 id="使用npm："><a href="#使用npm：" class="headerlink" title="使用npm："></a>使用<code>npm</code>：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm install hexo-theme-next</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="或使用git："><a href="#或使用git：" class="headerlink" title="或使用git："></a><strong>或</strong>使用<code>git</code>：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Notes</strong>：<code>hexo-site</code>是你的 Hexo 站點名字。</p>
+<h3 id="Upgrading-NexT"><a href="#Upgrading-NexT" class="headerlink" title="Upgrading NexT"></a>Upgrading NexT</h3><h4 id="使用npm：-1"><a href="#使用npm：-1" class="headerlink" title="使用npm："></a>使用<code>npm</code>：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm install hexo-theme-next@latest</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="或使用git：-1"><a href="#或使用git：-1" class="headerlink" title="或使用git："></a><strong>或</strong>使用<code>git</code>：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> themes/next</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git pull origin master</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="NexT-Configuration"><a href="#NexT-Configuration" class="headerlink" title="NexT Configuration"></a>NexT Configuration</h3><h4 id="Enabling-NexT"><a href="#Enabling-NexT" class="headerlink" title="Enabling NexT"></a>Enabling NexT</h4><p>打開站點根目錄下的<code>_config.yml</code>，修改<code>theme</code>後面的值為<code>next</code>（安裝的其他主題也是在這裏修改）：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Checking-NexT"><a href="#Checking-NexT" class="headerlink" title="Checking NexT"></a>Checking NexT</h4><ol>
+<li><p>輸入<code>hexo clean</code>清除緩存（這一步可以省略）；</p>
+</li>
+<li><p>輸入<code>hexo s --debug</code>，瀏覽器輸入<code>http://localhost:4000/</code>，看到以下界面説明配置生效：<br><img src="/../images/posts/hexo-theme-next-installation.assets/next-default-scheme.png" alt="Default Scheme – Muse"></p>
+</li>
+<li><p><code>Ctrl+C</code>關閉本地調試服務器；</p>
+</li>
+</ol>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a href="https://theme-next.js.org/docs/getting-started/#NexT-Installation%EF%BC%9B">https://theme-next.js.org/docs/getting-started/#NexT-Installation；</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>theme</category>
+        <category>NexT</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Hexo-theme</tag>
+        <tag>NexT</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo &amp; Typora 图片插入</title>
     <url>/2022/07/15/hexo-typora-pics/</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在 Hexo 博客中，需要使用到 Markdown 的文档编辑页面内容。文档编辑过程中，经常会使用到图片。</p>
@@ -339,58 +378,6 @@
       </tags>
   </entry>
   <entry>
-    <title>NexT Installation</title>
-    <url>/2022/07/13/hexo-theme-next-installation/</url>
-    <content><![CDATA[<h2 id="NexT-Installation"><a href="#NexT-Installation" class="headerlink" title="NexT Installation"></a>NexT Installation</h2><h3 id="Downloading-NexT"><a href="#Downloading-NexT" class="headerlink" title="Downloading NexT"></a>Downloading NexT</h3><p>打开终端，切换到 <code>Hexo 站点根目录下</code> ，然后安装 <code>NexT</code> 主题。</p>
-<h4 id="使用npm："><a href="#使用npm：" class="headerlink" title="使用npm："></a>使用<code>npm</code>：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm install hexo-theme-next</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="或使用git："><a href="#或使用git：" class="headerlink" title="或使用git："></a><strong>或</strong>使用<code>git</code>：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>Notes</strong>：<code>hexo-site</code>是你的 Hexo 站點名字。</p>
-<h3 id="Upgrading-NexT"><a href="#Upgrading-NexT" class="headerlink" title="Upgrading NexT"></a>Upgrading NexT</h3><h4 id="使用npm：-1"><a href="#使用npm：-1" class="headerlink" title="使用npm："></a>使用<code>npm</code>：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm install hexo-theme-next@latest</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="或使用git：-1"><a href="#或使用git：-1" class="headerlink" title="或使用git："></a><strong>或</strong>使用<code>git</code>：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> themes/next</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git pull origin master</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="NexT-Configuration"><a href="#NexT-Configuration" class="headerlink" title="NexT Configuration"></a>NexT Configuration</h3><h4 id="Enabling-NexT"><a href="#Enabling-NexT" class="headerlink" title="Enabling NexT"></a>Enabling NexT</h4><p>打開站點根目錄下的<code>_config.yml</code>，修改<code>theme</code>後面的值為<code>next</code>（安裝的其他主題也是在這裏修改）：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="Checking-NexT"><a href="#Checking-NexT" class="headerlink" title="Checking NexT"></a>Checking NexT</h4><ol>
-<li><p>輸入<code>hexo clean</code>清除緩存（這一步可以省略）；</p>
-</li>
-<li><p>輸入<code>hexo s --debug</code>，瀏覽器輸入<code>http://localhost:4000/</code>，看到以下界面説明配置生效：<br><img src="/../images/posts/hexo-theme-next-installation.assets/next-default-scheme.png" alt="Default Scheme – Muse"></p>
-</li>
-<li><p><code>Ctrl+C</code>關閉本地調試服務器；</p>
-</li>
-</ol>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
-<li><a href="https://theme-next.js.org/docs/getting-started/#NexT-Installation%EF%BC%9B">https://theme-next.js.org/docs/getting-started/#NexT-Installation；</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-        <category>theme</category>
-        <category>NexT</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Hexo-theme</tag>
-        <tag>NexT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo Update</title>
-    <url>/2022/07/13/hexo-update/</url>
-    <content><![CDATA[<h2 id="Hexo-Update"><a href="#Hexo-Update" class="headerlink" title="Hexo Update"></a>Hexo Update</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看當前 hexo 版本</span></span><br><span class="line">hexo -v</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安裝 npm-upgrade</span></span><br><span class="line">npm install -g npm-upgrade</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">更新 Node.js項目下的 package.json</span></span><br><span class="line">npm-upgrade</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">更新全局安裝軟件包</span></span><br><span class="line">npm update -g</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">更新 package.json 中的依賴項</span></span><br><span class="line">npm update --save</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看當前 hexo 版本</span></span><br><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>NodeJS Installation in Windows</title>
     <url>/2022/07/12/nodejs-installation/</url>
     <content><![CDATA[<p>首先在官网 <a href="http://nodejs.org/">Node.js</a> 下载稳定的安装包，默认下一步安装。（仅建议修改一下安装路径）</p>
@@ -416,6 +403,129 @@
       </categories>
       <tags>
         <tag>NodeJS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Update</title>
+    <url>/2022/07/13/hexo-update/</url>
+    <content><![CDATA[<h2 id="Hexo-Update"><a href="#Hexo-Update" class="headerlink" title="Hexo Update"></a>Hexo Update</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看當前 hexo 版本</span></span><br><span class="line">hexo -v</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">安裝 npm-upgrade</span></span><br><span class="line">npm install -g npm-upgrade</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">更新 Node.js項目下的 package.json</span></span><br><span class="line">npm-upgrade</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">更新全局安裝軟件包</span></span><br><span class="line">npm update -g</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">更新 package.json 中的依賴項</span></span><br><span class="line">npm update --save</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看當前 hexo 版本</span></span><br><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ROS HelloWorld</title>
+    <url>/2022/07/15/ros-hello-world/</url>
+    <content><![CDATA[<p>编写ROS的第一个程序，实现流程大致如下：</p>
+<ol>
+<li>创建工作空间；</li>
+<li>创建功能包；</li>
+<li>编写源文件；</li>
+<li>编辑配置文件；</li>
+<li>编译、执行；</li>
+</ol>
+<h2 id="1-创建工作空间并初始化"><a href="#1-创建工作空间并初始化" class="headerlink" title="1 创建工作空间并初始化"></a>1 创建工作空间并初始化</h2><p>创建含有<code>src</code>目录的工作空间，切换到工作空间下，<code>catkin_make</code>编译完成初始化：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">create workspace folder</span></span><br><span class="line">mkdir -p WORKSPACE_NAME/src</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">切换到工作空间下</span></span><br><span class="line">cd WORKSPACE_NAME/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编译 可以视为初始化工作空间</span></span><br><span class="line">catkin_make</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-创建功能包并添加依赖"><a href="#2-创建功能包并添加依赖" class="headerlink" title="2 创建功能包并添加依赖"></a>2 创建功能包并添加依赖</h2><p>切换到工作空间的<code>src</code>目录下，使用<code>catkin_create_pkg</code>创建功能包并添加依赖：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">切换到工作空间下的src</span></span><br><span class="line">cd WORKSPACE_NAME/src</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建功能包</span></span><br><span class="line">catkin_create_pkg PKG_NAME roscpp rospy std_msgs</span><br></pre></td></tr></table></figure>
+
+<p>该功能包添加的依赖为<code>roscpp</code>、<code>rospy</code>和<code>std_msgs</code>，<code>roscpp</code>表示使用C++实现的库，<code>rospy</code>表示使用Python实现的库，<code>std_msgs</code>为标准消息库。功能包通常都会依赖这三个库实现。</p>
+<h2 id="3-编写源文件"><a href="#3-编写源文件" class="headerlink" title="3 编写源文件"></a>3 编写源文件</h2><p>在ROS中，虽然实现同一功能时，C++和Python可以互换，但是具体选择哪种语言，需要视需求而定，因为两种语言相较而言:C++运行效率高但是编码效率低，而Python则反之，基于二者互补的特点，ROS设计者分别设计了<code>roscpp</code>与<code>rospy</code>库，前者旨在成为ROS的高性能库，而后者则一般用于对性能无要求的场景，旨在提高开发效率。</p>
+<h3 id="C-实现"><a href="#C-实现" class="headerlink" title="C++实现"></a>C++实现</h3><p>使用<code>vim</code>创建并打开<code>cpp</code>文件：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在功能包的src目录下创建C++文件并打开</span></span><br><span class="line">vim WORKSPACE_NAME/src/PKG_NAME/src/hello_world.cpp</span><br></pre></td></tr></table></figure>
+
+<p>编辑相关源代码：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">include &lt;ros/ros.h&gt;</span></span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[]) &#123;</span><br><span class="line">	// ros node init</span><br><span class="line">	// arg3 为 node 节点名</span><br><span class="line">	ros::init(argc, argv, &quot;hello_world_node&quot;);</span><br><span class="line">	// print &quot;hello world&quot;</span><br><span class="line">	ROS_INFO(&quot;hello world!&quot;);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h3><p>使用<code>vim</code>创建并打开<code>python</code>文件：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在功能包目录下创建scripts文件夹</span></span><br><span class="line">mkdir WORKSPACE_NAME/src/PKG_NAME/scripts/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在功能包的scripts目录下创建C++文件并打开</span></span><br><span class="line">vim WORKSPACE_NAME/src/PKG_NAME/scripts/hello_world.py</span><br></pre></td></tr></table></figure>
+
+<p>编辑相关源代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/env python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> rospy</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    rospy.init_node(<span class="string">&quot;hello_world_node_py&quot;</span>)</span><br><span class="line">    rospy.loginfo(<span class="string">&quot;Hello World! --python&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>为<code>python</code>文件添加可执行权限：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod +x PYTHON_NAME.py</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="4-编辑功能包下的CMakelist-txt文件"><a href="#4-编辑功能包下的CMakelist-txt文件" class="headerlink" title="4 编辑功能包下的CMakelist.txt文件"></a>4 编辑功能包下的<code>CMakelist.txt</code>文件</h2><h3 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">hello_world 为可执行程序的名字，可随意命名，一般为源文件名去掉后缀</span></span><br><span class="line">add_executable(hello_world_exe</span><br><span class="line">	src/hello_world.cpp</span><br><span class="line">)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">hello_world 为上面可执行程序的名字</span></span><br><span class="line">target_link_libearies(hello_world_exe</span><br><span class="line"><span class="meta prompt_">	$</span><span class="language-bash">&#123;catkin_LIBRARIES&#125;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">catkin_install_python(PROGRAMS scripts/PYTHON_NAME.py</span><br><span class="line">	DESTINATION $&#123;CATKIN_PACKAGE_BIN_DESTINATION&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="5-编译并执行"><a href="#5-编译并执行" class="headerlink" title="5 编译并执行"></a>5 编译并执行</h2><p>切换进入工作空间，使用<code>catkin_make</code>编译</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">切换进入工作空间</span></span><br><span class="line">cd WORKSPACE_NAME/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编译</span></span><br><span class="line">catkin_make</span><br></pre></td></tr></table></figure>
+
+<p>执行，需要打开两个命令窗口：</p>
+<p>第一个命令窗口，输入</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动 ROS Master 节点</span></span><br><span class="line">roscore</span><br></pre></td></tr></table></figure>
+
+<p>再开一个窗口，输入</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">切换到工作空间下</span></span><br><span class="line">cd WORKSPACE_NAME/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置环境变量</span></span><br><span class="line">source ./devel/setup.bash</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Cpp文件</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动 ROS 节点</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">PKG_NAME 为功能包名</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">CPP_NODE_NAME 为 ROS 节点名，即可执行程序的名字（hello_world）</span></span><br><span class="line">rosrun PKG_NAME CPP_EXE_NAME</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">或 Python 文件</span></span><br><span class="line">rosrun PKG_NAME PYTHON_NAME.py</span><br></pre></td></tr></table></figure>
+
+<p>输入完，回车就能在命令行看见输出：<strong>Hello World ！</strong></p>
+<p>**Tips : **</p>
+<p><code>source ~/工作空间/devel/setup.bash</code>可以添加进<code>.bashrc</code>文件，使用上更方便</p>
+<p>添加方式1 : 直接使用 gedit 或 vi 编辑 .bashrc 文件，最后添加该内容</p>
+<p>添加方式2 : <code>echo &quot;source ~/工作空间/devel/setup.bash&quot; &gt;&gt; ~/.bashrc</code></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/13-rosji-cheng-kai-fa-huan-jing-da-jian/131-helloworldshi-xian-jian-jie.html">1.3.1 HelloWorld实现简介 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>ROS</category>
+        <category>beginner-tutorials</category>
+      </categories>
+      <tags>
+        <tag>ROS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ROS 集成开发环境搭建</title>
+    <url>/2022/07/15/ros-ide-config/</url>
+    <content><![CDATA[<p>和大多数开发环境一样，理论上，在 ROS 中，只需要记事本就可以编写基本的 ROS 程序，但是工欲善其事必先利其器，为了提高开发效率，可以先安装集成开发工具和使用方便的工具 : 终端、IDE….</p>
+<h3 id="終端Terminator安裝"><a href="#終端Terminator安裝" class="headerlink" title="終端Terminator安裝"></a>終端Terminator安裝</h3><p>在 ROS 中，需要频繁的使用到终端，且可能需要同时开启多个窗口，推荐一款较为好用的终端:<strong>Terminator。</strong>效果如下:</p>
+<p><img src="/../images/posts/ros-IDE-config.assets/terminator%E6%95%88%E6%9E%9C.PNG" alt="img"></p>
+<h4 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install terminator</span><br></pre></td></tr></table></figure>
+
+<h4 id="添加到收藏夾"><a href="#添加到收藏夾" class="headerlink" title="添加到收藏夾"></a>添加到收藏夾</h4><p>顯示應用程序 —- 搜索 terminator —- 右擊選擇 添加到收藏夾</p>
+<h4 id="常用快捷鍵"><a href="#常用快捷鍵" class="headerlink" title="常用快捷鍵"></a>常用快捷鍵</h4><p><strong>第一部分：關於在同一個標簽内的操作</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Alt+Up                          //移动到上面的终端</span><br><span class="line">Alt+Down                        //移动到下面的终端</span><br><span class="line">Alt+Left                        //移动到左边的终端</span><br><span class="line">Alt+Right                       //移动到右边的终端</span><br><span class="line">Ctrl+Shift+O                    //水平分割终端</span><br><span class="line">Ctrl+Shift+E                    //垂直分割终端</span><br><span class="line">Ctrl+Shift+Right                //在垂直分割的终端中将分割条向右移动</span><br><span class="line">Ctrl+Shift+Left                 //在垂直分割的终端中将分割条向左移动</span><br><span class="line">Ctrl+Shift+Up                   //在水平分割的终端中将分割条向上移动</span><br><span class="line">Ctrl+Shift+Down                 //在水平分割的终端中将分割条向下移动</span><br><span class="line">Ctrl+Shift+S                    //隐藏/显示滚动条</span><br><span class="line">Ctrl+Shift+F                    //搜索</span><br><span class="line">Ctrl+Shift+C                    //复制选中的内容到剪贴板</span><br><span class="line">Ctrl+Shift+V                    //粘贴剪贴板的内容到此处</span><br><span class="line">Ctrl+Shift+W                    //关闭当前终端</span><br><span class="line">Ctrl+Shift+Q                    //退出当前窗口，当前窗口的所有终端都将被关闭</span><br><span class="line">Ctrl+Shift+X                    //最大化显示当前终端</span><br><span class="line">Ctrl+Shift+Z                    //最大化显示当前终端并使字体放大</span><br><span class="line">Ctrl+Shift+N or Ctrl+Tab        //移动到下一个终端</span><br><span class="line">Ctrl+Shift+P or Ctrl+Shift+Tab  //Crtl+Shift+Tab 移动到之前的一个终端</span><br></pre></td></tr></table></figure>
+
+<p><strong>第二部份：有关各个标签之间的操作</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">F11                             //全屏开关</span><br><span class="line">Ctrl+Shift+T                    //打开一个新的标签</span><br><span class="line">Ctrl+PageDown                   //移动到下一个标签</span><br><span class="line">Ctrl+PageUp                     //移动到上一个标签</span><br><span class="line">Ctrl+Shift+PageDown             //将当前标签与其后一个标签交换位置</span><br><span class="line">Ctrl+Shift+PageUp               //将当前标签与其前一个标签交换位置</span><br><span class="line">Ctrl+Plus (+)                   //增大字体</span><br><span class="line">Ctrl+Minus (-)                  //减小字体</span><br><span class="line">Ctrl+Zero (0)                   //恢复字体到原始大小</span><br><span class="line">Ctrl+Shift+R                    //重置终端状态</span><br><span class="line">Ctrl+Shift+G                    //重置终端状态并clear屏幕</span><br><span class="line">Super+g                         //绑定所有的终端，以便向一个输入能够输入到所有的终端</span><br><span class="line">Super+Shift+G                   //解除绑定</span><br><span class="line">Super+t                         //绑定当前标签的所有终端，向一个终端输入的内容会自动输入到其他终端</span><br><span class="line">Super+Shift+T                   //解除绑定</span><br><span class="line">Ctrl+Shift+I                    //打开一个窗口，新窗口与原来的窗口使用同一个进程</span><br><span class="line">Super+i                         //打开一个新窗口，新窗口与原来的窗口使用不同的进程</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="VScode安裝"><a href="#VScode安裝" class="headerlink" title="VScode安裝"></a>VScode安裝</h3><h4 id="安装包下载"><a href="#安装包下载" class="headerlink" title="安装包下载"></a>安装包下载</h4><p>vscode linux64下载:<a href="https://code.visualstudio.com/docs/?dv=linux64_deb">https://code.visualstudio.com/docs/?dv=linux64_deb</a></p>
+<p>历史版本: <a href="https://code.visualstudio.com/updates">https://code.visualstudio.com/updates</a></p>
+<h4 id="安装与卸载"><a href="#安装与卸载" class="headerlink" title="安装与卸载"></a>安装与卸载</h4><h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo dpkg -i xxxx.deb</span><br></pre></td></tr></table></figure>
+
+<h5 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo dpkg --purge  code</span><br></pre></td></tr></table></figure>
+
+<h4 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h4><p><code>C/C++</code>、<code>CMake Tools</code>、<code>Python</code>、<code>ROS</code></p>
+<p><img src="/../images/posts/ros-IDE-config.assets/image-20220702144712035.png" alt="image-20220702144712035"></p>
+<h4 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h4><p>个人认为除了以上插件，仅需要添加ROS头文件路径保证代码补全即可，以提升coding效率。</p>
+<p>具体打开工作空间下<code>.vscode/c_cpp_properties.json</code>文件，在<code>includePath</code>中添加安装的ROS的路径即可。</p>
+<p>如需更多配置，可参考：<a href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/14-ros-ji-cheng-kai-fa-huan-jing-da-jian/142-an-zhuang-vscode.html">VScode ROS 配置</a></p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Linux&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;includePath&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="string">&quot;$&#123;workspaceFolder&#125;/**&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="comment">// 将 kinetic 更换为自己安装的 ROS 版本即可</span></span><br><span class="line">                <span class="string">&quot;/opt/ros/kinetic/include/**&quot;</span></span><br><span class="line">            <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;defines&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;compilerPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/usr/bin/gcc&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;cStandard&quot;</span><span class="punctuation">:</span> <span class="string">&quot;c11&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;cppStandard&quot;</span><span class="punctuation">:</span> <span class="string">&quot;c++17&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;intelliSenseMode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;linux-gcc-x64&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="number">4</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/posts/ros-IDE-config.assets/image-20220702154100502.png" alt="image-20220702154100502"></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/14-ros-ji-cheng-kai-fa-huan-jing-da-jian.html">1.4 ROS集成开发环境搭建 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>ROS</category>
+      </categories>
+      <tags>
+        <tag>ROS</tag>
+        <tag>ROS-IDE</tag>
       </tags>
   </entry>
   <entry>
@@ -596,159 +706,6 @@
       <categories>
         <category>ROS</category>
         <category>beginner-tutorials</category>
-      </categories>
-      <tags>
-        <tag>ROS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ROS HelloWorld</title>
-    <url>/2022/07/15/ros-hello-world/</url>
-    <content><![CDATA[<p>编写ROS的第一个程序，实现流程大致如下：</p>
-<ol>
-<li>创建工作空间；</li>
-<li>创建功能包；</li>
-<li>编写源文件；</li>
-<li>编辑配置文件；</li>
-<li>编译、执行；</li>
-</ol>
-<h2 id="1-创建工作空间并初始化"><a href="#1-创建工作空间并初始化" class="headerlink" title="1 创建工作空间并初始化"></a>1 创建工作空间并初始化</h2><p>创建含有<code>src</code>目录的工作空间，切换到工作空间下，<code>catkin_make</code>编译完成初始化：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">create workspace folder</span></span><br><span class="line">mkdir -p WORKSPACE_NAME/src</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">切换到工作空间下</span></span><br><span class="line">cd WORKSPACE_NAME/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编译 可以视为初始化工作空间</span></span><br><span class="line">catkin_make</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-创建功能包并添加依赖"><a href="#2-创建功能包并添加依赖" class="headerlink" title="2 创建功能包并添加依赖"></a>2 创建功能包并添加依赖</h2><p>切换到工作空间的<code>src</code>目录下，使用<code>catkin_create_pkg</code>创建功能包并添加依赖：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">切换到工作空间下的src</span></span><br><span class="line">cd WORKSPACE_NAME/src</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建功能包</span></span><br><span class="line">catkin_create_pkg PKG_NAME roscpp rospy std_msgs</span><br></pre></td></tr></table></figure>
-
-<p>该功能包添加的依赖为<code>roscpp</code>、<code>rospy</code>和<code>std_msgs</code>，<code>roscpp</code>表示使用C++实现的库，<code>rospy</code>表示使用Python实现的库，<code>std_msgs</code>为标准消息库。功能包通常都会依赖这三个库实现。</p>
-<h2 id="3-编写源文件"><a href="#3-编写源文件" class="headerlink" title="3 编写源文件"></a>3 编写源文件</h2><p>在ROS中，虽然实现同一功能时，C++和Python可以互换，但是具体选择哪种语言，需要视需求而定，因为两种语言相较而言:C++运行效率高但是编码效率低，而Python则反之，基于二者互补的特点，ROS设计者分别设计了<code>roscpp</code>与<code>rospy</code>库，前者旨在成为ROS的高性能库，而后者则一般用于对性能无要求的场景，旨在提高开发效率。</p>
-<h3 id="C-实现"><a href="#C-实现" class="headerlink" title="C++实现"></a>C++实现</h3><p>使用<code>vim</code>创建并打开<code>cpp</code>文件：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在功能包的src目录下创建C++文件并打开</span></span><br><span class="line">vim WORKSPACE_NAME/src/PKG_NAME/src/hello_world.cpp</span><br></pre></td></tr></table></figure>
-
-<p>编辑相关源代码：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">include &lt;ros/ros.h&gt;</span></span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[]) &#123;</span><br><span class="line">	// ros node init</span><br><span class="line">	// arg3 为 node 节点名</span><br><span class="line">	ros::init(argc, argv, &quot;hello_world_node&quot;);</span><br><span class="line">	// print &quot;hello world&quot;</span><br><span class="line">	ROS_INFO(&quot;hello world!&quot;);</span><br><span class="line">	</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Python实现"><a href="#Python实现" class="headerlink" title="Python实现"></a>Python实现</h3><p>使用<code>vim</code>创建并打开<code>python</code>文件：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在功能包目录下创建scripts文件夹</span></span><br><span class="line">mkdir WORKSPACE_NAME/src/PKG_NAME/scripts/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在功能包的scripts目录下创建C++文件并打开</span></span><br><span class="line">vim WORKSPACE_NAME/src/PKG_NAME/scripts/hello_world.py</span><br></pre></td></tr></table></figure>
-
-<p>编辑相关源代码：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/env python</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> rospy</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    rospy.init_node(<span class="string">&quot;hello_world_node_py&quot;</span>)</span><br><span class="line">    rospy.loginfo(<span class="string">&quot;Hello World! --python&quot;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>为<code>python</code>文件添加可执行权限：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod +x PYTHON_NAME.py</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="4-编辑功能包下的CMakelist-txt文件"><a href="#4-编辑功能包下的CMakelist-txt文件" class="headerlink" title="4 编辑功能包下的CMakelist.txt文件"></a>4 编辑功能包下的<code>CMakelist.txt</code>文件</h2><h3 id="C"><a href="#C" class="headerlink" title="C++"></a>C++</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">hello_world 为可执行程序的名字，可随意命名，一般为源文件名去掉后缀</span></span><br><span class="line">add_executable(hello_world_exe</span><br><span class="line">	src/hello_world.cpp</span><br><span class="line">)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">hello_world 为上面可执行程序的名字</span></span><br><span class="line">target_link_libearies(hello_world_exe</span><br><span class="line"><span class="meta prompt_">	$</span><span class="language-bash">&#123;catkin_LIBRARIES&#125;</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-<h3 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">catkin_install_python(PROGRAMS scripts/PYTHON_NAME.py</span><br><span class="line">	DESTINATION $&#123;CATKIN_PACKAGE_BIN_DESTINATION&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="5-编译并执行"><a href="#5-编译并执行" class="headerlink" title="5 编译并执行"></a>5 编译并执行</h2><p>切换进入工作空间，使用<code>catkin_make</code>编译</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">切换进入工作空间</span></span><br><span class="line">cd WORKSPACE_NAME/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编译</span></span><br><span class="line">catkin_make</span><br></pre></td></tr></table></figure>
-
-<p>执行，需要打开两个命令窗口：</p>
-<p>第一个命令窗口，输入</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动 ROS Master 节点</span></span><br><span class="line">roscore</span><br></pre></td></tr></table></figure>
-
-<p>再开一个窗口，输入</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">切换到工作空间下</span></span><br><span class="line">cd WORKSPACE_NAME/</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置环境变量</span></span><br><span class="line">source ./devel/setup.bash</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Cpp文件</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动 ROS 节点</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">PKG_NAME 为功能包名</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">CPP_NODE_NAME 为 ROS 节点名，即可执行程序的名字（hello_world）</span></span><br><span class="line">rosrun PKG_NAME CPP_EXE_NAME</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">或 Python 文件</span></span><br><span class="line">rosrun PKG_NAME PYTHON_NAME.py</span><br></pre></td></tr></table></figure>
-
-<p>输入完，回车就能在命令行看见输出：<strong>Hello World ！</strong></p>
-<p>**Tips : **</p>
-<p><code>source ~/工作空间/devel/setup.bash</code>可以添加进<code>.bashrc</code>文件，使用上更方便</p>
-<p>添加方式1 : 直接使用 gedit 或 vi 编辑 .bashrc 文件，最后添加该内容</p>
-<p>添加方式2 : <code>echo &quot;source ~/工作空间/devel/setup.bash&quot; &gt;&gt; ~/.bashrc</code></p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
-<li><a href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/13-rosji-cheng-kai-fa-huan-jing-da-jian/131-helloworldshi-xian-jian-jie.html">1.3.1 HelloWorld实现简介 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>ROS</category>
-        <category>beginner-tutorials</category>
-      </categories>
-      <tags>
-        <tag>ROS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ROS 集成开发环境搭建</title>
-    <url>/2022/07/15/ros-ide-config/</url>
-    <content><![CDATA[<p>和大多数开发环境一样，理论上，在 ROS 中，只需要记事本就可以编写基本的 ROS 程序，但是工欲善其事必先利其器，为了提高开发效率，可以先安装集成开发工具和使用方便的工具 : 终端、IDE….</p>
-<h3 id="終端Terminator安裝"><a href="#終端Terminator安裝" class="headerlink" title="終端Terminator安裝"></a>終端Terminator安裝</h3><p>在 ROS 中，需要频繁的使用到终端，且可能需要同时开启多个窗口，推荐一款较为好用的终端:<strong>Terminator。</strong>效果如下:</p>
-<p><img src="/../images/posts/ros-IDE-config.assets/terminator%E6%95%88%E6%9E%9C.PNG" alt="img"></p>
-<h4 id="安裝"><a href="#安裝" class="headerlink" title="安裝"></a>安裝</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install terminator</span><br></pre></td></tr></table></figure>
-
-<h4 id="添加到收藏夾"><a href="#添加到收藏夾" class="headerlink" title="添加到收藏夾"></a>添加到收藏夾</h4><p>顯示應用程序 —- 搜索 terminator —- 右擊選擇 添加到收藏夾</p>
-<h4 id="常用快捷鍵"><a href="#常用快捷鍵" class="headerlink" title="常用快捷鍵"></a>常用快捷鍵</h4><p><strong>第一部分：關於在同一個標簽内的操作</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Alt+Up                          //移动到上面的终端</span><br><span class="line">Alt+Down                        //移动到下面的终端</span><br><span class="line">Alt+Left                        //移动到左边的终端</span><br><span class="line">Alt+Right                       //移动到右边的终端</span><br><span class="line">Ctrl+Shift+O                    //水平分割终端</span><br><span class="line">Ctrl+Shift+E                    //垂直分割终端</span><br><span class="line">Ctrl+Shift+Right                //在垂直分割的终端中将分割条向右移动</span><br><span class="line">Ctrl+Shift+Left                 //在垂直分割的终端中将分割条向左移动</span><br><span class="line">Ctrl+Shift+Up                   //在水平分割的终端中将分割条向上移动</span><br><span class="line">Ctrl+Shift+Down                 //在水平分割的终端中将分割条向下移动</span><br><span class="line">Ctrl+Shift+S                    //隐藏/显示滚动条</span><br><span class="line">Ctrl+Shift+F                    //搜索</span><br><span class="line">Ctrl+Shift+C                    //复制选中的内容到剪贴板</span><br><span class="line">Ctrl+Shift+V                    //粘贴剪贴板的内容到此处</span><br><span class="line">Ctrl+Shift+W                    //关闭当前终端</span><br><span class="line">Ctrl+Shift+Q                    //退出当前窗口，当前窗口的所有终端都将被关闭</span><br><span class="line">Ctrl+Shift+X                    //最大化显示当前终端</span><br><span class="line">Ctrl+Shift+Z                    //最大化显示当前终端并使字体放大</span><br><span class="line">Ctrl+Shift+N or Ctrl+Tab        //移动到下一个终端</span><br><span class="line">Ctrl+Shift+P or Ctrl+Shift+Tab  //Crtl+Shift+Tab 移动到之前的一个终端</span><br></pre></td></tr></table></figure>
-
-<p><strong>第二部份：有关各个标签之间的操作</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">F11                             //全屏开关</span><br><span class="line">Ctrl+Shift+T                    //打开一个新的标签</span><br><span class="line">Ctrl+PageDown                   //移动到下一个标签</span><br><span class="line">Ctrl+PageUp                     //移动到上一个标签</span><br><span class="line">Ctrl+Shift+PageDown             //将当前标签与其后一个标签交换位置</span><br><span class="line">Ctrl+Shift+PageUp               //将当前标签与其前一个标签交换位置</span><br><span class="line">Ctrl+Plus (+)                   //增大字体</span><br><span class="line">Ctrl+Minus (-)                  //减小字体</span><br><span class="line">Ctrl+Zero (0)                   //恢复字体到原始大小</span><br><span class="line">Ctrl+Shift+R                    //重置终端状态</span><br><span class="line">Ctrl+Shift+G                    //重置终端状态并clear屏幕</span><br><span class="line">Super+g                         //绑定所有的终端，以便向一个输入能够输入到所有的终端</span><br><span class="line">Super+Shift+G                   //解除绑定</span><br><span class="line">Super+t                         //绑定当前标签的所有终端，向一个终端输入的内容会自动输入到其他终端</span><br><span class="line">Super+Shift+T                   //解除绑定</span><br><span class="line">Ctrl+Shift+I                    //打开一个窗口，新窗口与原来的窗口使用同一个进程</span><br><span class="line">Super+i                         //打开一个新窗口，新窗口与原来的窗口使用不同的进程</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="VScode安裝"><a href="#VScode安裝" class="headerlink" title="VScode安裝"></a>VScode安裝</h3><h4 id="安装包下载"><a href="#安装包下载" class="headerlink" title="安装包下载"></a>安装包下载</h4><p>vscode linux64下载:<a href="https://code.visualstudio.com/docs/?dv=linux64_deb">https://code.visualstudio.com/docs/?dv=linux64_deb</a></p>
-<p>历史版本: <a href="https://code.visualstudio.com/updates">https://code.visualstudio.com/updates</a></p>
-<h4 id="安装与卸载"><a href="#安装与卸载" class="headerlink" title="安装与卸载"></a>安装与卸载</h4><h5 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo dpkg -i xxxx.deb</span><br></pre></td></tr></table></figure>
-
-<h5 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo dpkg --purge  code</span><br></pre></td></tr></table></figure>
-
-<h4 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h4><p><code>C/C++</code>、<code>CMake Tools</code>、<code>Python</code>、<code>ROS</code></p>
-<p><img src="/../images/posts/ros-IDE-config.assets/image-20220702144712035.png" alt="image-20220702144712035"></p>
-<h4 id="基本配置"><a href="#基本配置" class="headerlink" title="基本配置"></a>基本配置</h4><p>个人认为除了以上插件，仅需要添加ROS头文件路径保证代码补全即可，以提升coding效率。</p>
-<p>具体打开工作空间下<code>.vscode/c_cpp_properties.json</code>文件，在<code>includePath</code>中添加安装的ROS的路径即可。</p>
-<p>如需更多配置，可参考：<a href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/14-ros-ji-cheng-kai-fa-huan-jing-da-jian/142-an-zhuang-vscode.html">VScode ROS 配置</a></p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;configurations&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">        <span class="punctuation">&#123;</span></span><br><span class="line">            <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;Linux&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;includePath&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">                <span class="string">&quot;$&#123;workspaceFolder&#125;/**&quot;</span><span class="punctuation">,</span></span><br><span class="line">                <span class="comment">// 将 kinetic 更换为自己安装的 ROS 版本即可</span></span><br><span class="line">                <span class="string">&quot;/opt/ros/kinetic/include/**&quot;</span></span><br><span class="line">            <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;defines&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;compilerPath&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/usr/bin/gcc&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;cStandard&quot;</span><span class="punctuation">:</span> <span class="string">&quot;c11&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;cppStandard&quot;</span><span class="punctuation">:</span> <span class="string">&quot;c++17&quot;</span><span class="punctuation">,</span></span><br><span class="line">            <span class="attr">&quot;intelliSenseMode&quot;</span><span class="punctuation">:</span> <span class="string">&quot;linux-gcc-x64&quot;</span></span><br><span class="line">        <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> <span class="number">4</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="/../images/posts/ros-IDE-config.assets/image-20220702154100502.png" alt="image-20220702154100502"></p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
-<li><a href="http://www.autolabor.com.cn/book/ROSTutorials/chapter1/14-ros-ji-cheng-kai-fa-huan-jing-da-jian.html">1.4 ROS集成开发环境搭建 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>ROS</category>
-      </categories>
-      <tags>
-        <tag>ROS</tag>
-        <tag>ROS-IDE</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ROS Overview</title>
-    <url>/2022/07/15/ros-overview/</url>
-    <content><![CDATA[<p>ROS（<em>Robot Operating System</em>）提供了一系列的 <strong>库</strong> 和 <strong>开发工具</strong> 以帮助开发者更好的创建机器人应用，包括硬件抽象、设备驱动、库文件、可视化工具、消息传递以及包管理等。ROS基于BSD开源许可。</p>
-<h3 id="History"><a href="#History" class="headerlink" title="History"></a>History</h3><p>ROS是一个由来已久、贡献者众多的大型软件项目。在ROS诞生之前，很多学者认为，机器人研究需要一个开放式的协作框架，并且已经有不少类似的项目致力于实现这样的框架。在这些工作中，斯坦福大学在2000年年中开展了一系列相关研究项目，如斯坦福人工智能机器人（STandford AI Robot, STAIR）项目、个人机器人（Personal Robots, PR）项目等，在上述项目中，在研究具有代表性、集成式人工智能系统的过程中，创立了用于室内场景的高灵活性、动态软件系统，其可以用于机器人学研究。</p>
-<p>2007年，柳树车库（Willow Garage）提供了大量资源，用于将斯坦福大学项目中的软件系统进行扩展与完善，同时，在无数研究人员的共同努力下，ROS的核心思想和基本软件包逐渐得到完善。</p>
-<h3 id="What-is-ROS"><a href="#What-is-ROS" class="headerlink" title="What is ROS?"></a>What is ROS?</h3><p>ROS 是一个为机器人设计的<strong>开源</strong>的<strong>元操作系统</strong>。它提供了与操作系统类似的服务，包括硬件抽象、底层设备控制、常用功能的实现、进程间通信和功能包管理。实际上，可以将ROS 看作一个 SDK(software development kit)，提供提供了用于在多主机上获取、生成、编写和运行代码的工具和库。</p>
-<p>ROS 的主要目标是为机器人研究和开发提供代码复用的支持。ROS是一个分布式的进程（也就是“节点”）框架，这些进程被封装在易于被分享和发布的程序包和功能包中。ROS也支持一种类似于代码储存库的联合系统，这个系统也可以实现工程的协作及发布。这个设计可以使一个工程的开发和实现从文件系统到用户接口完全独立决策（不受ROS限制）。同时，所有的工程都可以被ROS的基础工具整合在一起。</p>
-<p><img src="/../images/posts/ros-overview.assets/ros-equation.png" alt="img"></p>
-<p>ROS设计者将ROS表述为“ROS &#x3D; Plumbing + Tools + Capabilities + Community”，即ROS是通讯机制、工具软件包、机器人高层技能以及机器人社区的集合体。</p>
-<p><strong>通信机制（Plumbing）</strong>：ROS提供了一种发布-订阅式的通信框架用以简单、快速地构建分布式计算系。</p>
-<p><strong>工具（Tools）</strong>：ROS提供了大量的工具组合用以配置、启动、自检、调试、可视化、登录、测试、终止分布式计算系统。</p>
-<p><strong>强大的库（Capabilities）</strong>：ROS提供了广泛的库文件实现以机动性、操作控制、感知为主的机器人功能。</p>
-<p><strong>开源社区（Community）</strong>：ROS的支持与发展依托着一个强大的社区。ros.org尤其关注兼容性和支持文档，提供了一套“一站式”的方案使得用户得以搜索并学习来自全球开发者数以千计的ROS程序包。</p>
-<h3 id="Goals"><a href="#Goals" class="headerlink" title="Goals"></a>Goals</h3><p> ROS 的目标并不是成为多功能的框架，而是希望在机器人研发过程中，代码复用、技术共享以及协同开发。</p>
-<p><img src="/../images/posts/ros-overview.assets/image-20220711173816466.png" alt="image-20220711173816466"></p>
-<p><strong>代码复用（reuse）</strong>：支持机器人研发过程中代码复用。</p>
-<p><strong>分布式框架（distributed framework）</strong>：分布式运行保证系统中各节点的松耦合，独立开发实现节点功能以提高开发效率。</p>
-<p><strong>精简（thin）</strong>：ROS 被设计为尽可能精简，以便为 ROS 编写的代码可以与其他机器人软件框架一起使用。即 ROS 很容易与其他机器人软件框架集成：ROS 已经与 Open RAVE、Orocos 和 Player 集成。</p>
-<p><strong>与 ROS 无关的库（ROS-agnostic libraries）</strong>：首选的开发模型是编写具有干净功能接口的与 ROS 无关的库。这样就算脱离 ROS ，仍然可以在其他机器人框架或者平台上完成相应功能。</p>
-<p><strong>语言独立性（language independence）</strong>：ROS 框架很容易用任何现代编程语言实现。可以使用 Python、C++ 和 Lisp 编码实现，并且有 Java 和 Lua 的支持计划。</p>
-<p><strong>易于测试（easy testing）</strong>：ROS 有一个称为 rostest 的内置单元&#x2F;集成测试框架，可以轻松启动和拆除测试夹具。</p>
-<p><strong>可扩展性（scaling）</strong>：ROS 适用于大型运行时系统和大型开发过程。</p>
-<h3 id="Releases"><a href="#Releases" class="headerlink" title="Releases"></a>Releases</h3><p>核心 ROS 系统以及有用的工具和库会定期作为 ROS 发行版发布。ROS的发行版类似于 Linux 发行版，并提供一组兼容的软件供开发者使用和构建。推出ROS发行版本的目的在于使开发人员可以使用相对稳定的代码库，直到其准备好将所有内容进行版本升级为止。因此，每个发行版本推出后，ROS开发者通常仅对这一版本的bug进行修复，同时提供少量针对核心软件包的改进。</p>
-<p>版本特点: 按照英文字母顺序命名，ROS 目前已经发布了ROS1 的终极版本: noetic，并建议后期过渡至 ROS2 版本。noetic 版本之前默认使用的是 Python2，noetic 支持 Python3。</p>
-<p>建议版本: noetic 或 melodic 或 kinetic</p>
-<p><img src="/../images/posts/ros-overview.assets/%E7%89%88%E6%9C%AC.png" alt="img"></p>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
-<li><p><a href="http://wiki.ros.org/">wiki.ros.org</a></p>
-</li>
-<li><p><a href="https://www.ros.org/">ROS: Home</a></p>
-</li>
-<li><p><a href="https://baike.baidu.com/item/ros/4710560">ros（机器人操作系统）_百度百科 (baidu.com)</a></p>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>ROS</category>
       </categories>
       <tags>
         <tag>ROS</tag>
@@ -996,6 +953,49 @@
         <tag>ROS</tag>
         <tag>Ubuntu</tag>
         <tag>VMware</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ROS Overview</title>
+    <url>/2022/07/15/ros-overview/</url>
+    <content><![CDATA[<p>ROS（<em>Robot Operating System</em>）提供了一系列的 <strong>库</strong> 和 <strong>开发工具</strong> 以帮助开发者更好的创建机器人应用，包括硬件抽象、设备驱动、库文件、可视化工具、消息传递以及包管理等。ROS基于BSD开源许可。</p>
+<h3 id="History"><a href="#History" class="headerlink" title="History"></a>History</h3><p>ROS是一个由来已久、贡献者众多的大型软件项目。在ROS诞生之前，很多学者认为，机器人研究需要一个开放式的协作框架，并且已经有不少类似的项目致力于实现这样的框架。在这些工作中，斯坦福大学在2000年年中开展了一系列相关研究项目，如斯坦福人工智能机器人（STandford AI Robot, STAIR）项目、个人机器人（Personal Robots, PR）项目等，在上述项目中，在研究具有代表性、集成式人工智能系统的过程中，创立了用于室内场景的高灵活性、动态软件系统，其可以用于机器人学研究。</p>
+<p>2007年，柳树车库（Willow Garage）提供了大量资源，用于将斯坦福大学项目中的软件系统进行扩展与完善，同时，在无数研究人员的共同努力下，ROS的核心思想和基本软件包逐渐得到完善。</p>
+<h3 id="What-is-ROS"><a href="#What-is-ROS" class="headerlink" title="What is ROS?"></a>What is ROS?</h3><p>ROS 是一个为机器人设计的<strong>开源</strong>的<strong>元操作系统</strong>。它提供了与操作系统类似的服务，包括硬件抽象、底层设备控制、常用功能的实现、进程间通信和功能包管理。实际上，可以将ROS 看作一个 SDK(software development kit)，提供提供了用于在多主机上获取、生成、编写和运行代码的工具和库。</p>
+<p>ROS 的主要目标是为机器人研究和开发提供代码复用的支持。ROS是一个分布式的进程（也就是“节点”）框架，这些进程被封装在易于被分享和发布的程序包和功能包中。ROS也支持一种类似于代码储存库的联合系统，这个系统也可以实现工程的协作及发布。这个设计可以使一个工程的开发和实现从文件系统到用户接口完全独立决策（不受ROS限制）。同时，所有的工程都可以被ROS的基础工具整合在一起。</p>
+<p><img src="/../images/posts/ros-overview.assets/ros-equation.png" alt="img"></p>
+<p>ROS设计者将ROS表述为“ROS &#x3D; Plumbing + Tools + Capabilities + Community”，即ROS是通讯机制、工具软件包、机器人高层技能以及机器人社区的集合体。</p>
+<p><strong>通信机制（Plumbing）</strong>：ROS提供了一种发布-订阅式的通信框架用以简单、快速地构建分布式计算系。</p>
+<p><strong>工具（Tools）</strong>：ROS提供了大量的工具组合用以配置、启动、自检、调试、可视化、登录、测试、终止分布式计算系统。</p>
+<p><strong>强大的库（Capabilities）</strong>：ROS提供了广泛的库文件实现以机动性、操作控制、感知为主的机器人功能。</p>
+<p><strong>开源社区（Community）</strong>：ROS的支持与发展依托着一个强大的社区。ros.org尤其关注兼容性和支持文档，提供了一套“一站式”的方案使得用户得以搜索并学习来自全球开发者数以千计的ROS程序包。</p>
+<h3 id="Goals"><a href="#Goals" class="headerlink" title="Goals"></a>Goals</h3><p> ROS 的目标并不是成为多功能的框架，而是希望在机器人研发过程中，代码复用、技术共享以及协同开发。</p>
+<p><img src="/../images/posts/ros-overview.assets/image-20220711173816466.png" alt="image-20220711173816466"></p>
+<p><strong>代码复用（reuse）</strong>：支持机器人研发过程中代码复用。</p>
+<p><strong>分布式框架（distributed framework）</strong>：分布式运行保证系统中各节点的松耦合，独立开发实现节点功能以提高开发效率。</p>
+<p><strong>精简（thin）</strong>：ROS 被设计为尽可能精简，以便为 ROS 编写的代码可以与其他机器人软件框架一起使用。即 ROS 很容易与其他机器人软件框架集成：ROS 已经与 Open RAVE、Orocos 和 Player 集成。</p>
+<p><strong>与 ROS 无关的库（ROS-agnostic libraries）</strong>：首选的开发模型是编写具有干净功能接口的与 ROS 无关的库。这样就算脱离 ROS ，仍然可以在其他机器人框架或者平台上完成相应功能。</p>
+<p><strong>语言独立性（language independence）</strong>：ROS 框架很容易用任何现代编程语言实现。可以使用 Python、C++ 和 Lisp 编码实现，并且有 Java 和 Lua 的支持计划。</p>
+<p><strong>易于测试（easy testing）</strong>：ROS 有一个称为 rostest 的内置单元&#x2F;集成测试框架，可以轻松启动和拆除测试夹具。</p>
+<p><strong>可扩展性（scaling）</strong>：ROS 适用于大型运行时系统和大型开发过程。</p>
+<h3 id="Releases"><a href="#Releases" class="headerlink" title="Releases"></a>Releases</h3><p>核心 ROS 系统以及有用的工具和库会定期作为 ROS 发行版发布。ROS的发行版类似于 Linux 发行版，并提供一组兼容的软件供开发者使用和构建。推出ROS发行版本的目的在于使开发人员可以使用相对稳定的代码库，直到其准备好将所有内容进行版本升级为止。因此，每个发行版本推出后，ROS开发者通常仅对这一版本的bug进行修复，同时提供少量针对核心软件包的改进。</p>
+<p>版本特点: 按照英文字母顺序命名，ROS 目前已经发布了ROS1 的终极版本: noetic，并建议后期过渡至 ROS2 版本。noetic 版本之前默认使用的是 Python2，noetic 支持 Python3。</p>
+<p>建议版本: noetic 或 melodic 或 kinetic</p>
+<p><img src="/../images/posts/ros-overview.assets/%E7%89%88%E6%9C%AC.png" alt="img"></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><p><a href="http://wiki.ros.org/">wiki.ros.org</a></p>
+</li>
+<li><p><a href="https://www.ros.org/">ROS: Home</a></p>
+</li>
+<li><p><a href="https://baike.baidu.com/item/ros/4710560">ros（机器人操作系统）_百度百科 (baidu.com)</a></p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>ROS</category>
+      </categories>
+      <tags>
+        <tag>ROS</tag>
       </tags>
   </entry>
 </search>
