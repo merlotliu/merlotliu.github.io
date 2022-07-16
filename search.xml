@@ -27,6 +27,12 @@
       </tags>
   </entry>
   <entry>
+    <title>git</title>
+    <url>/2022/07/16/git/</url>
+    <content><![CDATA[<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1. </p>
+]]></content>
+  </entry>
+  <entry>
     <title>Git Timeout 解决策略</title>
     <url>/2022/07/15/git-timeout-solution/</url>
     <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p><code>github</code>网页能够正常打开，但在 <code>git bash</code>中 <code>push</code> 总失败。</p>
@@ -42,12 +48,6 @@
         <tag>Git</tag>
         <tag>Git-issues</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>git</title>
-    <url>/2022/07/16/git/</url>
-    <content><![CDATA[<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1. </p>
-]]></content>
   </entry>
   <entry>
     <title>Hexo &amp; Github Pages 多端同步</title>
@@ -296,6 +296,14 @@
 
 <h3 id="菜单栏"><a href="#菜单栏" class="headerlink" title="菜单栏"></a>菜单栏</h3><p>主题配置文件 :</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># Menu Settings</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Usage: `Key: /link/ || icon`</span></span><br><span class="line"><span class="comment"># Key is the name of menu item. If the translation for this item is available, the translated text will be loaded, otherwise the Key name will be used. Key is case-sensitive.</span></span><br><span class="line"><span class="comment"># Value before `||` delimiter is the target link, value after `||` delimiter is the name of Font Awesome icon.</span></span><br><span class="line"><span class="comment"># External url should start with http:// or https://</span></span><br><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="comment"># home</span></span><br><span class="line">  <span class="string">主页:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-home</span></span><br><span class="line">  <span class="comment"># tags</span></span><br><span class="line">  <span class="string">标签:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-tags</span></span><br><span class="line">  <span class="comment"># archives</span></span><br><span class="line">  <span class="string">归档:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-archive</span> </span><br><span class="line">  <span class="comment"># categories</span></span><br><span class="line">  <span class="string">分类:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-th</span> </span><br><span class="line">  <span class="comment"># essay</span></span><br><span class="line">  <span class="string">札记:</span> <span class="string">/essay/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-sticky-note</span> </span><br><span class="line">  <span class="comment"># msg</span></span><br><span class="line">  <span class="string">留言:</span> <span class="string">/msg/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-comment</span></span><br><span class="line">  <span class="comment"># about</span></span><br><span class="line">  <span class="string">关于他:</span> <span class="string">/about/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-user</span></span><br><span class="line">  <span class="comment"># schedule: /schedule/ || fa fa-calendar</span></span><br><span class="line">  <span class="comment"># sitemap: /sitemap.xml || fa fa-sitemap</span></span><br><span class="line">  <span class="comment"># commonweal: /404/ || fa fa-heartbeat</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable / Disable menu icons / item badges.</span></span><br><span class="line"><span class="attr">menu_settings:</span></span><br><span class="line">  <span class="attr">icons:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">badges:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="创建页面（手动）"><a href="#创建页面（手动）" class="headerlink" title="创建页面（手动）"></a>创建页面（手动）</h4><p>放开对应的标签，需要在命令行使用<code>hexo new page &lt;menu-folder-name&gt;</code>。比如我们添加了:</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># msg</span></span><br><span class="line"><span class="string">留言:</span> <span class="string">/msg/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-comment</span></span><br></pre></td></tr></table></figure>
+
+<p>则我们需要输入：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">hexo new page msg</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">INFO  Created: ~\merlotliu.github\sodalu.hexo.main\source\msg\index.md</span><br></pre></td></tr></table></figure>
 
 <h3 id="标签页面-Tags-Page"><a href="#标签页面-Tags-Page" class="headerlink" title="标签页面 Tags Page"></a>标签页面 Tags Page</h3><p>将所有标签添加到 Tags 页面中</p>
 <p>首先，创建一个页面名叫 <code>tags</code>：</p>
