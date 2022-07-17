@@ -20,26 +20,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"merlotliu.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="认真且浪漫">
-<meta property="og:type" content="website">
-<meta property="og:title" content="吟游">
-<meta property="og:url" content="https://merlotliu.github.io/archives/2022/06/index.html">
+    <meta name="description" content="自定义 404 页面在终端中，切换到站点根目录的文件夹。创建一个名为 的新文件夹，然后在其中创建一个新页面：source&#96;&#96;404 12$ cd hexo-site$ hexo new page 404  确保在 Hexo 配置文件中禁用：relative_link 12Hexo 配置文件relative_link: false">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo &amp; NexT 添加404页面">
+<meta property="og:url" content="https://merlotliu.github.io/2022/07/17/hexo-next-404/index.html">
 <meta property="og:site_name" content="吟游">
-<meta property="og:description" content="认真且浪漫">
+<meta property="og:description" content="自定义 404 页面在终端中，切换到站点根目录的文件夹。创建一个名为 的新文件夹，然后在其中创建一个新页面：source&#96;&#96;404 12$ cd hexo-site$ hexo new page 404  确保在 Hexo 配置文件中禁用：relative_link 12Hexo 配置文件relative_link: false">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-16T16:20:09.000Z">
+<meta property="article:modified_time" content="2022-07-16T16:20:09.000Z">
 <meta property="article:author" content="晚灯">
-<meta property="article:tag" content="personal">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="Hexo-theme">
+<meta property="article:tag" content="NexT">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://merlotliu.github.io/archives/2022/06/">
+<link rel="canonical" href="https://merlotliu.github.io/2022/07/17/hexo-next-404/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/2022/06/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://merlotliu.github.io/2022/07/17/hexo-next-404/","path":"2022/07/17/hexo-next-404/","title":"Hexo & NexT 添加404页面"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | 吟游</title>
+<title>Hexo & NexT 添加404页面 | 吟游</title>
   
 
 
@@ -69,7 +73,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">吟游</h1>
+      <p class="site-title">吟游</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">喜欢孤独，不是野兽便是神灵。</p>
@@ -129,7 +133,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -142,6 +146,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89-404-%E9%A1%B5%E9%9D%A2"><span class="nav-number">1.</span> <span class="nav-text">自定义 404 页面</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%AC%E7%9B%8A-404"><span class="nav-number">1.1.</span> <span class="nav-text">公益 404</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number"></span> <span class="nav-text">Reference</span></a></div>
         </div>
         <!--/noindex-->
 
@@ -214,50 +219,153 @@
 </noscript>
 
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 23 篇日志。 继续努力。</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2022</span>
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/17/hexo-next-404/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
+      <meta itemprop="name" content="晚灯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吟游">
+      <meta itemprop="description" content="认真且浪漫">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Hexo & NexT 添加404页面 | 吟游">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Hexo & NexT 添加404页面
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-17 00:20:09" itemprop="dateCreated datePublished" datetime="2022-07-17T00:20:09+08:00">2022-07-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hexo/theme/" itemprop="url" rel="index"><span itemprop="name">theme</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hexo/theme/NexT/" itemprop="url" rel="index"><span itemprop="name">NexT</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>663</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="自定义-404-页面"><a href="#自定义-404-页面" class="headerlink" title="自定义 404 页面"></a>自定义 404 页面</h3><p>在终端中，切换到站点根目录的文件夹。创建一个名为 的新文件夹，然后在其中创建一个新页面：<code>source``404</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo new page 404</span></span><br></pre></td></tr></table></figure>
+
+<p>确保在 Hexo 配置文件中禁用：<code>relative_link</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">Hexo</span> <span class="string">配置文件</span></span><br><span class="line"><span class="attr">relative_link:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>用户是否可以重定向到404页面取决于网站托管服务或Web服务器的设置，而不是Hexo。例如，如果您使用Nginx作为服务器，则还需要在文件中配置404页面。<code>nginx.conf</code></p>
+<h4 id="公益-404"><a href="#公益-404" class="headerlink" title="公益 404"></a>公益 404</h4><p>如果您想启用（腾讯在中国提供的服务），请按如下方式编辑：<code>commonweal 404``404/index.md</code></p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#x27;404&#x27;</span><br><span class="line">date: 2014-12-22 12:39:04</span><br><span class="line"><span class="section">comments: false</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> <span class="attr">homePageUrl</span>=<span class="string">&quot;/&quot;</span> <span class="attr">homePageName</span>=<span class="string">&quot;Back to home&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>您还可以向其添加所需的任何内容。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://theme-next.js.org/docs/theme-settings/custom-pages.html#Custom-404-Page">https://theme-next.js.org/docs/theme-settings/custom-pages.html#Custom-404-Page</a></li>
+</ol>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2022-06-30T21:10:00+08:00"
-              content="2022-06-30">
-          06-30
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2022/06/30/ros-installation/" itemprop="url">
-            <span itemprop="name">ROS Installation</span>
-          </a>
-      </div>
-
+    
+    
+    
       
-    </header>
+
+
+    <footer class="post-footer"><div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------------- 触即底线<i class="fa fa-paw"></i>阅读结束 --------------------</div>
+    
+</div>
+          <div class="post-tags">
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/Hexo-theme/" rel="tag"># Hexo-theme</a>
+              <a href="/tags/NexT/" rel="tag"># NexT</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/17/hexo-next-schedule/" rel="prev" title="Hexo & NexT Schedule与Google日历关联">
+                  <i class="fa fa-chevron-left"></i> Hexo & NexT Schedule与Google日历关联
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
 
+
+
+
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -333,7 +441,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"merlotliu","repo":"merlotliu.github.io","client_id":"8083b542e918a9c44ae9","client_secret":"470f3355d931b6df64d44703d5f906d414077e44","admin_user":"merlotliu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"f681930c163df6c7fcbd3a14b8f85dc1"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"merlotliu","repo":"merlotliu.github.io","client_id":"8083b542e918a9c44ae9","client_secret":"470f3355d931b6df64d44703d5f906d414077e44","admin_user":"merlotliu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"76bc57ec19b2cd98a811b32296cf2593"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>

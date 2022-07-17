@@ -27,12 +27,6 @@
       </tags>
   </entry>
   <entry>
-    <title>git</title>
-    <url>/2022/07/16/git/</url>
-    <content><![CDATA[<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1. </p>
-]]></content>
-  </entry>
-  <entry>
     <title>Git Timeout 解决策略</title>
     <url>/2022/07/15/git-timeout-solution/</url>
     <content><![CDATA[<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p><code>github</code>网页能够正常打开，但在 <code>git bash</code>中 <code>push</code> 总失败。</p>
@@ -50,46 +44,10 @@
       </tags>
   </entry>
   <entry>
-    <title>Hexo &amp; Github Pages 多端同步</title>
-    <url>/2022/07/16/hexo-github-multi-terminal-sync/</url>
-    <content><![CDATA[<p>最近，使用 Hexo &amp; Github pages 搭建了一个静态的网站。不得不说，Hexo 生成网页的速度非常的快，几分钟就搞定了。不过国内访问 Github ，时不时总是会有连接不上的情况，目前未能根治。</p>
-<p>为了能够实现，<strong>在教研室和宿舍电脑上都能同步 Hexo 站点内容并发布</strong>的功能。<br>查找相关资料，分析 Hexo 站点目录，发现我们需要同步的文件目录主要有：</p>
-<ol>
-<li>scaffolds ：模板文件夹；</li>
-<li>source ：最重要的资源文件夹（甚至可以说只同步这一个目录）；</li>
-<li>themes ：主题文件夹，存放主题相关文件（主题文件夹中的<code>.git</code>记得删掉）；</li>
-<li>_config.next.yml ：主题的配置文件；</li>
-<li>_config.yml ：站点的配置文件； </li>
-<li>package.json：项目相关属性，主要是同步其依赖项，方便在其他终端快速安装；<br>当然，可以根据情况具体添加删减。实际上，在主题配置完后，通常变动的只有<code>source</code>里的文章内容。</li>
-</ol>
-<p>实现流程如下：</p>
-<h2 id="创建-Github-仓库"><a href="#创建-Github-仓库" class="headerlink" title="创建 Github 仓库"></a>创建 Github 仓库</h2><p>在 Github 主页下，创建一个名为<code>hexo.sync</code>（名字可以任意）的仓库。</p>
-<h2 id="克隆仓库"><a href="#克隆仓库" class="headerlink" title="克隆仓库"></a>克隆仓库</h2><p>在任意目录下，克隆上面创建的<code>hexo.sync</code>仓库：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone http://github.com/username/hexo.sync</span><br></pre></td></tr></table></figure>
-
-<h2 id="初始化-Hexo-站点"><a href="#初始化-Hexo-站点" class="headerlink" title="初始化 Hexo 站点"></a>初始化 Hexo 站点</h2><p>初始化和部署的操作，可以参见：<a href="https://merlotliu.github.io/2022/07/13/hexo-installation-deployment/">Hexo Installation &amp; Deployment</a><br>初始化完成后，将上一步克隆的仓库下的<code>.git</code>文件夹复制到当前 Hexo 站点下。（克隆的仓库可以选择删除）</p>
-<h2 id="设置-gitignore"><a href="#设置-gitignore" class="headerlink" title="设置 .gitignore"></a>设置 .gitignore</h2><p>在使用 <code>hexo g</code> 或 <code>hexo d -g</code>等命令后，会生成<code>.deploy_git</code>、<code>public</code>、<code>db.json</code>等文件夹，而这些是 Hexo 根据<code>source</code>、<code>theme</code>等内容自动生成的用于发布到 Github pages 相关的内容，只需要部署到<code>http://github.com/username/username.github.io</code>即可，而不需要同步在当前的 Hexo 仓库中。<br>故，如果没有，在 Hexo 站点根目录下创建 <code>.gitignore</code>文件，输入不需要上传到当前 Hexo 仓库的文件或文件夹。具体示例如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br><span class="line">_multiconfig.yml</span><br></pre></td></tr></table></figure>
-<p><strong>Notes</strong> ： <code>node_modules</code>文件夹中的内容，可以根据 <code>package.json</code>的相关依赖使用<code>npm</code> 安装，通常文件比较多，不建议同步。</p>
-<h2 id="其他主机部署"><a href="#其他主机部署" class="headerlink" title="其他主机部署"></a>其他主机部署</h2><ol>
-<li>安装 Git &amp; NodeJS ：<a href="https://merlotliu.github.io/2022/07/12/git-installation-windows">Git Installation in Windows</a> &amp; <a href="https://merlotliu.github.io/2022/07/12/nodejs-installation/">NodeJS Installation in Windows</a>；</li>
-<li>安装 Hexo（仅安装即可，暂不部署）：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure></li>
-<li>克隆前文的 Hexo 仓库 <code>hexo.sync</code>，并切换到该仓库目录下；</li>
-<li>使用<code>npm install</code>安装安装<code>packages.json</code>中的相关依赖；</li>
-<li>使用<code>hexo g &amp;&amp; hexo s</code>，并打开<code>http://localhost:4000/</code>，测试是否成功（如报错，根据提示添加相关依赖即可）；</li>
-</ol>
-<p>以上步骤没有问题后，即可创建新文章<code>hexo new &quot;title&quot;</code>、部署发布<code>hexo d -g</code>或<code>hexo g -d</code>。</p>
+    <title>git</title>
+    <url>/2022/07/16/git/</url>
+    <content><![CDATA[<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1. </p>
 ]]></content>
-      <categories>
-        <category>Git</category>
-        <category>Hexo</category>
-        <category>Github</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-        <tag>Hexo</tag>
-        <tag>Github</tag>
-      </tags>
   </entry>
   <entry>
     <title>Hexo Installation &amp; Deployment</title>
@@ -140,6 +98,48 @@
       </tags>
   </entry>
   <entry>
+    <title>Hexo &amp; Github Pages 多端同步</title>
+    <url>/2022/07/16/hexo-github-multi-terminal-sync/</url>
+    <content><![CDATA[<p>最近，使用 Hexo &amp; Github pages 搭建了一个静态的网站。不得不说，Hexo 生成网页的速度非常的快，几分钟就搞定了。不过国内访问 Github ，时不时总是会有连接不上的情况，目前未能根治。</p>
+<p>为了能够实现，<strong>在教研室和宿舍电脑上都能同步 Hexo 站点内容并发布</strong>的功能。<br>查找相关资料，分析 Hexo 站点目录，发现我们需要同步的文件目录主要有：</p>
+<ol>
+<li>scaffolds ：模板文件夹；</li>
+<li>source ：最重要的资源文件夹（甚至可以说只同步这一个目录）；</li>
+<li>themes ：主题文件夹，存放主题相关文件（主题文件夹中的<code>.git</code>记得删掉）；</li>
+<li>_config.next.yml ：主题的配置文件；</li>
+<li>_config.yml ：站点的配置文件； </li>
+<li>package.json：项目相关属性，主要是同步其依赖项，方便在其他终端快速安装；<br>当然，可以根据情况具体添加删减。实际上，在主题配置完后，通常变动的只有<code>source</code>里的文章内容。</li>
+</ol>
+<p>实现流程如下：</p>
+<h2 id="创建-Github-仓库"><a href="#创建-Github-仓库" class="headerlink" title="创建 Github 仓库"></a>创建 Github 仓库</h2><p>在 Github 主页下，创建一个名为<code>hexo.sync</code>（名字可以任意）的仓库。</p>
+<h2 id="克隆仓库"><a href="#克隆仓库" class="headerlink" title="克隆仓库"></a>克隆仓库</h2><p>在任意目录下，克隆上面创建的<code>hexo.sync</code>仓库：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone http://github.com/username/hexo.sync</span><br></pre></td></tr></table></figure>
+
+<h2 id="初始化-Hexo-站点"><a href="#初始化-Hexo-站点" class="headerlink" title="初始化 Hexo 站点"></a>初始化 Hexo 站点</h2><p>初始化和部署的操作，可以参见：<a href="https://merlotliu.github.io/2022/07/13/hexo-installation-deployment/">Hexo Installation &amp; Deployment</a><br>初始化完成后，将上一步克隆的仓库下的<code>.git</code>文件夹复制到当前 Hexo 站点下。（克隆的仓库可以选择删除）</p>
+<h2 id="设置-gitignore"><a href="#设置-gitignore" class="headerlink" title="设置 .gitignore"></a>设置 .gitignore</h2><p>在使用 <code>hexo g</code> 或 <code>hexo d -g</code>等命令后，会生成<code>.deploy_git</code>、<code>public</code>、<code>db.json</code>等文件夹，而这些是 Hexo 根据<code>source</code>、<code>theme</code>等内容自动生成的用于发布到 Github pages 相关的内容，只需要部署到<code>http://github.com/username/username.github.io</code>即可，而不需要同步在当前的 Hexo 仓库中。<br>故，如果没有，在 Hexo 站点根目录下创建 <code>.gitignore</code>文件，输入不需要上传到当前 Hexo 仓库的文件或文件夹。具体示例如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br><span class="line">_multiconfig.yml</span><br></pre></td></tr></table></figure>
+<p><strong>Notes</strong> ： <code>node_modules</code>文件夹中的内容，可以根据 <code>package.json</code>的相关依赖使用<code>npm</code> 安装，通常文件比较多，不建议同步。</p>
+<h2 id="其他主机部署"><a href="#其他主机部署" class="headerlink" title="其他主机部署"></a>其他主机部署</h2><ol>
+<li>安装 Git &amp; NodeJS ：<a href="https://merlotliu.github.io/2022/07/12/git-installation-windows">Git Installation in Windows</a> &amp; <a href="https://merlotliu.github.io/2022/07/12/nodejs-installation/">NodeJS Installation in Windows</a>；</li>
+<li>安装 Hexo（仅安装即可，暂不部署）：<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure></li>
+<li>克隆前文的 Hexo 仓库 <code>hexo.sync</code>，并切换到该仓库目录下；</li>
+<li>使用<code>npm install</code>安装安装<code>packages.json</code>中的相关依赖；</li>
+<li>使用<code>hexo g &amp;&amp; hexo s</code>，并打开<code>http://localhost:4000/</code>，测试是否成功（如报错，根据提示添加相关依赖即可）；</li>
+</ol>
+<p>以上步骤没有问题后，即可创建新文章<code>hexo new &quot;title&quot;</code>、部署发布<code>hexo d -g</code>或<code>hexo g -d</code>。</p>
+]]></content>
+      <categories>
+        <category>Git</category>
+        <category>Hexo</category>
+        <category>Github</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>Hexo</tag>
+        <tag>Github</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo Issues</title>
     <url>/2022/07/14/hexo-issues/</url>
     <content><![CDATA[<h4 id="fatal-in-unpopulated-submodule-‘-deploy-git’"><a href="#fatal-in-unpopulated-submodule-‘-deploy-git’" class="headerlink" title="fatal: in unpopulated submodule ‘.deploy_git’"></a>fatal: in unpopulated submodule ‘.deploy_git’</h4><h5 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h5><h5 id="解決"><a href="#解決" class="headerlink" title="解決"></a>解決</h5><p>刪掉 <code>.deploy_git</code>文件，再重新部署</p>
@@ -163,6 +163,35 @@
       <tags>
         <tag>Hexo</tag>
         <tag>Hexo-issues</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo &amp; NexT 添加404页面</title>
+    <url>/2022/07/17/hexo-next-404/</url>
+    <content><![CDATA[<h3 id="自定义-404-页面"><a href="#自定义-404-页面" class="headerlink" title="自定义 404 页面"></a>自定义 404 页面</h3><p>在终端中，切换到站点根目录的文件夹。创建一个名为 的新文件夹，然后在其中创建一个新页面：<code>source``404</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo new page 404</span></span><br></pre></td></tr></table></figure>
+
+<p>确保在 Hexo 配置文件中禁用：<code>relative_link</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">Hexo</span> <span class="string">配置文件</span></span><br><span class="line"><span class="attr">relative_link:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>用户是否可以重定向到404页面取决于网站托管服务或Web服务器的设置，而不是Hexo。例如，如果您使用Nginx作为服务器，则还需要在文件中配置404页面。<code>nginx.conf</code></p>
+<h4 id="公益-404"><a href="#公益-404" class="headerlink" title="公益 404"></a>公益 404</h4><p>如果您想启用（腾讯在中国提供的服务），请按如下方式编辑：<code>commonweal 404``404/index.md</code></p>
+<figure class="highlight markdown"><table><tr><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#x27;404&#x27;</span><br><span class="line">date: 2014-12-22 12:39:04</span><br><span class="line"><span class="section">comments: false</span></span><br><span class="line"><span class="section">---</span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span> <span class="attr">homePageUrl</span>=<span class="string">&quot;/&quot;</span> <span class="attr">homePageName</span>=<span class="string">&quot;Back to home&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>您还可以向其添加所需的任何内容。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a href="https://theme-next.js.org/docs/theme-settings/custom-pages.html#Custom-404-Page">https://theme-next.js.org/docs/theme-settings/custom-pages.html#Custom-404-Page</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>theme</category>
+        <category>NexT</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Hexo-theme</tag>
+        <tag>NexT</tag>
       </tags>
   </entry>
   <entry>
@@ -214,6 +243,41 @@
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
 <li><a href="https://theme-next.js.org/docs/advanced-settings/custom-files">https://theme-next.js.org/docs/advanced-settings/custom-files</a>；</li>
 <li><a href="https://hexo.io/docs/data-files">https://hexo.io/docs/data-files</a>；</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>theme</category>
+        <category>NexT</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Hexo-theme</tag>
+        <tag>NexT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo &amp; NexT Schedule与Google日历关联</title>
+    <url>/2022/07/17/hexo-next-schedule/</url>
+    <content><![CDATA[<h2 id="添加Google日历"><a href="#添加Google日历" class="headerlink" title="添加Google日历"></a>添加Google日历</h2><p>与菜单栏<code>Schedule</code>相对应的功能，即与Google日历相关联：</p>
+<p>请注意，您需要首先确保添加设置为公共的日历。如果您不确定，请<a href="https://docs.simplecalendar.io/make-google-calendar-public/">首先按照这些说明设置Google日历公开</a>在添加之前。</p>
+<p>有关创建和管理公共Google日历的更多详细信息文档：<a href="https://support.google.com/calendar/answer/37083">https://support.google.com/calendar/answer/37083</a></p>
+<h3 id="设置谷歌日历"><a href="#设置谷歌日历" class="headerlink" title="设置谷歌日历"></a>设置谷歌日历</h3><h4 id="获取日历ID和API密钥"><a href="#获取日历ID和API密钥" class="headerlink" title="获取日历ID和API密钥"></a>获取日历ID和API密钥</h4><p><a href="https://docs.simplecalendar.io/find-google-calendar-id/">按照以下说明操作</a>以查找您的 Google 日历 ID。</p>
+<p>登录到<a href="https://console.cloud.google.com/flows/enableapi?apiid=calendar">谷歌开发者</a>并添加谷歌日历API，您将在<a href="https://console.cloud.google.com/apis/credentials">凭据页面</a>.</p>
+<h3 id="NexT配置"><a href="#NexT配置" class="headerlink" title="NexT配置"></a>NexT配置</h3><p>您可以通过部分设置值来启用它。复制 NexT 配置文件中日历 ID 和 API 密钥的值。<code>calendar</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># NexT 配置文件</span></span><br><span class="line"><span class="attr">calendar:</span></span><br><span class="line">  <span class="attr">calendar_id:</span> <span class="string">&lt;required&gt;</span></span><br><span class="line">  <span class="attr">api_key:</span> <span class="string">&lt;required&gt;</span></span><br><span class="line">  <span class="attr">orderBy:</span> <span class="string">startTime</span></span><br><span class="line">  <span class="attr">showLocation:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">offsetMax:</span> <span class="number">72</span></span><br><span class="line">  <span class="attr">offsetMin:</span> <span class="number">4</span></span><br><span class="line">  <span class="attr">showDeleted:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">singleEvents:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">maxResults:</span> <span class="number">250</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="添加-Schedule-页面"><a href="#添加-Schedule-页面" class="headerlink" title="添加 Schedule 页面"></a>添加 Schedule 页面</h3><p>在终端中更改为站点根目录。用于创建新页面：<code>hexo new page schedule``schedule</code></p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo new page schedule</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="设置页面类型"><a href="#设置页面类型" class="headerlink" title="设置页面类型"></a>设置页面类型</h3><p>编辑新页面并将类型更改为 ，主题将在此页面中自动显示时间表。页面内容如下所示：<code>schedule</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">Schedule</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2014-12-22 12:39:04</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">schedule</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="编辑菜单"><a href="#编辑菜单" class="headerlink" title="编辑菜单"></a>编辑菜单</h3><p>通过编辑 NexT 配置文件添加到：<code>schedule``menu</code></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">NexT</span> <span class="string">配置文件</span></span><br><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-home</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-archive</span></span><br><span class="line">  <span class="attr">schedule:</span> <span class="string">/schedule/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-calendar</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a href="https://theme-next.js.org/docs/theme-settings/custom-pages.html#Adding-Google-Calendar-Page">https://theme-next.js.org/docs/theme-settings/custom-pages.html#Adding-Google-Calendar-Page</a></li>
 </ol>
 ]]></content>
       <categories>
@@ -350,45 +414,7 @@
 
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
 <li><a href="https://theme-next.js.org/docs/theme-settings/">https://theme-next.js.org/docs/theme-settings/</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-        <category>theme</category>
-        <category>NexT</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
-        <tag>Hexo-theme</tag>
-        <tag>NexT</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>NexT Installation</title>
-    <url>/2022/07/13/hexo-theme-next-installation/</url>
-    <content><![CDATA[<h2 id="NexT-Installation"><a href="#NexT-Installation" class="headerlink" title="NexT Installation"></a>NexT Installation</h2><h3 id="Downloading-NexT"><a href="#Downloading-NexT" class="headerlink" title="Downloading NexT"></a>Downloading NexT</h3><p>打开终端，切换到 <code>Hexo 站点根目录下</code> ，然后安装 <code>NexT</code> 主题。</p>
-<h4 id="使用npm："><a href="#使用npm：" class="headerlink" title="使用npm："></a>使用<code>npm</code>：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm install hexo-theme-next</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="或使用git："><a href="#或使用git：" class="headerlink" title="或使用git："></a><strong>或</strong>使用<code>git</code>：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>Notes</strong>：<code>hexo-site</code>是你的 Hexo 站點名字。</p>
-<h3 id="Upgrading-NexT"><a href="#Upgrading-NexT" class="headerlink" title="Upgrading NexT"></a>Upgrading NexT</h3><h4 id="使用npm：-1"><a href="#使用npm：-1" class="headerlink" title="使用npm："></a>使用<code>npm</code>：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm install hexo-theme-next@latest</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="或使用git：-1"><a href="#或使用git：-1" class="headerlink" title="或使用git："></a><strong>或</strong>使用<code>git</code>：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> themes/next</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git pull origin master</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="NexT-Configuration"><a href="#NexT-Configuration" class="headerlink" title="NexT Configuration"></a>NexT Configuration</h3><h4 id="Enabling-NexT"><a href="#Enabling-NexT" class="headerlink" title="Enabling NexT"></a>Enabling NexT</h4><p>打開站點根目錄下的<code>_config.yml</code>，修改<code>theme</code>後面的值為<code>next</code>（安裝的其他主題也是在這裏修改）：</p>
-<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="Checking-NexT"><a href="#Checking-NexT" class="headerlink" title="Checking NexT"></a>Checking NexT</h4><ol>
-<li><p>輸入<code>hexo clean</code>清除緩存（這一步可以省略）；</p>
-</li>
-<li><p>輸入<code>hexo s --debug</code>，瀏覽器輸入<code>http://localhost:4000/</code>，看到以下界面説明配置生效：<br><img src="/../images/posts/hexo-theme-next-installation.assets/next-default-scheme.png" alt="Default Scheme – Muse"></p>
-</li>
-<li><p><code>Ctrl+C</code>關閉本地調試服務器；</p>
-</li>
-</ol>
-<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
-<li><a href="https://theme-next.js.org/docs/getting-started/#NexT-Installation%EF%BC%9B">https://theme-next.js.org/docs/getting-started/#NexT-Installation；</a></li>
+<li><a href="https://theme-next.js.org/docs/theme-settings/custom-pages.html">Custom Pages | NexT (theme-next.js.org)</a></li>
 </ol>
 ]]></content>
       <categories>
@@ -453,6 +479,45 @@
       <tags>
         <tag>Hexo</tag>
         <tag>Typora</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NexT Installation</title>
+    <url>/2022/07/13/hexo-theme-next-installation/</url>
+    <content><![CDATA[<h2 id="NexT-Installation"><a href="#NexT-Installation" class="headerlink" title="NexT Installation"></a>NexT Installation</h2><h3 id="Downloading-NexT"><a href="#Downloading-NexT" class="headerlink" title="Downloading NexT"></a>Downloading NexT</h3><p>打开终端，切换到 <code>Hexo 站点根目录下</code> ，然后安装 <code>NexT</code> 主题。</p>
+<h4 id="使用npm："><a href="#使用npm：" class="headerlink" title="使用npm："></a>使用<code>npm</code>：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm install hexo-theme-next</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="或使用git："><a href="#或使用git：" class="headerlink" title="或使用git："></a><strong>或</strong>使用<code>git</code>：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git <span class="built_in">clone</span> https://github.com/next-theme/hexo-theme-next themes/next</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>Notes</strong>：<code>hexo-site</code>是你的 Hexo 站點名字。</p>
+<h3 id="Upgrading-NexT"><a href="#Upgrading-NexT" class="headerlink" title="Upgrading NexT"></a>Upgrading NexT</h3><h4 id="使用npm：-1"><a href="#使用npm：-1" class="headerlink" title="使用npm："></a>使用<code>npm</code>：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">npm install hexo-theme-next@latest</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="或使用git：-1"><a href="#或使用git：-1" class="headerlink" title="或使用git："></a><strong>或</strong>使用<code>git</code>：</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> themes/next</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git pull origin master</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="NexT-Configuration"><a href="#NexT-Configuration" class="headerlink" title="NexT Configuration"></a>NexT Configuration</h3><h4 id="Enabling-NexT"><a href="#Enabling-NexT" class="headerlink" title="Enabling NexT"></a>Enabling NexT</h4><p>打開站點根目錄下的<code>_config.yml</code>，修改<code>theme</code>後面的值為<code>next</code>（安裝的其他主題也是在這裏修改）：</p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Extensions</span></span><br><span class="line"><span class="comment">## Plugins: https://hexo.io/plugins/</span></span><br><span class="line"><span class="comment">## Themes: https://hexo.io/themes/</span></span><br><span class="line"><span class="attr">theme:</span> <span class="string">next</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Checking-NexT"><a href="#Checking-NexT" class="headerlink" title="Checking NexT"></a>Checking NexT</h4><ol>
+<li><p>輸入<code>hexo clean</code>清除緩存（這一步可以省略）；</p>
+</li>
+<li><p>輸入<code>hexo s --debug</code>，瀏覽器輸入<code>http://localhost:4000/</code>，看到以下界面説明配置生效：<br><img src="/../images/posts/hexo-theme-next-installation.assets/next-default-scheme.png" alt="Default Scheme – Muse"></p>
+</li>
+<li><p><code>Ctrl+C</code>關閉本地調試服務器；</p>
+</li>
+</ol>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a href="https://theme-next.js.org/docs/getting-started/#NexT-Installation%EF%BC%9B">https://theme-next.js.org/docs/getting-started/#NexT-Installation；</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>theme</category>
+        <category>NexT</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Hexo-theme</tag>
+        <tag>NexT</tag>
       </tags>
   </entry>
   <entry>

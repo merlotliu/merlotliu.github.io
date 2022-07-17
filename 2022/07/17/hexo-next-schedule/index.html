@@ -20,30 +20,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"merlotliu.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="最近，使用 Hexo &amp; Github pages 搭建了一个静态的网站。不得不说，Hexo 生成网页的速度非常的快，几分钟就搞定了。不过国内访问 Github ，时不时总是会有连接不上的情况，目前未能根治。 为了能够实现，在教研室和宿舍电脑上都能同步 Hexo 站点内容并发布的功能。查找相关资料，分析 Hexo 站点目录，发现我们需要同步的文件目录主要有：  scaffolds ：模板文">
+    <meta name="description" content="添加Google日历与菜单栏Schedule相对应的功能，即与Google日历相关联： 请注意，您需要首先确保添加设置为公共的日历。如果您不确定，请首先按照这些说明设置Google日历公开在添加之前。 有关创建和管理公共Google日历的更多详细信息文档：https:&#x2F;&#x2F;support.google.com&#x2F;calendar&#x2F;answer&#x2F;37083 设置谷歌日历">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo &amp; Github Pages 多端同步">
-<meta property="og:url" content="https://merlotliu.github.io/2022/07/16/hexo-github-multi-terminal-sync/index.html">
+<meta property="og:title" content="Hexo &amp; NexT Schedule与Google日历关联">
+<meta property="og:url" content="https://merlotliu.github.io/2022/07/17/hexo-next-schedule/index.html">
 <meta property="og:site_name" content="吟游">
-<meta property="og:description" content="最近，使用 Hexo &amp; Github pages 搭建了一个静态的网站。不得不说，Hexo 生成网页的速度非常的快，几分钟就搞定了。不过国内访问 Github ，时不时总是会有连接不上的情况，目前未能根治。 为了能够实现，在教研室和宿舍电脑上都能同步 Hexo 站点内容并发布的功能。查找相关资料，分析 Hexo 站点目录，发现我们需要同步的文件目录主要有：  scaffolds ：模板文">
+<meta property="og:description" content="添加Google日历与菜单栏Schedule相对应的功能，即与Google日历相关联： 请注意，您需要首先确保添加设置为公共的日历。如果您不确定，请首先按照这些说明设置Google日历公开在添加之前。 有关创建和管理公共Google日历的更多详细信息文档：https:&#x2F;&#x2F;support.google.com&#x2F;calendar&#x2F;answer&#x2F;37083 设置谷歌日历">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-07-16T05:48:32.000Z">
-<meta property="article:modified_time" content="2022-07-16T05:48:32.000Z">
+<meta property="article:published_time" content="2022-07-16T16:09:25.000Z">
+<meta property="article:modified_time" content="2022-07-16T16:09:25.000Z">
 <meta property="article:author" content="晚灯">
-<meta property="article:tag" content="Git">
 <meta property="article:tag" content="Hexo">
-<meta property="article:tag" content="Github">
+<meta property="article:tag" content="Hexo-theme">
+<meta property="article:tag" content="NexT">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://merlotliu.github.io/2022/07/16/hexo-github-multi-terminal-sync/">
+<link rel="canonical" href="https://merlotliu.github.io/2022/07/17/hexo-next-schedule/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://merlotliu.github.io/2022/07/16/hexo-github-multi-terminal-sync/","path":"2022/07/16/hexo-github-multi-terminal-sync/","title":"Hexo & Github Pages 多端同步"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://merlotliu.github.io/2022/07/17/hexo-next-schedule/","path":"2022/07/17/hexo-next-schedule/","title":"Hexo & NexT Schedule与Google日历关联"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Hexo & Github Pages 多端同步 | 吟游</title>
+<title>Hexo & NexT Schedule与Google日历关联 | 吟游</title>
   
 
 
@@ -146,7 +146,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-Github-%E4%BB%93%E5%BA%93"><span class="nav-number">1.</span> <span class="nav-text">创建 Github 仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%8B%E9%9A%86%E4%BB%93%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">克隆仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96-Hexo-%E7%AB%99%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">初始化 Hexo 站点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE-gitignore"><span class="nav-number">4.</span> <span class="nav-text">设置 .gitignore</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E4%B8%BB%E6%9C%BA%E9%83%A8%E7%BD%B2"><span class="nav-number">5.</span> <span class="nav-text">其他主机部署</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0Google%E6%97%A5%E5%8E%86"><span class="nav-number">1.</span> <span class="nav-text">添加Google日历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E8%B0%B7%E6%AD%8C%E6%97%A5%E5%8E%86"><span class="nav-number">1.1.</span> <span class="nav-text">设置谷歌日历</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E6%97%A5%E5%8E%86ID%E5%92%8CAPI%E5%AF%86%E9%92%A5"><span class="nav-number">1.1.1.</span> <span class="nav-text">获取日历ID和API密钥</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NexT%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">NexT配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0-Schedule-%E9%A1%B5%E9%9D%A2"><span class="nav-number">1.3.</span> <span class="nav-text">添加 Schedule 页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E9%A1%B5%E9%9D%A2%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.4.</span> <span class="nav-text">设置页面类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E8%8F%9C%E5%8D%95"><span class="nav-number">1.5.</span> <span class="nav-text">编辑菜单</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -230,7 +230,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/16/hexo-github-multi-terminal-sync/">
+    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/17/hexo-next-schedule/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
@@ -243,12 +243,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Hexo & Github Pages 多端同步 | 吟游">
+      <meta itemprop="name" content="Hexo & NexT Schedule与Google日历关联 | 吟游">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hexo & Github Pages 多端同步
+          Hexo & NexT Schedule与Google日历关联
         </h1>
 
         <div class="post-meta-container">
@@ -259,7 +259,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-07-16 13:48:32" itemprop="dateCreated datePublished" datetime="2022-07-16T13:48:32+08:00">2022-07-16</time>
+      <time title="创建时间：2022-07-17 00:09:25" itemprop="dateCreated datePublished" datetime="2022-07-17T00:09:25+08:00">2022-07-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -267,15 +267,15 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
           <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Github/" itemprop="url" rel="index"><span itemprop="name">Github</span></a>
+          <a href="/categories/Hexo/theme/" itemprop="url" rel="index"><span itemprop="name">theme</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Hexo/theme/NexT/" itemprop="url" rel="index"><span itemprop="name">NexT</span></a>
         </span>
     </span>
 
@@ -293,14 +293,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
+      <span>926</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -311,33 +311,26 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>最近，使用 Hexo &amp; Github pages 搭建了一个静态的网站。不得不说，Hexo 生成网页的速度非常的快，几分钟就搞定了。不过国内访问 Github ，时不时总是会有连接不上的情况，目前未能根治。</p>
-<p>为了能够实现，<strong>在教研室和宿舍电脑上都能同步 Hexo 站点内容并发布</strong>的功能。<br>查找相关资料，分析 Hexo 站点目录，发现我们需要同步的文件目录主要有：</p>
-<ol>
-<li>scaffolds ：模板文件夹；</li>
-<li>source ：最重要的资源文件夹（甚至可以说只同步这一个目录）；</li>
-<li>themes ：主题文件夹，存放主题相关文件（主题文件夹中的<code>.git</code>记得删掉）；</li>
-<li>_config.next.yml ：主题的配置文件；</li>
-<li>_config.yml ：站点的配置文件； </li>
-<li>package.json：项目相关属性，主要是同步其依赖项，方便在其他终端快速安装；<br>当然，可以根据情况具体添加删减。实际上，在主题配置完后，通常变动的只有<code>source</code>里的文章内容。</li>
-</ol>
-<p>实现流程如下：</p>
-<h2 id="创建-Github-仓库"><a href="#创建-Github-仓库" class="headerlink" title="创建 Github 仓库"></a>创建 Github 仓库</h2><p>在 Github 主页下，创建一个名为<code>hexo.sync</code>（名字可以任意）的仓库。</p>
-<h2 id="克隆仓库"><a href="#克隆仓库" class="headerlink" title="克隆仓库"></a>克隆仓库</h2><p>在任意目录下，克隆上面创建的<code>hexo.sync</code>仓库：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone http://github.com/username/hexo.sync</span><br></pre></td></tr></table></figure>
+        <h2 id="添加Google日历"><a href="#添加Google日历" class="headerlink" title="添加Google日历"></a>添加Google日历</h2><p>与菜单栏<code>Schedule</code>相对应的功能，即与Google日历相关联：</p>
+<p>请注意，您需要首先确保添加设置为公共的日历。如果您不确定，请<a target="_blank" rel="noopener" href="https://docs.simplecalendar.io/make-google-calendar-public/">首先按照这些说明设置Google日历公开</a>在添加之前。</p>
+<p>有关创建和管理公共Google日历的更多详细信息文档：<a target="_blank" rel="noopener" href="https://support.google.com/calendar/answer/37083">https://support.google.com/calendar/answer/37083</a></p>
+<h3 id="设置谷歌日历"><a href="#设置谷歌日历" class="headerlink" title="设置谷歌日历"></a>设置谷歌日历</h3><h4 id="获取日历ID和API密钥"><a href="#获取日历ID和API密钥" class="headerlink" title="获取日历ID和API密钥"></a>获取日历ID和API密钥</h4><p><a target="_blank" rel="noopener" href="https://docs.simplecalendar.io/find-google-calendar-id/">按照以下说明操作</a>以查找您的 Google 日历 ID。</p>
+<p>登录到<a target="_blank" rel="noopener" href="https://console.cloud.google.com/flows/enableapi?apiid=calendar">谷歌开发者</a>并添加谷歌日历API，您将在<a target="_blank" rel="noopener" href="https://console.cloud.google.com/apis/credentials">凭据页面</a>.</p>
+<h3 id="NexT配置"><a href="#NexT配置" class="headerlink" title="NexT配置"></a>NexT配置</h3><p>您可以通过部分设置值来启用它。复制 NexT 配置文件中日历 ID 和 API 密钥的值。<code>calendar</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># NexT 配置文件</span></span><br><span class="line"><span class="attr">calendar:</span></span><br><span class="line">  <span class="attr">calendar_id:</span> <span class="string">&lt;required&gt;</span></span><br><span class="line">  <span class="attr">api_key:</span> <span class="string">&lt;required&gt;</span></span><br><span class="line">  <span class="attr">orderBy:</span> <span class="string">startTime</span></span><br><span class="line">  <span class="attr">showLocation:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">offsetMax:</span> <span class="number">72</span></span><br><span class="line">  <span class="attr">offsetMin:</span> <span class="number">4</span></span><br><span class="line">  <span class="attr">showDeleted:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">singleEvents:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">maxResults:</span> <span class="number">250</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="初始化-Hexo-站点"><a href="#初始化-Hexo-站点" class="headerlink" title="初始化 Hexo 站点"></a>初始化 Hexo 站点</h2><p>初始化和部署的操作，可以参见：<a href="https://merlotliu.github.io/2022/07/13/hexo-installation-deployment/">Hexo Installation &amp; Deployment</a><br>初始化完成后，将上一步克隆的仓库下的<code>.git</code>文件夹复制到当前 Hexo 站点下。（克隆的仓库可以选择删除）</p>
-<h2 id="设置-gitignore"><a href="#设置-gitignore" class="headerlink" title="设置 .gitignore"></a>设置 .gitignore</h2><p>在使用 <code>hexo g</code> 或 <code>hexo d -g</code>等命令后，会生成<code>.deploy_git</code>、<code>public</code>、<code>db.json</code>等文件夹，而这些是 Hexo 根据<code>source</code>、<code>theme</code>等内容自动生成的用于发布到 Github pages 相关的内容，只需要部署到<code>http://github.com/username/username.github.io</code>即可，而不需要同步在当前的 Hexo 仓库中。<br>故，如果没有，在 Hexo 站点根目录下创建 <code>.gitignore</code>文件，输入不需要上传到当前 Hexo 仓库的文件或文件夹。具体示例如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.DS_Store</span><br><span class="line">Thumbs.db</span><br><span class="line">db.json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line">public/</span><br><span class="line">.deploy*/</span><br><span class="line">_multiconfig.yml</span><br></pre></td></tr></table></figure>
-<p><strong>Notes</strong> ： <code>node_modules</code>文件夹中的内容，可以根据 <code>package.json</code>的相关依赖使用<code>npm</code> 安装，通常文件比较多，不建议同步。</p>
-<h2 id="其他主机部署"><a href="#其他主机部署" class="headerlink" title="其他主机部署"></a>其他主机部署</h2><ol>
-<li>安装 Git &amp; NodeJS ：<a href="https://merlotliu.github.io/2022/07/12/git-installation-windows">Git Installation in Windows</a> &amp; <a href="https://merlotliu.github.io/2022/07/12/nodejs-installation/">NodeJS Installation in Windows</a>；</li>
-<li>安装 Hexo（仅安装即可，暂不部署）：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure></li>
-<li>克隆前文的 Hexo 仓库 <code>hexo.sync</code>，并切换到该仓库目录下；</li>
-<li>使用<code>npm install</code>安装安装<code>packages.json</code>中的相关依赖；</li>
-<li>使用<code>hexo g &amp;&amp; hexo s</code>，并打开<code>http://localhost:4000/</code>，测试是否成功（如报错，根据提示添加相关依赖即可）；</li>
+<h3 id="添加-Schedule-页面"><a href="#添加-Schedule-页面" class="headerlink" title="添加 Schedule 页面"></a>添加 Schedule 页面</h3><p>在终端中更改为站点根目录。用于创建新页面：<code>hexo new page schedule``schedule</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo new page schedule</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="设置页面类型"><a href="#设置页面类型" class="headerlink" title="设置页面类型"></a>设置页面类型</h3><p>编辑新页面并将类型更改为 ，主题将在此页面中自动显示时间表。页面内容如下所示：<code>schedule</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">title:</span> <span class="string">Schedule</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2014-12-22 12:39:04</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">schedule</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="编辑菜单"><a href="#编辑菜单" class="headerlink" title="编辑菜单"></a>编辑菜单</h3><p>通过编辑 NexT 配置文件添加到：<code>schedule``menu</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">NexT</span> <span class="string">配置文件</span></span><br><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-home</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-archive</span></span><br><span class="line">  <span class="attr">schedule:</span> <span class="string">/schedule/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-calendar</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://theme-next.js.org/docs/theme-settings/custom-pages.html#Adding-Google-Calendar-Page">https://theme-next.js.org/docs/theme-settings/custom-pages.html#Adding-Google-Calendar-Page</a></li>
 </ol>
-<p>以上步骤没有问题后，即可创建新文章<code>hexo new &quot;title&quot;</code>、部署发布<code>hexo d -g</code>或<code>hexo g -d</code>。</p>
 
     </div>
 
@@ -353,22 +346,22 @@
     
 </div>
           <div class="post-tags">
-              <a href="/tags/Git/" rel="tag"># Git</a>
               <a href="/tags/Hexo/" rel="tag"># Hexo</a>
-              <a href="/tags/Github/" rel="tag"># Github</a>
+              <a href="/tags/Hexo-theme/" rel="tag"># Hexo-theme</a>
+              <a href="/tags/NexT/" rel="tag"># NexT</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/07/16/git/" rel="prev" title="git">
-                  <i class="fa fa-chevron-left"></i> git
+                <a href="/2022/07/16/ros-writing-publisher-subscriber-cpp/" rel="prev" title="ros-writing-publisher-subscriber-cpp">
+                  <i class="fa fa-chevron-left"></i> ros-writing-publisher-subscriber-cpp
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/07/16/ros-writing-publisher-subscriber-cpp/" rel="next" title="ros-writing-publisher-subscriber-cpp">
-                  ros-writing-publisher-subscriber-cpp <i class="fa fa-chevron-right"></i>
+                <a href="/2022/07/17/hexo-next-404/" rel="next" title="Hexo & NexT 添加404页面">
+                  Hexo & NexT 添加404页面 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -457,7 +450,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"merlotliu","repo":"merlotliu.github.io","client_id":"8083b542e918a9c44ae9","client_secret":"470f3355d931b6df64d44703d5f906d414077e44","admin_user":"merlotliu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"d2a8aec2a116c83a49b52bde5a9b3f86"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"merlotliu","repo":"merlotliu.github.io","client_id":"8083b542e918a9c44ae9","client_secret":"470f3355d931b6df64d44703d5f906d414077e44","admin_user":"merlotliu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"e40b567ed3204c9ff27a536f8342d29f"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
