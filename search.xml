@@ -1142,16 +1142,346 @@
       </tags>
   </entry>
   <entry>
-    <title>ros-writing-publisher-subscriber-cpp</title>
+    <title>ROS Topic 通信简单示例</title>
     <url>/2022/07/16/ros-writing-publisher-subscriber-cpp/</url>
-    <content><![CDATA[<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1. </p>
+    <content><![CDATA[<h2 id="话题通信示例-cpp-实现"><a href="#话题通信示例-cpp-实现" class="headerlink" title="话题通信示例 cpp 实现"></a>话题通信示例 cpp 实现</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>正如前面所提到的，我们有时需要可视化激光扫描数据。需要将数据从激光测距仪传输到 rviz ，为了控制 Hokuyo 激光测距仪，我们启动 hokuyo_node 节点，该节点与激光对话并在扫描主题上发布 sensor_msgs&#x2F;Laser Scan 消息。为了可视化激光扫描数据，我们启动 rviz 节点并订阅扫描主题。订阅后，rviz 节点开始接收激光扫描消息，并将其呈现到屏幕上。</p>
+<p>对该示例简化后，让发布方以 10 hz的频率发布文本消息，订阅方接收消息并打印。</p>
+<h3 id="发布节点-Publisher-Node"><a href="#发布节点-Publisher-Node" class="headerlink" title="发布节点 Publisher Node"></a>发布节点 Publisher Node</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>初始化 ROS 节点和句柄；</li>
+<li>告诉 master 节点，将创建一个使用 std_msgs&#x2F;String 消息的话题 chatter；</li>
+<li>以 10 hz 的频率循环发布消息；</li>
+</ol>
+<h4 id="cpp实现"><a href="#cpp实现" class="headerlink" title="cpp实现"></a>cpp实现</h4><p>在<strong>功能包</strong>的<code>src</code>目录下创建<code>talker.cpp</code>文件，编写以下内容：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ros/ros.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;std_msgs/String.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span> </span>&#123;</span><br><span class="line">    ros::<span class="built_in">init</span>(argc, argv, <span class="string">&quot;talker&quot;</span>);</span><br><span class="line">    ros::NodeHandle n;</span><br><span class="line">    </span><br><span class="line">    ros::Publisher chatter_pub = n.<span class="built_in">advertise</span>&lt;std_msgs::String&gt;(<span class="string">&quot;chatter&quot;</span>, <span class="number">1000</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="function">ros::Rate <span class="title">loop_rate</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line">    <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (ros::<span class="built_in">ok</span>()) &#123;</span><br><span class="line">        std_msgs::String msg;</span><br><span class="line">        </span><br><span class="line">        std::stringstream ss;</span><br><span class="line">        ss &lt;&lt; <span class="string">&quot;hello world &quot;</span> &lt;&lt; count++;</span><br><span class="line">        msg.data = ss.<span class="built_in">str</span>();</span><br><span class="line"></span><br><span class="line">        <span class="built_in">ROS_INFO</span>(<span class="string">&quot;%s&quot;</span>, msg.data.<span class="built_in">c_str</span>());</span><br><span class="line">        </span><br><span class="line">        chatter_pub.<span class="built_in">publish</span>(msg);</span><br><span class="line"></span><br><span class="line">        ros::<span class="built_in">spinOnce</span>();</span><br><span class="line"></span><br><span class="line">	    loop_rate.<span class="built_in">sleep</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="代码解释"><a href="#代码解释" class="headerlink" title="代码解释"></a>代码解释</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ros/ros.h&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<p><code>ros/ros.h</code>中包含了 ROS 最常用的头文件。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;std_msgs/String.h&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>包含 <a href="http://wiki.ros.org/std_msgs">std_msgs</a> 包中的 <a href="http://docs.ros.org/en/api/std_msgs/html/msg/String.html">std_msgs&#x2F;String</a> 消息。实际上，<code>std_msgs/String</code>只包含一个类型为<code>std::string</code>的变量<code>data</code>。关于消息的更多定义，可以参见 <a href="http://wiki.ros.org/msg">msg</a> 。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">ros::<span class="built_in">init</span>(argc, argv, <span class="string">&quot;talker&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>初始化 ROS 节点。<code>ros::init</code>包含多个重载，对于当前使用的这个实现，第三个参数为节点的名字。因为传入了<code>argc</code>和<code>argv</code>，所以可以通过命令行或者<code>roslaunch</code>，对节点名称重映射（remapping）。此外：</p>
+<ul>
+<li>节点名必须唯一；</li>
+<li>名称必须是基础名字（ <a href="http://wiki.ros.org/Names#Graph">base name</a>），比如，不能包含<code>/</code>；</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">ros::NodeHandle n;</span><br></pre></td></tr></table></figure>
+
+<p>创建进程节点句柄。创建第一个节点句柄的时候，会执行节点初始化。析构最后一个节点句柄时，会清楚节点占用的资源（内存之类的）。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">ros::Publisher chatter_pub = n.<span class="built_in">advertise</span>&lt;std_msgs::String&gt;(<span class="string">&quot;chatter&quot;</span>, <span class="number">1000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>第一个参数是话题名称。这是告诉 <code>master</code>节点，我们将在主题 <code>chatter</code> 上发布  <a href="http://docs.ros.org/en/api/std_msgs/html/msg/String.html">std_msgs&#x2F;String</a> 类型的消息。这样做的目的是，让 <code>master</code>节点告诉任何订阅<code>chatter</code>话题的节点，我们将在这个话题上发布数据。</p>
+<p>第二个参数是发布队列长度。他的意思是，在丢弃旧的消息之前最多存储 1000（发布队列长度）条消息。通常是可以自己设置，具体根据实际情况，因为在嵌入式编程中，任何一点小小的内存都是很珍贵的。</p>
+<p><code>ros::NodeHandle::advertise()</code> 返回一个 <code>ros::Publisher</code> 对象，它的作用：</p>
+<ul>
+<li>含有一个发布消息到刚才创建的话题<code>chatter</code>的方法<code>publish()</code>；</li>
+<li>当程序运行到该对象作用范围之外，</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">ros::Rate <span class="title">loop_rate</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p><code>ros::Rate</code>用于设定我们需要的频率。他会根据上次<code>Rate::sleep()</code>的时间，自动推算休要休眠多长时间。在这里我们设定了 10 Hz 的频率。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (ros::<span class="built_in">ok</span>()) &#123;</span><br></pre></td></tr></table></figure>
+
+<p>默认情况下，roscpp 将安装一个能够接受<code>Ctrl-C</code>的 SIGINT 处理程序，<code>ctrl+c</code>将导致 <code>ros::ok()</code> 返回 false。</p>
+<p><code>ros::ok()</code> 将在以下情况下返回 false：</p>
+<ul>
+<li><p>收到 SIGINT (Ctrl-C)；</p>
+</li>
+<li><p>我们被另一个同名节点踢出网络；</p>
+</li>
+<li><p><code>ros::shutdown()</code> 已被应用程序的另一部分调用；</p>
+</li>
+<li><p>所有 <code>ros::Node</code> 句柄已被销毁；</p>
+</li>
+</ul>
+<p>一旦 <code>ros::ok()</code> 返回 false，所有 ROS 调用都会失败。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">std_msgs::String msg;</span><br><span class="line"></span><br><span class="line">std::stringstream ss;</span><br><span class="line">ss &lt;&lt; <span class="string">&quot;hello world &quot;</span> &lt;&lt; count;</span><br><span class="line">msg.data = ss.<span class="built_in">str</span>();</span><br></pre></td></tr></table></figure>
+
+<p>在ROS中广播消息，使用的是 <a href="http://wiki.ros.org/msg">msg file</a> 生成的消息类。ROS 内置了许多可使用的数据类型，目前我们在这里使用的是<code>String</code>消息类型，它仅含一个成员变量<code>data</code>。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">chatter_pub.<span class="built_in">publish</span>(msg);</span><br></pre></td></tr></table></figure>
+
+<p>现在，我们可以准确的将消息广播给订阅该消息的节点。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ROS_INFO</span>(<span class="string">&quot;%s&quot;</span>, msg.data.<span class="built_in">c_str</span>());</span><br></pre></td></tr></table></figure>
+
+<p><code>ROS_INFO</code> 是 ROS 中替代 <code>printf</code>&#x2F;<code>cout</code> 的命令行输出方法。具体可以参见<a href="http://wiki.ros.org/rosconsole">rosconsole documentation</a> 。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">ros::<span class="built_in">spinOnce</span>();</span><br></pre></td></tr></table></figure>
+
+<p>在当前这个简单的程序中，调用 <code>ros::spinOnce()</code> 可以说是多余的，因为我们不用处理任何回调。当然，如果在这个程序中，有订阅相关的内容，并且没有使用<code>ros::spinOnce()</code> ，那么回调函数就不会调用。所以，添加这一行语句没有问题的。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">loop_rate.<span class="built_in">sleep</span>();</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>ros::Rate</code>调用<code>sleep()</code>的目的是，休眠一段时间以保证 10hz 的发布频率。</p>
+<h4 id="完整注释版"><a href="#完整注释版" class="headerlink" title="完整注释版"></a>完整注释版</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ros/ros.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;std_msgs/String.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;sstream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 在 ROS 中发布数据：</span></span><br><span class="line"><span class="comment"> *	1. 初始化 ROS 节点和句柄；</span></span><br><span class="line"><span class="comment"> * 	2. 告诉 master 节点，将创建一个使用 std_msgs/String 消息的话题 chatter；</span></span><br><span class="line"><span class="comment"> *	3. 以 10 hz 的频率循环发布消息；</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * The ros::init() function needs to see argc and argv so that it can perform</span></span><br><span class="line"><span class="comment">   * any ROS arguments and name remapping that were provided at the command line.</span></span><br><span class="line"><span class="comment">   * For programmatic remappings you can use a different version of init() which takes</span></span><br><span class="line"><span class="comment">   * remappings directly, but for most command-line programs, passing argc and argv is</span></span><br><span class="line"><span class="comment">   * the easiest way to do it.  The third argument to init() is the name of the node.</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * You must call one of the versions of ros::init() before using any other</span></span><br><span class="line"><span class="comment">   * part of the ROS system.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  ros::<span class="built_in">init</span>(argc, argv, <span class="string">&quot;talker&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * NodeHandle is the main access point to communications with the ROS system.</span></span><br><span class="line"><span class="comment">   * The first NodeHandle constructed will fully initialize this node, and the last</span></span><br><span class="line"><span class="comment">   * NodeHandle destructed will close down the node.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  ros::NodeHandle n;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * The advertise() function is how you tell ROS that you want to</span></span><br><span class="line"><span class="comment">   * publish on a given topic name. This invokes a call to the ROS</span></span><br><span class="line"><span class="comment">   * master node, which keeps a registry of who is publishing and who</span></span><br><span class="line"><span class="comment">   * is subscribing. After this advertise() call is made, the master</span></span><br><span class="line"><span class="comment">   * node will notify anyone who is trying to subscribe to this topic name,</span></span><br><span class="line"><span class="comment">   * and they will in turn negotiate a peer-to-peer connection with this</span></span><br><span class="line"><span class="comment">   * node.  advertise() returns a Publisher object which allows you to</span></span><br><span class="line"><span class="comment">   * publish messages on that topic through a call to publish().  Once</span></span><br><span class="line"><span class="comment">   * all copies of the returned Publisher object are destroyed, the topic</span></span><br><span class="line"><span class="comment">   * will be automatically unadvertised.</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * The second parameter to advertise() is the size of the message queue</span></span><br><span class="line"><span class="comment">   * used for publishing messages.  If messages are published more quickly</span></span><br><span class="line"><span class="comment">   * than we can send them, the number here specifies how many messages to</span></span><br><span class="line"><span class="comment">   * buffer up before throwing some away.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  ros::Publisher chatter_pub = n.<span class="built_in">advertise</span>&lt;std_msgs::String&gt;(<span class="string">&quot;chatter&quot;</span>, <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">  <span class="function">ros::Rate <span class="title">loop_rate</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * A count of how many messages we have sent. This is used to create</span></span><br><span class="line"><span class="comment">   * a unique string for each message.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (ros::<span class="built_in">ok</span>())</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * This is a message object. You stuff it with data, and then publish it.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    std_msgs::String msg;</span><br><span class="line"></span><br><span class="line">    std::stringstream ss;</span><br><span class="line">    ss &lt;&lt; <span class="string">&quot;hello world &quot;</span> &lt;&lt; count;</span><br><span class="line">    msg.data = ss.<span class="built_in">str</span>();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">ROS_INFO</span>(<span class="string">&quot;%s&quot;</span>, msg.data.<span class="built_in">c_str</span>());</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * The publish() function is how you send messages. The parameter</span></span><br><span class="line"><span class="comment">     * is the message object. The type of this object must agree with the type</span></span><br><span class="line"><span class="comment">     * given as a template parameter to the advertise&lt;&gt;() call, as was done</span></span><br><span class="line"><span class="comment">     * in the constructor above.</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    chatter_pub.<span class="built_in">publish</span>(msg);</span><br><span class="line"></span><br><span class="line">    ros::<span class="built_in">spinOnce</span>();</span><br><span class="line"></span><br><span class="line">    loop_rate.<span class="built_in">sleep</span>();</span><br><span class="line">    ++count;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="订阅节点-Subscriber-Node"><a href="#订阅节点-Subscriber-Node" class="headerlink" title="订阅节点 Subscriber Node"></a>订阅节点 Subscriber Node</h3><h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>初始化 ROS 节点和句柄；</li>
+<li>订阅 <code>chatter</code> 话题；</li>
+<li>等待消息到达；</li>
+<li>消息到达会调用回调函数，在回调函数编写消息处理代码。</li>
+</ol>
+<h4 id="cpp实现-1"><a href="#cpp实现-1" class="headerlink" title="cpp实现"></a>cpp实现</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ros/ros.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;std_msgs/String.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">chatterCallback</span><span class="params">(<span class="type">const</span> std_msgs::String::ConstPtr&amp; msg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">ROS_INFO</span>(<span class="string">&quot;I heard: [%s]&quot;</span>, msg-&gt;data.<span class="built_in">c_str</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ros::<span class="built_in">init</span>(argc, argv, <span class="string">&quot;listener&quot;</span>);</span><br><span class="line"></span><br><span class="line">  ros::NodeHandle n;</span><br><span class="line"></span><br><span class="line">  ros::Subscriber sub = n.<span class="built_in">subscribe</span>(<span class="string">&quot;chatter&quot;</span>, <span class="number">1000</span>, chatterCallback);</span><br><span class="line"></span><br><span class="line">  ros::<span class="built_in">spin</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="代码解释-1"><a href="#代码解释-1" class="headerlink" title="代码解释"></a>代码解释</h4><p>订阅程序代码中一些代码和发布程序是一样的，在下面就不再赘述。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">chatterCallback</span><span class="params">(<span class="type">const</span> std_msgs::String::ConstPtr&amp; msg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">ROS_INFO</span>(<span class="string">&quot;I heard: [%s]&quot;</span>, msg-&gt;data.<span class="built_in">c_str</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当 <code>chatter</code>话题的数据到达时，回调函数<code>chatterCallBack()</code>将会被调用。消息使用  <a href="http://www.boost.org/doc/libs/1_37_0/libs/smart_ptr/shared_ptr.htm">boost shared_ptr</a> 传递，意味着可以根据需要存储，不用担心在下文被删除，也不用复制基础数据。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">ros::Subscriber sub = n.<span class="built_in">subscribe</span>(<span class="string">&quot;chatter&quot;</span>, <span class="number">1000</span>, chatterCallback);</span><br></pre></td></tr></table></figure>
+
+<p>向 <code>master</code>订阅<code>chatter</code> 话题。当新消息到达时，ROS 将会调用<code>chatterCallback()</code>。</p>
+<p>第一个参数仍然是话题名称。</p>
+<p>第二个参数是接收队列长度，当数据发布的很快，而订阅方处理过慢时，最多存储该队列长度的数据。在这里长度为1000，也就是缓存超过1000，前面的旧数据将会丢弃。</p>
+<p><code>NodeHandle::subscribe()</code>返回<code>ros::Subscriber</code>对象，在取消订阅之前，都必须保持该对象存在。当该对象析构时，将自动取消订阅<code>chatter</code>话题。</p>
+<p>ROS 提供了多个<code>NodeHandle::subscribe()</code> 版本，可以自定义回调函数、指定类成员函数或者任何 Boost 调用。<a href="http://wiki.ros.org/roscpp/Overview">roscpp overview</a> 给出了更详细的解释。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">ros::<span class="built_in">spin</span>();</span><br></pre></td></tr></table></figure>
+
+<p><code>ros::spin()</code>进入一个循环，当消息到来时，调用回调函数。当 <code>ros::ok()</code>为 <code>false</code> ，<code>ros::spin()</code>也会退出。即，<code>ctrl+c</code>、<code>ros::shutdown()</code>等情况也适用 <code>ros::spin()</code>。</p>
+<p>ROS 还提供了其他处理调用的的方式。在 <a href="http://wiki.ros.org/roscpp_tutorials">roscpp_tutorials</a> 中有相关演示程序。更多信息可以参见 <a href="http://wiki.ros.org/roscpp/Overview">roscpp overview</a> 。</p>
+<h4 id="完整注释版-1"><a href="#完整注释版-1" class="headerlink" title="完整注释版"></a>完整注释版</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ros/ros.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;std_msgs/String.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * This tutorial demonstrates simple receipt of messages over the ROS system.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">chatterCallback</span><span class="params">(<span class="type">const</span> std_msgs::String::ConstPtr&amp; msg)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">ROS_INFO</span>(<span class="string">&quot;I heard: [%s]&quot;</span>, msg-&gt;data.<span class="built_in">c_str</span>());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * The ros::init() function needs to see argc and argv so that it can perform</span></span><br><span class="line"><span class="comment">   * any ROS arguments and name remapping that were provided at the command line.</span></span><br><span class="line"><span class="comment">   * For programmatic remappings you can use a different version of init() which takes</span></span><br><span class="line"><span class="comment">   * remappings directly, but for most command-line programs, passing argc and argv is</span></span><br><span class="line"><span class="comment">   * the easiest way to do it.  The third argument to init() is the name of the node.</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * You must call one of the versions of ros::init() before using any other</span></span><br><span class="line"><span class="comment">   * part of the ROS system.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  ros::<span class="built_in">init</span>(argc, argv, <span class="string">&quot;listener&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * NodeHandle is the main access point to communications with the ROS system.</span></span><br><span class="line"><span class="comment">   * The first NodeHandle constructed will fully initialize this node, and the last</span></span><br><span class="line"><span class="comment">   * NodeHandle destructed will close down the node.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  ros::NodeHandle n;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * The subscribe() call is how you tell ROS that you want to receive messages</span></span><br><span class="line"><span class="comment">   * on a given topic.  This invokes a call to the ROS</span></span><br><span class="line"><span class="comment">   * master node, which keeps a registry of who is publishing and who</span></span><br><span class="line"><span class="comment">   * is subscribing.  Messages are passed to a callback function, here</span></span><br><span class="line"><span class="comment">   * called chatterCallback.  subscribe() returns a Subscriber object that you</span></span><br><span class="line"><span class="comment">   * must hold on to until you want to unsubscribe.  When all copies of the Subscriber</span></span><br><span class="line"><span class="comment">   * object go out of scope, this callback will automatically be unsubscribed from</span></span><br><span class="line"><span class="comment">   * this topic.</span></span><br><span class="line"><span class="comment">   *</span></span><br><span class="line"><span class="comment">   * The second parameter to the subscribe() function is the size of the message</span></span><br><span class="line"><span class="comment">   * queue.  If messages are arriving faster than they are being processed, this</span></span><br><span class="line"><span class="comment">   * is the number of messages that will be buffered up before beginning to throw</span></span><br><span class="line"><span class="comment">   * away the oldest ones.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  ros::Subscriber sub = n.<span class="built_in">subscribe</span>(<span class="string">&quot;chatter&quot;</span>, <span class="number">1000</span>, chatterCallback);</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * ros::spin() will enter a loop, pumping callbacks.  With this version, all</span></span><br><span class="line"><span class="comment">   * callbacks will be called from within this thread (the main one).  ros::spin()</span></span><br><span class="line"><span class="comment">   * will exit when Ctrl-C is pressed, or the node is shutdown by the master.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  ros::<span class="built_in">spin</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="编译节点"><a href="#编译节点" class="headerlink" title="编译节点"></a>编译节点</h3><h4 id="CMakeLists-txt"><a href="#CMakeLists-txt" class="headerlink" title="CMakeLists.txt"></a>CMakeLists.txt</h4><p>修改 <a href="http://wiki.ros.org/catkin/CMakeLists.txt">CMakeLists.txt</a> 文件，找到下面语句修改，或者直接复制到文件末尾：</p>
+<figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">add_executable(talker src/talker.cpp)</span><br><span class="line">target_link_libraries(talker $&#123;catkin_LIBRARIES&#125;)</span><br><span class="line"></span><br><span class="line">add_executable(listener src/listener.cpp</span><br><span class="line">target_link_libraries(listener $&#123;catkin_LIBRARIES&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这将创建两个可执行文件，<code>talker</code> 和 <code>listener</code>，默认情况下它们会进入你的<a href="http://wiki.ros.org/catkin/workspaces#Development_.28Devel.29_Space">开发空间</a>的包目录，默认位于 <code>~/&lt;workspace_name&gt;/devel/lib/&lt;package_name&gt;</code>。</p>
+<p>这一步时确保在使用之前生成功能包的消息头。如果您在 catkin 工作空间中使用来自其他包的消息，您还需要将依赖项添加到它们各自的生成目标中，因为 catkin 并行构建所有项目。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">target_link_libraries(talker $&#123;catkin_LIBRARIES&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>我们可以直接调用<code>可执行文件</code>或者使用<code>rosrun</code>。</p>
+<p>它们没有放在 ‘&#x2F;bin’ 中，因为在将软件包安装到系统时会污染 PATH。<br>如果您希望您的可执行文件在安装时位于 PATH 上，您可以设置安装目标，请参阅：<a href="http://wiki.ros.org/catkin/CMakeLists.txt">catkin&#x2F;CMakeLists.txt</a></p>
+<p>更多描述信息可以参见 <a href="http://wiki.ros.org/catkin/CMakeLists.txt">CMakeLists.txt</a> 文件：<a href="http://wiki.ros.org/catkin/CMakeLists.txt">catkin&#x2F;CMakeLists.txt</a></p>
+<h4 id="catkin-make"><a href="#catkin-make" class="headerlink" title="catkin_make"></a>catkin_make</h4><p>修改完后，在命令行输入：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">切换到工作路径下</span></span><br><span class="line">cd ~/catkin_ws</span><br><span class="line">catkin_make</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>首先，确保<code>roscore</code>的启动</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">roscore</span></span><br></pre></td></tr></table></figure>
+
+<p>在调用<code>rosrun</code>运行节点之前，确保设置了环境变量<code>source </code>工作空间下的<code>setup.sh</code>：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">In your catkin workspace</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> ~/catkin_ws</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">source</span> ./devel/setup.bash</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Publisher"><a href="#Publisher" class="headerlink" title="Publisher"></a>Publisher</h4><p>打开第一个终端，运行<code>talker</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ rosrun beginner_tutorials talker </span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[INFO] [WallTime: 1314931831.774057] hello world 1314931831.77</span><br><span class="line">[INFO] [WallTime: 1314931832.775497] hello world 1314931832.77</span><br><span class="line">[INFO] [WallTime: 1314931833.778937] hello world 1314931833.78</span><br><span class="line">[INFO] [WallTime: 1314931834.782059] hello world 1314931834.78</span><br><span class="line">[INFO] [WallTime: 1314931835.784853] hello world 1314931835.78</span><br><span class="line">[INFO] [WallTime: 1314931836.788106] hello world 1314931836.79</span><br></pre></td></tr></table></figure>
+
+<h4 id="Subscriber"><a href="#Subscriber" class="headerlink" title="Subscriber"></a>Subscriber</h4><p><code>rosrun</code>运行<code>listener</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ rosrun beginner_tutorials listener</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[INFO] [WallTime: 1314931969.258941] /listener_17657_1314931968795I heard hello world 1314931969.26</span><br><span class="line">[INFO] [WallTime: 1314931970.262246] /listener_17657_1314931968795I heard hello world 1314931970.26</span><br><span class="line">[INFO] [WallTime: 1314931971.266348] /listener_17657_1314931968795I heard hello world 1314931971.26</span><br><span class="line">[INFO] [WallTime: 1314931972.270429] /listener_17657_1314931968795I heard hello world 1314931972.27</span><br><span class="line">[INFO] [WallTime: 1314931973.274382] /listener_17657_1314931968795I heard hello world 1314931973.27</span><br><span class="line">[INFO] [WallTime: 1314931974.277694] /listener_17657_1314931968795I heard hello world 1314931974.28</span><br><span class="line">[INFO] [WallTime: 1314931975.283708] /listener_17657_1314931968795I heard hello world 1314931975.28</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a href="http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber(c%2B%2B)#roscpp_tutorials.2FTutorials.2FWritingPublisherSubscriber.The_Code_Explained">ROS&#x2F;Tutorials&#x2F;WritingPublisherSubscriber(c++) - ROS Wiki</a></li>
+</ol>
 ]]></content>
       <categories>
         <category>ROS</category>
         <category>beginner-tutorials</category>
+        <category>Topic</category>
       </categories>
       <tags>
         <tag>ROS</tag>
+        <tag>ROS-Topic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ROS Topic 建立连接的理论模型</title>
+    <url>/2022/07/18/ros-esablishing-topic-connection/</url>
+    <content><![CDATA[<h1 id="ROS-Topic-建立连接的理论模型"><a href="#ROS-Topic-建立连接的理论模型" class="headerlink" title="ROS Topic 建立连接的理论模型"></a>ROS Topic 建立连接的理论模型</h1><h2 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h2><ol>
+<li>publisher 向 Master 注册，并提供 话题名称、消息类型和节点URI（RPC 地址）。Master会维护一个 publisher table。（XMLRPC）</li>
+<li>subscriber 向 Master 注册，并提供 话题名称、消息类型和节点URI（RPC 地址）。Master会维护一个 subscriber table。Master返回给 subscriber 一个 publisher URIs list，并会在新的 publihser到来时更新。（XMLRPC）</li>
+<li>subscriber 根据 publisher URIs list ，向订阅话题的 publisher 发起 Topic 连接 请求，并协商一个传输协议（TCPROS…）。（XMLRPC）</li>
+<li>publishers 将选定的传输协议发送给 subscriber。（XMLRPC）</li>
+<li>subscriber 使用 publishers 选定的协议建立连接。（TCPROS, etc …）</li>
+<li>publishers 使用选定的协议发送话题数据。（TCPROS, etc …）</li>
+</ol>
+<p><strong>Notes</strong>：</p>
+<ol>
+<li>publisher 和 subscriber 的注册并无严格的先后顺序；</li>
+<li>同一话题的 publisher 和 subscriber 都可以有多个；</li>
+<li>匿名通信，publisher 并不关心谁订阅消息也不会知道，subscriber 不关心谁发布消息。前者仅向对应话题发布消息，后者向对应话题读取而已；</li>
+<li>连接建立完成后，数据流并不通过 Master 节点，即 Master 的关闭不会影响通信；</li>
+</ol>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><blockquote>
+<p>为了控制 Hokuyo 激光测距仪，我们启动 hokuyo_node 节点，该节点与激光对话并在扫描主题上发布 sensor_msgs&#x2F;Laser Scan 消息。为了可视化激光扫描数据，我们启动 rviz 节点并订阅扫描主题。订阅后，rviz 节点开始接收激光扫描消息，并将其呈现到屏幕上。</p>
+</blockquote>
+<p>![master-node-example.png](..&#x2F;images&#x2F;posts&#x2F;ros-esablishing-topic-connection.assets&#x2F;Technical Overviewaction&#x3D;AttachFile&amp;do&#x3D;get&amp;target&#x3D;master-node-example.png)</p>
+<h2 id="官方原文"><a href="#官方原文" class="headerlink" title="官方原文"></a>官方原文</h2><h3 id="Establishing-a-topic-connection"><a href="#Establishing-a-topic-connection" class="headerlink" title="Establishing a topic connection"></a>Establishing a topic connection</h3><p>Putting it all together, the sequence by which two nodes begin exchanging messages is:</p>
+<ol>
+<li>Subscriber starts. It reads its command-line remapping arguments to resolve which topic name it will use. (Remapping Arguments)</li>
+<li>Publisher starts. It reads its command-line remapping arguments to resolve which topic name it will use. (Remapping Arguments)</li>
+<li>Subscriber registers with the Master. (XMLRPC)</li>
+<li>Publisher registers with the Master. (XMLRPC)</li>
+<li>Master informs Subscriber of new Publisher. (XMLRPC)</li>
+<li>Subscriber contacts Publisher to request a topic connection and negotiate the transport protocol. (XMLRPC)</li>
+<li>Publisher sends Subscriber the settings for the selected transport protocol. (XMLRPC)</li>
+<li>Subscriber connects to Publisher using the selected transport protocol. (TCPROS, etc…)</li>
+</ol>
+<p>The XMLRPC portion of this will look like:</p>
+<p><code>/subscriber_node</code> → <code>master.registerSubscriber(/subscriber_node, /example_topic, std_msgs/String, http://hostname:1234)</code></p>
+<p>Master returns that there are no active publishers.</p>
+<p><code>/publisher_node</code> → <code>master.registerPublisher(/publisher_node, /example_topic, std_msgs/String, http://hostname:5678)</code></p>
+<p>Master notices that <code>/subscriber_node</code> is interested in <code>/example_topic</code>, so it makes a callback to the subscriber</p>
+<p><code>master</code> → <code>subscriber.publisherUpdate(/publisher_node, /example_topic, [http://hostname:5678])</code></p>
+<p>Subscriber notices that it has not connected to <code>http://hostname:5678</code> yet, so it contacts it to request a topic.</p>
+<p><code>subscriber</code> → <code>publisher.requestTopic(/subscriber_node, /example_topic, [[TCPROS]])</code></p>
+<p>Publisher returns <code>TCPROS</code> as the selected protocol, so subscriber creates a new connection to the publishers TCPROS host:port.</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h3><p>To control a Hokuyo laser range-finder, we start the <a href="http://wiki.ros.org/hokuyo_node">hokuyo_node</a> node, which talks to the laser and publishes <a href="http://docs.ros.org/en/api/sensor_msgs/html/msg/LaserScan.html">sensor_msgs&#x2F;LaserScan</a> messages on the <strong>scan</strong> topic. To visualize the laser scan data, we start the <a href="http://wiki.ros.org/rviz">rviz</a> node and subscribe to the <strong>scan</strong> topic. After subscription, the rviz node begins receiving LaserScan messages, which it renders to the screen.</p>
+<p>Note how the two sides are decoupled. All the hokuyo_node node does is publish scans, without knowledge of whether anyone is subscribed. All the rviz does is subscribe to scans, without knowledge of whether anyone is publishing them. The two nodes can be started, killed, and restarted, in any order, without inducing any error conditions.</p>
+<p>In the example above, how do the laser_viewer and hokuyo_node nodes find each other? They use a name service that is provided by a special node called the <strong>master.</strong> The <a href="http://wiki.ros.org/Master">Master</a> has a well-known XMLRPC URI that is accessible to all nodes. Before publishing on a topic for the first time, a node <strong>advertises</strong> its intent to publish on that topic. This advertisement sends to the master, via XMLRPC, information about the publication, including the message type, the topic name, and the publishing node’s URI. The master maintains this information in a publisher table.</p>
+<p>When a node subscribes to a topic, it communicates with the master, via XMLRPC, sending the same information (message type, topic name, and node URI). The master maintains this information in a subscriber table. In return, the subscriber is given the current list of publisher URIs. The subscriber will also receive updates from the master as the list of publishers changes. Given the list of publishers, the subscribing node is ready to initiate transport-specific connections.</p>
+<p><strong>Note</strong>: message data does <strong>not</strong> flow through the master. It only provides name service, connecting subscribers with publishers.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li>[ROS&#x2F;Technical Overview - ROS Wiki](<a href="http://wiki.ros.org/ROS/Technical">http://wiki.ros.org/ROS/Technical</a> Overview)</li>
+</ol>
+]]></content>
+      <categories>
+        <category>ROS</category>
+        <category>beginner-tutorials</category>
+        <category>Topic</category>
+      </categories>
+      <tags>
+        <tag>ROS</tag>
+        <tag>ROS-Topic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ROS Service 建立连接的理论模型</title>
+    <url>/2022/07/18/ros-establishing-service-connection/</url>
+    <content><![CDATA[<h1 id="ROS-Service-建立连接的理论模型"><a href="#ROS-Service-建立连接的理论模型" class="headerlink" title="ROS Service 建立连接的理论模型"></a>ROS Service 建立连接的理论模型</h1><h2 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h2><p>基于请求响应的服务通信，被视为是话题通信的简化版本。值得注意的是，话题可以有多个发布者，而提供服务的只能有一个，且以最近注册该服务的server为准。服务的client可以有多个，且不一定是 ROS 节点。服务通信要求，在client提交请求后，server能够在有限时间内实时的回复。大体实现流程如下：</p>
+<ol>
+<li>server和 client 分别在 Master 注册，提交服务名称、自身的URI；（XMLRPC）</li>
+<li>client 查看 Master 中对应的服务，并获取对应的 TCP 地址；（XMLRPC）</li>
+<li>client 向 server发起 TCP&#x2F;IP 连接；（TCPROS）</li>
+<li>client 填写 request，向server调用服务；（TCPROS）</li>
+<li>server 收到 request，处理信息，填写 response ，返回给 client，调用完成；（TCPROS）</li>
+</ol>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><blockquote>
+<p>在无人机任务执行的过程中，可能会遇到不可识别的单位，需要将采集到的数据，传输给数据处理节点，并获取有关信息。在这一情况下，通常对通信有着实时性的要求，并期待获得响应。基于请求响应的服务通信具备这样的功能，且能完成一定的逻辑处理。</p>
+</blockquote>
+<p><img src="/../images/posts/ros-establishing-service-connection.assets/02_%E6%9C%8D%E5%8A%A1%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B.jpg" alt="img"></p>
+<h2 id="官方原文"><a href="#官方原文" class="headerlink" title="官方原文"></a>官方原文</h2><h3 id="Establishing-a-service-connection"><a href="#Establishing-a-service-connection" class="headerlink" title="Establishing a service connection"></a>Establishing a service connection</h3><p>We have not discussed services as much in this overview, but they can be viewed as a simplified version of topics. Whereas topics can have many publishers, there can only be a single service provider. The most recent node to register with the master is considered the current service provider. This allows for a much simpler setup protocol – in fact, a service client does not have to be a ROS node.</p>
+<ol>
+<li>Service registers with Master</li>
+<li>Service client looks up service on the Master</li>
+<li>Service client creates TCP&#x2F;IP to the service</li>
+<li>Service client and service exchange a [Connection Header](<a href="http://wiki.ros.org/ROS/Connection">http://wiki.ros.org/ROS/Connection</a> Header)</li>
+<li>Service client sends serialized request message</li>
+<li>Service replies with serialized response message.</li>
+</ol>
+<p>If the last several steps look familiar, its because they are an extension of the <a href="http://wiki.ros.org/ROS/TCPROS">TCPROS</a> protocol. In fact, <a href="http://wiki.ros.org/rospy">rospy</a> and <a href="http://wiki.ros.org/roscpp">roscpp</a> both use the same TCP&#x2F;IP server socket to receive both topic and service connections.</p>
+<p>As there is no callback from the Master when a new service is registered, many client libraries provide a “wait for service” API method, that simply polls the Master until a service registration appears.</p>
+<h3 id="Persistent-service-connections"><a href="#Persistent-service-connections" class="headerlink" title="Persistent service connections"></a>Persistent service connections</h3><p>By default, service connections are stateless. For each call a client wishes to make, it repeats the steps of looking up the service on the Master and exchanging request&#x2F;response data over a new connection.</p>
+<p>The stateless approach is generally more robust as it allows a service node to be restarted, but this overhead can be high if frequent, repeated calls are made to the same service.</p>
+<p>ROS allows for <em>persistent</em> connections to a service, which provide a very high-throughput connection for making repeated calls to a service. With these persistent connections, the connection between the client and service is kept open so that the service client can continue to send requests over the connection.</p>
+<p>Greater care should be used with persistent connections. If a new service provider appears, it does not interrupt an ongoing connection. Similarly, if a persistent connection fails, there is no attempt made to reconnect.</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li>[ROS&#x2F;Technical Overview - ROS Wiki](<a href="http://wiki.ros.org/ROS/Technical">http://wiki.ros.org/ROS/Technical</a> Overview)</li>
+<li><a href="http://www.autolabor.com.cn/book/ROSTutorials/di-2-zhang-ros-jia-gou-she-ji/23-fu-wu-tong-xin/221-fu-wu-tong-xin-li-lun-mo-xing.html">2.2.1 服务通信理论模型 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>ROS</category>
+        <category>beginner-tutorials</category>
+        <category>Service</category>
+      </categories>
+      <tags>
+        <tag>ROS</tag>
+        <tag>ROS-Service</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ros-parameter-server</title>
+    <url>/2022/07/18/ros-parameter-server/</url>
+    <content><![CDATA[<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1. </p>
+]]></content>
+  </entry>
+  <entry>
+    <title>ros-writing-service-client-cpp</title>
+    <url>/2022/07/18/ros-writing-service-client-cpp/</url>
+    <content><![CDATA[<h2 id="Service-通信示例-cpp-实现"><a href="#Service-通信示例-cpp-实现" class="headerlink" title="Service 通信示例 cpp 实现"></a>Service 通信示例 cpp 实现</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><h3 id="服务端-Service-Node"><a href="#服务端-Service-Node" class="headerlink" title="服务端 Service Node"></a>服务端 Service Node</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>初始化 ROS 节点和句柄；</li>
+<li>创建服务并发布到 ROS；</li>
+<li>编写回调函数；</li>
+</ol>
+<h4 id="cpp实现"><a href="#cpp实现" class="headerlink" title="cpp实现"></a>cpp实现</h4><p>创建 <code>add_two_ints_server.cpp</code> 文件：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ros/ros.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;beginner_tutorials/AddTwoInts.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">add</span><span class="params">(beginner_tutorials::AddTwoInts::Request  &amp;req,</span></span></span><br><span class="line"><span class="params"><span class="function">         beginner_tutorials::AddTwoInts::Response &amp;res)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  res.sum = req.a + req.b;</span><br><span class="line">  <span class="built_in">ROS_INFO</span>(<span class="string">&quot;request: x=%ld, y=%ld&quot;</span>, (<span class="type">long</span> <span class="type">int</span>)req.a, (<span class="type">long</span> <span class="type">int</span>)req.b);</span><br><span class="line">  <span class="built_in">ROS_INFO</span>(<span class="string">&quot;sending back response: [%ld]&quot;</span>, (<span class="type">long</span> <span class="type">int</span>)res.sum);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ros::<span class="built_in">init</span>(argc, argv, <span class="string">&quot;add_two_ints_server&quot;</span>);</span><br><span class="line">  ros::NodeHandle n;</span><br><span class="line"></span><br><span class="line">  ros::ServiceServer service = n.<span class="built_in">advertiseService</span>(<span class="string">&quot;add_two_ints&quot;</span>, add);</span><br><span class="line">  <span class="built_in">ROS_INFO</span>(<span class="string">&quot;Ready to add two ints.&quot;</span>);</span><br><span class="line">  ros::<span class="built_in">spin</span>();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="代码解释"><a href="#代码解释" class="headerlink" title="代码解释"></a>代码解释</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ros/ros.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;beginner_tutorials/AddTwoInts.h&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<p><code>beginner_tutorials/AddTwoInts.h</code>是我们前面创建的<code>.srv</code>文件生成的头文件。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">add</span><span class="params">(beginner_tutorials::AddTwoInts::Request  &amp;req,</span></span></span><br><span class="line"><span class="params"><span class="function">         beginner_tutorials::AddTwoInts::Response &amp;res)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>这一方法为实现两个<code>int</code>相加服务。它携带两个参数，分别为<code>.srv</code>文件的 Request 和 Response 部分，并返回一个 boolean 值。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  res.sum = req.a + req.b;</span><br><span class="line">  <span class="built_in">ROS_INFO</span>(<span class="string">&quot;request: x=%ld, y=%ld&quot;</span>, (<span class="type">long</span> <span class="type">int</span>)req.a, (<span class="type">long</span> <span class="type">int</span>)req.b);</span><br><span class="line">  <span class="built_in">ROS_INFO</span>(<span class="string">&quot;sending back response: [%ld]&quot;</span>, (<span class="type">long</span> <span class="type">int</span>)res.sum);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>两个整数相加并存储在 Response 部分。</p>
+<p>打印请求响应相关信息。</p>
+<p>最后完成服务并返回 <code>true</code>。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">ros::ServiceServer service = n.<span class="built_in">advertiseService</span>(<span class="string">&quot;add_two_ints&quot;</span>, add);</span><br></pre></td></tr></table></figure>
+
+<p>这一语句将创建并发布服务信息。第一个参数是 <code>service</code>名字，第二个是回调函数名。</p>
+<p><strong>Notes</strong> :</p>
+<ul>
+<li>转化长整型的原因：<code>beginner_tutorials::AddTwoIntsResponse_&lt;std::allocator&lt;void&gt; &gt;::_sum_type &#123;aka long int&#125;</code></li>
+</ul>
+<h3 id="服务端-Client-Node"><a href="#服务端-Client-Node" class="headerlink" title="服务端 Client Node"></a>服务端 Client Node</h3><h4 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h4><ol>
+<li>初始化 ROS 节点、句柄；</li>
+<li>创建该服务的Client 对象；</li>
+<li>填写<code>srv</code>消息的<code>request</code>部分；</li>
+<li>调用服务；</li>
+</ol>
+<h4 id="cpp实现-1"><a href="#cpp实现-1" class="headerlink" title="cpp实现"></a>cpp实现</h4><p>创建 <code>add_two_ints_client.cpp</code> 文件：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;ros/ros.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;beginner_tutorials/AddTwoInts.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdlib&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  ros::<span class="built_in">init</span>(argc, argv, <span class="string">&quot;add_two_ints_client&quot;</span>);</span><br><span class="line">  <span class="keyword">if</span> (argc != <span class="number">3</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">ROS_INFO</span>(<span class="string">&quot;usage: add_two_ints_client X Y&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ros::NodeHandle n;</span><br><span class="line">  ros::ServiceClient client = n.<span class="built_in">serviceClient</span>&lt;beginner_tutorials::AddTwoInts&gt;(<span class="string">&quot;add_two_ints&quot;</span>);</span><br><span class="line">  beginner_tutorials::AddTwoInts srv;</span><br><span class="line">  srv.request.a = <span class="built_in">atoll</span>(argv[<span class="number">1</span>]);</span><br><span class="line">  srv.request.b = <span class="built_in">atoll</span>(argv[<span class="number">2</span>]);</span><br><span class="line">  <span class="keyword">if</span> (client.<span class="built_in">call</span>(srv))</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">ROS_INFO</span>(<span class="string">&quot;Sum: %ld&quot;</span>, (<span class="type">long</span> <span class="type">int</span>)srv.response.sum);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">ROS_ERROR</span>(<span class="string">&quot;Failed to call service add_two_ints&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="代码解释-1"><a href="#代码解释-1" class="headerlink" title="代码解释"></a>代码解释</h4><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">ros::ServiceClient client = n.<span class="built_in">serviceClient</span>&lt;beginner_tutorials::AddTwoInts&gt;(<span class="string">&quot;add_two_ints&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这将为 <code>add_two_ints</code> 服务创建一个客户端。<code>ros::Service Client</code> 对象用于稍后调用服务。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">beginner_tutorials::AddTwoInts srv;</span><br><span class="line">srv.request.a = <span class="built_in">atoll</span>(argv[<span class="number">1</span>]);</span><br><span class="line">srv.request.b = <span class="built_in">atoll</span>(argv[<span class="number">2</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>在这里，我们实例化一个自动生成的服务类，并将值分配给它的成员变量 <code>request</code>。<br>一个服务类包含两个部分，请求<code>request</code>和响应<code>response</code>。它还包含两个类定义，请求<code>Request</code> 和响应 <code>Response</code>。</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (client.<span class="built_in">call</span>(srv))</span><br></pre></td></tr></table></figure>
+
+<p>这是实际调用服务的地方。该服务调用是阻塞的，调用返程即返回。<br>如果服务调用成功， <code>call()</code> 将返回 true 并且 <code>srv.response</code> 中的值将是有效的。<br>如果调用不成功， <code>call()</code> 将返回 false 并且 <code>srv.response</code> 中的值将无效。</p>
+<h3 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h3><h4 id="CMakeLists-txt"><a href="#CMakeLists-txt" class="headerlink" title="CMakeLists.txt"></a>CMakeLists.txt</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">add_executable(add_two_ints_server src/add_two_ints_server.cpp)</span><br><span class="line">add_executable(add_two_ints_client src/add_two_ints_client.cpp)</span><br><span class="line"></span><br><span class="line">add_dependencies(add_two_ints_server $&#123;$&#123;PROJECT_NAME&#125;_EXPORTED_TARGETS&#125; $&#123;catkin_EXPORTED_TARGETS&#125;)</span><br><span class="line">add_dependencies(add_two_ints_client $&#123;$&#123;PROJECT_NAME&#125;_EXPORTED_TARGETS&#125; $&#123;catkin_EXPORTED_TARGETS&#125;)</span><br><span class="line"></span><br><span class="line">target_link_libraries(add_two_ints_server</span><br><span class="line">  $&#123;catkin_LIBRARIES&#125;</span><br><span class="line">)</span><br><span class="line">target_link_libraries(add_two_ints_client</span><br><span class="line">  $&#123;catkin_LIBRARIES&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h4 id="catkin-make"><a href="#catkin-make" class="headerlink" title="catkin_make"></a>catkin_make</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 切换到工作路径下</span><br><span class="line">cd ~/catkin_ws</span><br><span class="line">catkin_make</span><br></pre></td></tr></table></figure>
+
+<p>如果编译失败，很大的原因是因为前面创建<code>AddTwoInts.srv</code>的问题。</p>
+<h3 id="运行"><a href="#运行" class="headerlink" title="运行"></a>运行</h3><p>运行 roscore</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">roscore</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">... logging to /u/takayama/.ros/logs/83871c9c-934b-11de-a451-</span><br><span class="line">001d927076eb/roslaunch-ads-31831.log</span><br><span class="line">... loading XML file </span><br><span class="line">[/wg/stor1a/rosbuild/shared_installation/ros/tools/roslaunch/roscore.xml]</span><br><span class="line">Added core node of type [rosout/rosout] in namespace [/]</span><br><span class="line">started roslaunch server http://ads:54367/</span><br><span class="line"></span><br><span class="line">SUMMARY</span><br><span class="line">======</span><br><span class="line"></span><br><span class="line">NODES</span><br><span class="line"></span><br><span class="line">changing ROS_MASTER_URI to [http://ads:11311/] for starting master locally</span><br><span class="line">starting new master (master configured for auto start)</span><br><span class="line">process[master]: started with pid [31874]</span><br><span class="line">ROS_MASTER_URI=http://ads:11311/</span><br><span class="line">setting /run_id to 83871c9c-934b-11de-a451-001d927076eb</span><br><span class="line">+PARAM [/run_id] by /roslaunch</span><br><span class="line">+PARAM [/roslaunch/uris/ads:54367] by /roslaunch</span><br><span class="line">process[rosout-1]: started with pid [31889]</span><br><span class="line">started core service [/rosout]</span><br><span class="line">+SUB [/time] /rosout http://ads:33744/</span><br><span class="line">+SERVICE [/rosout/get_loggers] /rosout http://ads:33744/</span><br><span class="line">+SERVICE [/rosout/set_logger_level] /rosout http://ads:33744/</span><br><span class="line">+PUB [/rosout_agg] /rosout http://ads:33744/</span><br><span class="line">+SUB [/rosout] /rosout http://ads:33744/</span><br></pre></td></tr></table></figure>
+
+<h4 id="运行-Server-Node"><a href="#运行-Server-Node" class="headerlink" title="运行 Server Node"></a>运行 Server Node</h4><p>打开新终端，设置环境变量，运行节点：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">source ./devel/setup.bash</span><br><span class="line">rosrun beginner_tutorials add_two_ints_server</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Ready to add two ints.</span><br></pre></td></tr></table></figure>
+
+<h4 id="运行-Client-Node"><a href="#运行-Client-Node" class="headerlink" title="运行 Client Node"></a>运行 Client Node</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">source ./devel/setup.bash</span><br><span class="line">rosrun beginner_tutorials add_two_ints_client 1 3</span><br></pre></td></tr></table></figure>
+
+<p>在client节点：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Sum: 4</span><br></pre></td></tr></table></figure>
+
+<p>在 server节点：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">request: x=1, y=3</span><br><span class="line">sending back response: [4]</span><br></pre></td></tr></table></figure>
+
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>值得注意的是，在这里我们先启动了 server，后启动了client。如果先启动 client，服务会调用失败。</p>
+<p>在这里我们可以使用<code>client.waitForExistence()</code>或<code>ros::service::waitForService(&quot;add_two_ints&quot;)</code>来进行程序的优化。即使client先启动也会一直等待服务的启动。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a href="http://wiki.ros.org/ROS/Tutorials/WritingServiceClient(c%2B%2B)">ROS&#x2F;Tutorials&#x2F;WritingServiceClient(c++) - ROS Wiki</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>ROS</category>
+        <category>beginner-tutorials</category>
+        <category>Service</category>
+      </categories>
+      <tags>
+        <tag>ROS</tag>
+        <tag>ROS-Service</tag>
       </tags>
   </entry>
 </search>
