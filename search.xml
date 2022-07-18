@@ -1144,7 +1144,7 @@
   <entry>
     <title>ROS Topic 通信简单示例</title>
     <url>/2022/07/16/ros-writing-publisher-subscriber-cpp/</url>
-    <content><![CDATA[<h2 id="话题通信示例-cpp-实现"><a href="#话题通信示例-cpp-实现" class="headerlink" title="话题通信示例 cpp 实现"></a>话题通信示例 cpp 实现</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>正如前面所提到的，我们有时需要可视化激光扫描数据。需要将数据从激光测距仪传输到 rviz ，为了控制 Hokuyo 激光测距仪，我们启动 hokuyo_node 节点，该节点与激光对话并在扫描主题上发布 sensor_msgs&#x2F;Laser Scan 消息。为了可视化激光扫描数据，我们启动 rviz 节点并订阅扫描主题。订阅后，rviz 节点开始接收激光扫描消息，并将其呈现到屏幕上。</p>
+    <content><![CDATA[<h2 id="ROS-Topic-通信简单示例"><a href="#ROS-Topic-通信简单示例" class="headerlink" title="ROS Topic 通信简单示例"></a>ROS Topic 通信简单示例</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>正如前面所提到的，我们有时需要可视化激光扫描数据。需要将数据从激光测距仪传输到 rviz ，为了控制 Hokuyo 激光测距仪，我们启动 hokuyo_node 节点，该节点与激光对话并在扫描主题上发布 sensor_msgs&#x2F;Laser Scan 消息。为了可视化激光扫描数据，我们启动 rviz 节点并订阅扫描主题。订阅后，rviz 节点开始接收激光扫描消息，并将其呈现到屏幕上。</p>
 <p>对该示例简化后，让发布方以 10 hz的频率发布文本消息，订阅方接收消息并打印。</p>
 <h3 id="发布节点-Publisher-Node"><a href="#发布节点-Publisher-Node" class="headerlink" title="发布节点 Publisher Node"></a>发布节点 Publisher Node</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
 <li>初始化 ROS 节点和句柄；</li>
@@ -1287,9 +1287,9 @@
       </tags>
   </entry>
   <entry>
-    <title>ROS Topic 建立连接的理论模型</title>
+    <title>ROS Topic 理论模型</title>
     <url>/2022/07/18/ros-esablishing-topic-connection/</url>
-    <content><![CDATA[<h1 id="ROS-Topic-建立连接的理论模型"><a href="#ROS-Topic-建立连接的理论模型" class="headerlink" title="ROS Topic 建立连接的理论模型"></a>ROS Topic 建立连接的理论模型</h1><h2 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h2><ol>
+    <content><![CDATA[<h1 id="ROS-Topic-理论模型"><a href="#ROS-Topic-理论模型" class="headerlink" title="ROS Topic 理论模型"></a>ROS Topic 理论模型</h1><h2 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h2><ol>
 <li>publisher 向 Master 注册，并提供 话题名称、消息类型和节点URI（RPC 地址）。Master会维护一个 publisher table。（XMLRPC）</li>
 <li>subscriber 向 Master 注册，并提供 话题名称、消息类型和节点URI（RPC 地址）。Master会维护一个 subscriber table。Master返回给 subscriber 一个 publisher URIs list，并会在新的 publihser到来时更新。（XMLRPC）</li>
 <li>subscriber 根据 publisher URIs list ，向订阅话题的 publisher 发起 Topic 连接 请求，并协商一个传输协议（TCPROS…）。（XMLRPC）</li>
@@ -1348,9 +1348,9 @@
       </tags>
   </entry>
   <entry>
-    <title>ROS Service 建立连接的理论模型</title>
+    <title>ROS Service 理论模型</title>
     <url>/2022/07/18/ros-establishing-service-connection/</url>
-    <content><![CDATA[<h1 id="ROS-Service-建立连接的理论模型"><a href="#ROS-Service-建立连接的理论模型" class="headerlink" title="ROS Service 建立连接的理论模型"></a>ROS Service 建立连接的理论模型</h1><h2 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h2><p>基于请求响应的服务通信，被视为是话题通信的简化版本。值得注意的是，话题可以有多个发布者，而提供服务的只能有一个，且以最近注册该服务的server为准。服务的client可以有多个，且不一定是 ROS 节点。服务通信要求，在client提交请求后，server能够在有限时间内实时的回复。大体实现流程如下：</p>
+    <content><![CDATA[<h1 id="ROS-Service-理论模型"><a href="#ROS-Service-理论模型" class="headerlink" title="ROS Service 理论模型"></a>ROS Service 理论模型</h1><h2 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h2><p>基于请求响应的服务通信，被视为是话题通信的简化版本。值得注意的是，话题可以有多个发布者，而提供服务的只能有一个，且以最近注册该服务的server为准。服务的client可以有多个，且不一定是 ROS 节点。服务通信要求，在client提交请求后，server能够在有限时间内实时的回复。大体实现流程如下：</p>
 <ol>
 <li>server和 client 分别在 Master 注册，提交服务名称、自身的URI；（XMLRPC）</li>
 <li>client 查看 Master 中对应的服务，并获取对应的 TCP 地址；（XMLRPC）</li>
@@ -1393,15 +1393,17 @@
       </tags>
   </entry>
   <entry>
-    <title>ros-parameter-server</title>
+    <title>ROS 参数服务器</title>
     <url>/2022/07/18/ros-parameter-server/</url>
-    <content><![CDATA[<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1. </p>
+    <content><![CDATA[<h1 id="ROS-参数服务器"><a href="#ROS-参数服务器" class="headerlink" title="ROS 参数服务器"></a>ROS 参数服务器</h1><h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1. </p>
 ]]></content>
   </entry>
   <entry>
-    <title>ros-writing-service-client-cpp</title>
+    <title>ROS Service 通信简单示例</title>
     <url>/2022/07/18/ros-writing-service-client-cpp/</url>
-    <content><![CDATA[<h2 id="Service-通信示例-cpp-实现"><a href="#Service-通信示例-cpp-实现" class="headerlink" title="Service 通信示例 cpp 实现"></a>Service 通信示例 cpp 实现</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><h3 id="服务端-Service-Node"><a href="#服务端-Service-Node" class="headerlink" title="服务端 Service Node"></a>服务端 Service Node</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+    <content><![CDATA[<h2 id="ROS-Service-通信简单示例"><a href="#ROS-Service-通信简单示例" class="headerlink" title="ROS Service 通信简单示例"></a>ROS Service 通信简单示例</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>在无人机任务执行的过程中，可能会遇到不可识别的单位，需要将采集到的数据，传输给数据处理节点，并获取有关信息。</p>
+<p>在此，我们将实现client提交两个整数，server负责计算并返回给client。</p>
+<h3 id="服务端-Service-Node"><a href="#服务端-Service-Node" class="headerlink" title="服务端 Service Node"></a>服务端 Service Node</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
 <li>初始化 ROS 节点和句柄；</li>
 <li>创建服务并发布到 ROS；</li>
 <li>编写回调函数；</li>

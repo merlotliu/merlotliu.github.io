@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"merlotliu.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Service 通信示例 cpp 实现需求服务端 Service Node思路 初始化 ROS 节点和句柄； 创建服务并发布到 ROS； 编写回调函数；">
+    <meta name="description" content="ROS Service 通信简单示例需求在无人机任务执行的过程中，可能会遇到不可识别的单位，需要将采集到的数据，传输给数据处理节点，并获取有关信息。 在此，我们将实现client提交两个整数，server负责计算并返回给client。 服务端 Service Node">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ros-writing-service-client-cpp">
+<meta property="og:title" content="ROS Service 通信简单示例">
 <meta property="og:url" content="https://merlotliu.github.io/2022/07/18/ros-writing-service-client-cpp/index.html">
 <meta property="og:site_name" content="吟游">
-<meta property="og:description" content="Service 通信示例 cpp 实现需求服务端 Service Node思路 初始化 ROS 节点和句柄； 创建服务并发布到 ROS； 编写回调函数；">
+<meta property="og:description" content="ROS Service 通信简单示例需求在无人机任务执行的过程中，可能会遇到不可识别的单位，需要将采集到的数据，传输给数据处理节点，并获取有关信息。 在此，我们将实现client提交两个整数，server负责计算并返回给client。 服务端 Service Node">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-18T05:49:27.000Z">
 <meta property="article:modified_time" content="2022-07-18T05:49:27.000Z">
@@ -39,10 +39,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://merlotliu.github.io/2022/07/18/ros-writing-service-client-cpp/","path":"2022/07/18/ros-writing-service-client-cpp/","title":"ros-writing-service-client-cpp"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://merlotliu.github.io/2022/07/18/ros-writing-service-client-cpp/","path":"2022/07/18/ros-writing-service-client-cpp/","title":"ROS Service 通信简单示例"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>ros-writing-service-client-cpp | 吟游</title>
+<title>ROS Service 通信简单示例 | 吟游</title>
   
 
 
@@ -145,7 +145,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Service-%E9%80%9A%E4%BF%A1%E7%A4%BA%E4%BE%8B-cpp-%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.</span> <span class="nav-text">Service 通信示例 cpp 实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E6%B1%82"><span class="nav-number">1.1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF-Service-Node"><span class="nav-number">1.2.</span> <span class="nav-text">服务端 Service Node</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.2.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cpp%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.2.</span> <span class="nav-text">cpp实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E9%87%8A"><span class="nav-number">1.2.3.</span> <span class="nav-text">代码解释</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF-Client-Node"><span class="nav-number">1.3.</span> <span class="nav-text">服务端 Client Node</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cpp%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">cpp实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E9%87%8A-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">代码解释</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91"><span class="nav-number">1.4.</span> <span class="nav-text">编译</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CMakeLists-txt"><span class="nav-number">1.4.1.</span> <span class="nav-text">CMakeLists.txt</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#catkin-make"><span class="nav-number">1.4.2.</span> <span class="nav-text">catkin_make</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C"><span class="nav-number">1.5.</span> <span class="nav-text">运行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C-Server-Node"><span class="nav-number">1.5.1.</span> <span class="nav-text">运行 Server Node</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C-Client-Node"><span class="nav-number">1.5.2.</span> <span class="nav-text">运行 Client Node</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E5%8C%96"><span class="nav-number">1.6.</span> <span class="nav-text">优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ROS-Service-%E9%80%9A%E4%BF%A1%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">ROS Service 通信简单示例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E6%B1%82"><span class="nav-number">1.1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF-Service-Node"><span class="nav-number">1.2.</span> <span class="nav-text">服务端 Service Node</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.2.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cpp%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.2.2.</span> <span class="nav-text">cpp实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E9%87%8A"><span class="nav-number">1.2.3.</span> <span class="nav-text">代码解释</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF-Client-Node"><span class="nav-number">1.3.</span> <span class="nav-text">服务端 Client Node</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cpp%E5%AE%9E%E7%8E%B0-1"><span class="nav-number">1.3.2.</span> <span class="nav-text">cpp实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%A7%A3%E9%87%8A-1"><span class="nav-number">1.3.3.</span> <span class="nav-text">代码解释</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91"><span class="nav-number">1.4.</span> <span class="nav-text">编译</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CMakeLists-txt"><span class="nav-number">1.4.1.</span> <span class="nav-text">CMakeLists.txt</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#catkin-make"><span class="nav-number">1.4.2.</span> <span class="nav-text">catkin_make</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C"><span class="nav-number">1.5.</span> <span class="nav-text">运行</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C-Server-Node"><span class="nav-number">1.5.1.</span> <span class="nav-text">运行 Server Node</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C-Client-Node"><span class="nav-number">1.5.2.</span> <span class="nav-text">运行 Client Node</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E5%8C%96"><span class="nav-number">1.6.</span> <span class="nav-text">优化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -242,12 +242,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="ros-writing-service-client-cpp | 吟游">
+      <meta itemprop="name" content="ROS Service 通信简单示例 | 吟游">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          ros-writing-service-client-cpp
+          ROS Service 通信简单示例
         </h1>
 
         <div class="post-meta-container">
@@ -292,14 +292,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4.9k</span>
+      <span>5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>12 分钟</span>
+      <span>13 分钟</span>
     </span>
 </div>
 
@@ -310,7 +310,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="Service-通信示例-cpp-实现"><a href="#Service-通信示例-cpp-实现" class="headerlink" title="Service 通信示例 cpp 实现"></a>Service 通信示例 cpp 实现</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><h3 id="服务端-Service-Node"><a href="#服务端-Service-Node" class="headerlink" title="服务端 Service Node"></a>服务端 Service Node</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
+        <h2 id="ROS-Service-通信简单示例"><a href="#ROS-Service-通信简单示例" class="headerlink" title="ROS Service 通信简单示例"></a>ROS Service 通信简单示例</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>在无人机任务执行的过程中，可能会遇到不可识别的单位，需要将采集到的数据，传输给数据处理节点，并获取有关信息。</p>
+<p>在此，我们将实现client提交两个整数，server负责计算并返回给client。</p>
+<h3 id="服务端-Service-Node"><a href="#服务端-Service-Node" class="headerlink" title="服务端 Service Node"></a>服务端 Service Node</h3><h4 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h4><ol>
 <li>初始化 ROS 节点和句柄；</li>
 <li>创建服务并发布到 ROS；</li>
 <li>编写回调函数；</li>
@@ -405,13 +407,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/07/18/ros-establishing-service-connection/" rel="prev" title="ROS Service 建立连接的理论模型">
-                  <i class="fa fa-chevron-left"></i> ROS Service 建立连接的理论模型
+                <a href="/2022/07/18/ros-establishing-service-connection/" rel="prev" title="ROS Service 理论模型">
+                  <i class="fa fa-chevron-left"></i> ROS Service 理论模型
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/07/18/ros-parameter-server/" rel="next" title="ros-parameter-server">
-                  ros-parameter-server <i class="fa fa-chevron-right"></i>
+                <a href="/2022/07/18/ros-parameter-server/" rel="next" title="ROS 参数服务器">
+                  ROS 参数服务器 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

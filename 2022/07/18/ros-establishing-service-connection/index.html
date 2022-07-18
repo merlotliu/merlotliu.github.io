@@ -20,12 +20,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"merlotliu.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="ROS Service 建立连接的理论模型实现流程基于请求响应的服务通信，被视为是话题通信的简化版本。值得注意的是，话题可以有多个发布者，而提供服务的只能有一个，且以最近注册该服务的server为准。服务的client可以有多个，且不一定是 ROS 节点。服务通信要求，在client提交请求后，server能够在有限时间内实时的回复。大体实现流程如下：  server和 client 分别在 Ma">
+    <meta name="description" content="ROS Service 理论模型实现流程基于请求响应的服务通信，被视为是话题通信的简化版本。值得注意的是，话题可以有多个发布者，而提供服务的只能有一个，且以最近注册该服务的server为准。服务的client可以有多个，且不一定是 ROS 节点。服务通信要求，在client提交请求后，server能够在有限时间内实时的回复。大体实现流程如下：  server和 client 分别在 Master">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ROS Service 建立连接的理论模型">
+<meta property="og:title" content="ROS Service 理论模型">
 <meta property="og:url" content="https://merlotliu.github.io/2022/07/18/ros-establishing-service-connection/index.html">
 <meta property="og:site_name" content="吟游">
-<meta property="og:description" content="ROS Service 建立连接的理论模型实现流程基于请求响应的服务通信，被视为是话题通信的简化版本。值得注意的是，话题可以有多个发布者，而提供服务的只能有一个，且以最近注册该服务的server为准。服务的client可以有多个，且不一定是 ROS 节点。服务通信要求，在client提交请求后，server能够在有限时间内实时的回复。大体实现流程如下：  server和 client 分别在 Ma">
+<meta property="og:description" content="ROS Service 理论模型实现流程基于请求响应的服务通信，被视为是话题通信的简化版本。值得注意的是，话题可以有多个发布者，而提供服务的只能有一个，且以最近注册该服务的server为准。服务的client可以有多个，且不一定是 ROS 节点。服务通信要求，在client提交请求后，server能够在有限时间内实时的回复。大体实现流程如下：  server和 client 分别在 Master">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://merlotliu.github.io/images/posts/ros-establishing-service-connection.assets/02_%E6%9C%8D%E5%8A%A1%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B.jpg">
 <meta property="article:published_time" content="2022-07-18T03:37:52.000Z">
@@ -41,10 +41,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://merlotliu.github.io/2022/07/18/ros-establishing-service-connection/","path":"2022/07/18/ros-establishing-service-connection/","title":"ROS Service 建立连接的理论模型"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://merlotliu.github.io/2022/07/18/ros-establishing-service-connection/","path":"2022/07/18/ros-establishing-service-connection/","title":"ROS Service 理论模型"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>ROS Service 建立连接的理论模型 | 吟游</title>
+<title>ROS Service 理论模型 | 吟游</title>
   
 
 
@@ -147,7 +147,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ROS-Service-%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E7%9A%84%E7%90%86%E8%AE%BA%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">ROS Service 建立连接的理论模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">实现流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E5%8E%9F%E6%96%87"><span class="nav-number">1.3.</span> <span class="nav-text">官方原文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Establishing-a-service-connection"><span class="nav-number">1.3.1.</span> <span class="nav-text">Establishing a service connection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Persistent-service-connections"><span class="nav-number">1.3.2.</span> <span class="nav-text">Persistent service connections</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.4.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ROS-Service-%E7%90%86%E8%AE%BA%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">ROS Service 理论模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">实现流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%98%E6%96%B9%E5%8E%9F%E6%96%87"><span class="nav-number">1.3.</span> <span class="nav-text">官方原文</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Establishing-a-service-connection"><span class="nav-number">1.3.1.</span> <span class="nav-text">Establishing a service connection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Persistent-service-connections"><span class="nav-number">1.3.2.</span> <span class="nav-text">Persistent service connections</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.4.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -244,12 +244,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="ROS Service 建立连接的理论模型 | 吟游">
+      <meta itemprop="name" content="ROS Service 理论模型 | 吟游">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          ROS Service 建立连接的理论模型
+          ROS Service 理论模型
         </h1>
 
         <div class="post-meta-container">
@@ -312,7 +312,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="ROS-Service-建立连接的理论模型"><a href="#ROS-Service-建立连接的理论模型" class="headerlink" title="ROS Service 建立连接的理论模型"></a>ROS Service 建立连接的理论模型</h1><h2 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h2><p>基于请求响应的服务通信，被视为是话题通信的简化版本。值得注意的是，话题可以有多个发布者，而提供服务的只能有一个，且以最近注册该服务的server为准。服务的client可以有多个，且不一定是 ROS 节点。服务通信要求，在client提交请求后，server能够在有限时间内实时的回复。大体实现流程如下：</p>
+        <h1 id="ROS-Service-理论模型"><a href="#ROS-Service-理论模型" class="headerlink" title="ROS Service 理论模型"></a>ROS Service 理论模型</h1><h2 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h2><p>基于请求响应的服务通信，被视为是话题通信的简化版本。值得注意的是，话题可以有多个发布者，而提供服务的只能有一个，且以最近注册该服务的server为准。服务的client可以有多个，且不一定是 ROS 节点。服务通信要求，在client提交请求后，server能够在有限时间内实时的回复。大体实现流程如下：</p>
 <ol>
 <li>server和 client 分别在 Master 注册，提交服务名称、自身的URI；（XMLRPC）</li>
 <li>client 查看 Master 中对应的服务，并获取对应的 TCP 地址；（XMLRPC）</li>
@@ -366,13 +366,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2022/07/18/ros-esablishing-topic-connection/" rel="prev" title="ROS Topic 建立连接的理论模型">
-                  <i class="fa fa-chevron-left"></i> ROS Topic 建立连接的理论模型
+                <a href="/2022/07/18/ros-esablishing-topic-connection/" rel="prev" title="ROS Topic 理论模型">
+                  <i class="fa fa-chevron-left"></i> ROS Topic 理论模型
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/07/18/ros-writing-service-client-cpp/" rel="next" title="ros-writing-service-client-cpp">
-                  ros-writing-service-client-cpp <i class="fa fa-chevron-right"></i>
+                <a href="/2022/07/18/ros-writing-service-client-cpp/" rel="next" title="ROS Service 通信简单示例">
+                  ROS Service 通信简单示例 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
