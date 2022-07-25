@@ -1564,4 +1564,863 @@
         <tag>ROS-Service</tag>
       </tags>
   </entry>
+  <entry>
+    <title>自动机可视化工具</title>
+    <url>/2022/07/20/automata-visualization/</url>
+    <content><![CDATA[<h2 id="自动机可视化工具"><a href="#自动机可视化工具" class="headerlink" title="自动机可视化工具"></a>自动机可视化工具</h2><h3 id="图灵机网页动态可视化"><a href="#图灵机网页动态可视化" class="headerlink" title="图灵机网页动态可视化"></a>图灵机网页动态可视化</h3><p>在线工具网址链接：<a href="http://turingmachine.io/">http://turingmachine.io/</a></p>
+<p>Github 地址：<a href="https://github.com/aepsilon/turing-machine-viz">https://github.com/aepsilon/turing-machine-viz</a></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1. </p>
+]]></content>
+      <categories>
+        <category>Formal Language &amp; Automata Theory</category>
+        <category>Automata</category>
+      </categories>
+      <tags>
+        <tag>Automata</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>图灵机</title>
+    <url>/2022/07/20/formal-language-and-automata-theory-turing-machine/</url>
+    <content><![CDATA[<h2 id="图灵机"><a href="#图灵机" class="headerlink" title="图灵机"></a>图灵机</h2><h3 id="期末考试"><a href="#期末考试" class="headerlink" title="期末考试"></a>期末考试</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">input: &#x27;ac&#x27;</span><br><span class="line">blank: &#x27; &#x27;</span><br><span class="line">start state: S</span><br><span class="line">table:</span><br><span class="line">  S: # to find a</span><br><span class="line">    [b, c]: R </span><br><span class="line">    a: &#123;write: X, L: q1&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: q14&#125;</span><br><span class="line">  q1: # find a, to back origin</span><br><span class="line">    [b, c, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q2&#125;</span><br><span class="line">  q2: # find a, to find b</span><br><span class="line">    [a, c, X]: R</span><br><span class="line">    b: &#123;write: X, L: q3&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: q4&#125; # no b</span><br><span class="line">  q3: # find a &amp; b, to back orgin and find c</span><br><span class="line">    [a, c, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q5&#125;</span><br><span class="line">  q4:</span><br><span class="line">    [a, c, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q8&#125;</span><br><span class="line">  q5:</span><br><span class="line">    [a, b, X]: R</span><br><span class="line">    c: &#123;write: X, L: q6&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: q7&#125;</span><br><span class="line">  q6: </span><br><span class="line">    [a, b, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q12&#125;</span><br><span class="line">  q7: # a, b, no c, back origin</span><br><span class="line">    [a, b, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q13&#125;</span><br><span class="line">  q8: # a, no b, find c</span><br><span class="line">    [a, b, X]: R</span><br><span class="line">    c: &#123;write: X, R: q9&#125;</span><br><span class="line">  q9: # a, c, no b</span><br><span class="line">    [a, b, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q10&#125;</span><br><span class="line">  q10: # a, c, no b, find a</span><br><span class="line">    [c, X]: R</span><br><span class="line">    a: &#123;write: X, L: q11&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: AC&#125;</span><br><span class="line">  q11: # a, c, no b, back orgin</span><br><span class="line">    [c, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q8&#125;</span><br><span class="line">  q12: #</span><br><span class="line">    [b, c, X]: R</span><br><span class="line">    a: &#123;write: X, L: q1&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: AC&#125;</span><br><span class="line">  q13: # a, b, no c, find a</span><br><span class="line">    [b, X]: R</span><br><span class="line">    a: &#123;write: X, L: q1&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: AC&#125;</span><br><span class="line">  q14: # b, c, no a</span><br><span class="line">    [b, c]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q15&#125;</span><br><span class="line">  q15:</span><br><span class="line">    [c]: R</span><br><span class="line">    b: &#123;write: X, L: q16&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: q19&#125;</span><br><span class="line">  q16:</span><br><span class="line">    [c, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q17&#125;</span><br><span class="line">  q17:  </span><br><span class="line">    [b, X]: R</span><br><span class="line">    c: &#123;write: X, L: q18&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: q23&#125;</span><br><span class="line">  q18:  </span><br><span class="line">    [b, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q15&#125;</span><br><span class="line">  q19:</span><br><span class="line">    [c, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q20&#125;</span><br><span class="line">  q20:</span><br><span class="line">    X: &#123;write: X, R: q21&#125;</span><br><span class="line">    c: &#123;write: c, R: q22&#125;</span><br><span class="line">  q21:</span><br><span class="line">    x: R</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: AC&#125;</span><br><span class="line">  q22:</span><br><span class="line">    c: R</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: AC&#125;</span><br><span class="line">  q23:</span><br><span class="line">    b: L</span><br><span class="line">    X: &#123;write: b, L: q24&#125;</span><br><span class="line">  q24:</span><br><span class="line">    b: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: AC&#125;</span><br><span class="line">  AC:</span><br></pre></td></tr></table></figure>
+
+<h3 id="构造图灵机"><a href="#构造图灵机" class="headerlink" title="构造图灵机"></a>构造图灵机</h3><p>构造识别下列语言的图灵机：含有相同个数的a或b或c的所有字符串。</p>
+<h5 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h5><p>caacac；bbabccccbaaa；bc；abab；aaa；cc这些都是可接受的字符串。</p>
+<h5 id="1）需要给出准确的图灵机状态转换图。并描述设计思想，同时给出例子正确执行图灵机。"><a href="#1）需要给出准确的图灵机状态转换图。并描述设计思想，同时给出例子正确执行图灵机。" class="headerlink" title="1）需要给出准确的图灵机状态转换图。并描述设计思想，同时给出例子正确执行图灵机。"></a>1）需要给出准确的图灵机状态转换图。并描述设计思想，同时给出例子正确执行图灵机。</h5><h5 id="2）将所设计的图灵机改造为通用图灵机。"><a href="#2）将所设计的图灵机改造为通用图灵机。" class="headerlink" title="2）将所设计的图灵机改造为通用图灵机。"></a>2）将所设计的图灵机改造为通用图灵机。</h5><p>答：</p>
+<p>分析：我们需要接收的字符串中，a、b、c的顺序并不固定且不一定全部出现，这就意味着我们需要分类讨论。我的思路是，将字符串分为仅含a（比如：aaa）、仅含b、仅含c、仅含bc、仅含ab、仅含ac、以及包含有所字符（a、b、c）的情况。对输入的字符串先进行判定，根据所含的字符串不同，采取不同的匹配策略。在这里，我们先搜索a，如果没有搜索到说明不含a，此时肯定已经到达另外一端。转而搜索b，如果b也没有，说明仅含c或空串，进入接收状态。前面并不能说明不含c，所以如果读到了b，进而搜索c，如果没有c，说明仅含b进而进入接收状态。如果也读到了c，说明同时含有b、c，回到左端或右端，开始一次匹配一对b、c并改写为X，每次匹配完进行一轮判断，判断是否字符串都改写为X，若是则进入接受状态，反之继续匹配。如果在前面我们读到了a，改写为X，然后需要先回到边界，重新搜索b。回到边界的目的是，如果字符串中有我们需要查找的字符，我们在一次从左到右或从右到左的搜索中一定能读到，反之该字符不存在。继续搜索b，如果没有找到说明不含b，在判断是否含有c，没有c说明仅含a，可以进入接收状态，有c则进入仅含a、c的匹配。如果搜索到b，改写为X，回到起点，转而搜索c。如果没有c，说明仅含a、b，按照类似a、c或b、c的匹配方式匹配判定即可。若读到c，改写为X，此时说明输入字符串含有a、b、c，且已完成一轮匹配。接下来进行a、b、c的剩余字符串的匹配。匹配的方式则为，从最左端或最右端开始搜索，总是先按照a、b、c的顺序搜索，在每次搜索到一个字符后都要先回到本次搜索的起点，再开始新字符的搜索，完成一轮搜索后，判断是否都改写为X，是则接受，反之继续匹配。</p>
+<p>按照以上思路，我们构造了如图所示的TM：</p>
+<p>$$</p>
+<p>$$</p>
+<p>设M&#x3D;({qi| i &gt;&#x3D; 0 &amp;&amp; i &lt;&#x3D; 29}U{F1, F2}, {a, b, c}, {a, b, c, X, B}, δ, q0, , {F1, F2});</p>
+<p>q0：初始状态。在这一状态下，M向右搜索直到找到剩余字符串中最左边的a，将这个a改写为X，进入状态q9。如果读到了空字符串，说明没有找到a，读写头左移，进入状态q1。</p>
+<p>q1：这一状态表明，输入字符串不含a，并判断是否含b。M向左移动，若到达左边界一直未遇到b，则说明字符串仅含c，进入接收状态。在途中，如果遇到b，M右移跳转到状态q2。</p>
+<p>q2：M循环右移到遇到空字符，M左移并跳转到状态q3。</p>
+<p>q3：当前状态下，输入不含a。这一状态判断是否包含c，所以当扫描到b的情况下循环左移。如果遇到c，M继续左移，并跳转到状态q4。如果未出现c，则说明字符串仅含b，进入接收状态。</p>
+<p>q4：到达此状态说明字符串一定含有b、c。M循环左移，直至空字符，M右移，跳转到状态q5。</p>
+<p>q5：开始b、c字符串的匹配。M右移，遇到b，改写为X，M继续右移并跳转到状态q6。遇到c，M继续右移并跳转到状态q7。如果一直读到空字符，进入接收状态。</p>
+<p>q6：M右移寻找c，读到c后，改写为X，M左移，跳转到状态q8。</p>
+<p>q7：M右移寻找a，读到a后，改写为X，M左移，跳转到状态q8。</p>
+<p>q8：M左移回左边界，准备新一轮的匹配，读到空字符，M右移</p>
+<p>q9：该状态说明当前输入含有a，M需要回到最左端重新搜索。M向左移动，直至回到最左端，即读到空字符B，M右移，进入状态q10。</p>
+<p>q10：M向右搜索，读到第一个b，改写为X，进入状态q17。如果搜索到最右端，M左移，进入状态q11。</p>
+<p>q11：该状态说明，当前输入不含b，且目前位于最右端。M向左搜索c，找到第一个c，改写为X并向右移，进入状态q12。如果一直达到左边界仍未找到，说明该输入仅含a，进入接收状态F。</p>
+<p>q12：该状态说明，当前输入含有a、c，不含b。接下来将移动到最右端，并开始a、c的循环匹配。M向右移动，直至最右端，遇到空字符，左移并进入状态q13。</p>
+<p>q13：由于a、c的顺序并不固定，所以我们可能先遇到a或者c，无论如何我们需要，每次都找到一对a、c在重新进行新的匹配。M向左移动，搜索a、c。先遇到a，改写为X继续左移并转移到状态q14。先遇到b，改写为X继续左移并转移到状态q15。若到达最左端且遇到空字符，进入接收状态F。</p>
+<p>q14：M继续左移搜索c，找到后右移并改写为X，进入状态q16。</p>
+<p>q15：M继续左移搜索a，找到后右移并改写为X，进入状态q16。</p>
+<p>q16：该状态帮助回到最右端，以开始新一轮匹配。M向右移动直至空字符，左移回到状态q13。</p>
+<p>q17：该状态表明字符串一定含有a、b，尚不确定是否含有c。M左移直到读到空字符，M右移并状态转移到q18。</p>
+<p>q18：M向右移动搜索c。如果读到c，改写为X，M左移并跳转到状态q23。如果读到空字符，M左移，状态跳转到q19。</p>
+<p>q19：该状态说明输入字符串仅含a、b。M向左搜索a、b。如果读到a，改写为X，M继续左移，状态转移到q20。如果读到b，改写为X，M继续左移，状态转移到q21。如果读到空字符，进入接收状态。</p>
+<p>q20：M向左搜索b。读到b，改写为X，M右移，跳转到状态q22。</p>
+<p>q21：M向左搜索a。读到a，改写为X，M右移，跳转到状态q22。</p>
+<p>q22：该状态帮助回到最右端，以开始新一轮匹配。M向右移动直至空字符，左移回到状态q19。</p>
+<p>q23：该状态说明，输入字符串同时含有a、b和c。目前已完成一轮a、b、c的匹配，且都改写为X。M向左继续移动，读到空字符，表明回到最左端，M右移，跳转到状态q24。</p>
+<p>q24：这一状态是用来判断，当前是否应该进入接收状态。M向右搜索，若为X，循环右移，直到读到空字符，表明匹配完成，进入接收状态。否则，读到a、b、c中任意一个字符，M左移，跳转到状态q25。</p>
+<p>q25：M向右搜索a，读到a，改写为X，M左移，跳转到状态q26。</p>
+<p>q26：M向左继续移动，读到空字符串，表明到达左边界，M右移，跳转到状态q27。</p>
+<p>q27：M向右搜索b，读到b，改写为X，M左移，跳转到状态q28。</p>
+<p>q28：M向左继续移动，读到空字符串，表明到达左边界，M右移，跳转到状态q29。</p>
+<p>q29：M向右搜索c，读到c，改写为X，M左移，跳转到状态q23。</p>
+<p>M的状态移动函数</p>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">a</th>
+<th align="center">b</th>
+<th align="center">c</th>
+<th align="center">X</th>
+<th align="center">B</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">q0</td>
+<td align="center">(q9, X, L)</td>
+<td align="center">(q0, b, R)</td>
+<td align="center">(q0, c, R)</td>
+<td align="center"></td>
+<td align="center">(q1, B, L)</td>
+</tr>
+<tr>
+<td align="center">q1</td>
+<td align="center"></td>
+<td align="center">(q2, b, R)</td>
+<td align="center">(q1, c, L)</td>
+<td align="center"></td>
+<td align="center">(F1, B, L)</td>
+</tr>
+<tr>
+<td align="center">q2</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">(q2, c, R)</td>
+<td align="center"></td>
+<td align="center">(q3, B, L)</td>
+</tr>
+<tr>
+<td align="center">q3</td>
+<td align="center"></td>
+<td align="center">(q3, b, L)</td>
+<td align="center">(q4, c, L)</td>
+<td align="center"></td>
+<td align="center">(F1, B, L)</td>
+</tr>
+<tr>
+<td align="center">q4</td>
+<td align="center"></td>
+<td align="center">(q4, b, L)</td>
+<td align="center">(q4, c, L)</td>
+<td align="center"></td>
+<td align="center">(q5, B, R)</td>
+</tr>
+<tr>
+<td align="center">q5</td>
+<td align="center"></td>
+<td align="center">(q6, X, R)</td>
+<td align="center">(q7, X, R)</td>
+<td align="center">(q5, X, R)</td>
+<td align="center">(F1, B, R)</td>
+</tr>
+<tr>
+<td align="center">q6</td>
+<td align="center"></td>
+<td align="center">(q6, b, R)</td>
+<td align="center">(q8, X, L)</td>
+<td align="center">(q6, X, R)</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">q7</td>
+<td align="center"></td>
+<td align="center">(q8, X, L)</td>
+<td align="center">(q7, c, R)</td>
+<td align="center">(q7, X, R)</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">q8</td>
+<td align="center"></td>
+<td align="center">(q8, b, L)</td>
+<td align="center">(q8, c, L)</td>
+<td align="center">(q8, X, L)</td>
+<td align="center">(q5, B, R)</td>
+</tr>
+<tr>
+<td align="center">q9</td>
+<td align="center"></td>
+<td align="center">(q9, b, L)</td>
+<td align="center">(q9, c, L)</td>
+<td align="center"></td>
+<td align="center">(q10, B, R)</td>
+</tr>
+<tr>
+<td align="center">q10</td>
+<td align="center">(q10, a, R)</td>
+<td align="center">(q17, X, L)</td>
+<td align="center">(q10, c, R)</td>
+<td align="center">(q10, X, R)</td>
+<td align="center">(q11, B, L)</td>
+</tr>
+<tr>
+<td align="center">q11</td>
+<td align="center">(q11, a, L)</td>
+<td align="center"></td>
+<td align="center">(q12, X, R)</td>
+<td align="center">(q11, X, L)</td>
+<td align="center">(F1, B, L)</td>
+</tr>
+<tr>
+<td align="center">q12</td>
+<td align="center">(q12, a, R)</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center">(q12, X, R)</td>
+<td align="center">(q13, B, L)</td>
+</tr>
+<tr>
+<td align="center">q13</td>
+<td align="center">(q14, X, L)</td>
+<td align="center"></td>
+<td align="center">(q15, X, L)</td>
+<td align="center">(q13, X, L)</td>
+<td align="center">(F1, B, L)</td>
+</tr>
+<tr>
+<td align="center">q14</td>
+<td align="center">(q14, a, L)</td>
+<td align="center"></td>
+<td align="center">(q16, X, R)</td>
+<td align="center">(q14, X, L)</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">q15</td>
+<td align="center">(q16, X, L)</td>
+<td align="center"></td>
+<td align="center">(q15, c, R)</td>
+<td align="center">(q15, X, L)</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">q16</td>
+<td align="center">(q16, a, R)</td>
+<td align="center"></td>
+<td align="center">(q16, c, R)</td>
+<td align="center">(q16, X, R)</td>
+<td align="center">(q13, B, L)</td>
+</tr>
+<tr>
+<td align="center">q17</td>
+<td align="center">(q17, a, L)</td>
+<td align="center"></td>
+<td align="center">(q17, c, L)</td>
+<td align="center">(q17, X, L)</td>
+<td align="center">(q18, B, R)</td>
+</tr>
+<tr>
+<td align="center">q18</td>
+<td align="center">(q18, a, R)</td>
+<td align="center">(q18, b, R)</td>
+<td align="center">(q23, X, L)</td>
+<td align="center">(q18, X, R)</td>
+<td align="center">(q18, B, L)</td>
+</tr>
+<tr>
+<td align="center">q19</td>
+<td align="center">(q20, X, L)</td>
+<td align="center">(q21, X, L)</td>
+<td align="center"></td>
+<td align="center">(q19, X, L)</td>
+<td align="center">(F2, B, L)</td>
+</tr>
+<tr>
+<td align="center">q20</td>
+<td align="center">(q20, a, L)</td>
+<td align="center">(q22, X, R)</td>
+<td align="center"></td>
+<td align="center">(q20, X, L)</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">q21</td>
+<td align="center">(q22, X, R)</td>
+<td align="center">(q21, b, L)</td>
+<td align="center"></td>
+<td align="center">(q21, X, L)</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">q22</td>
+<td align="center">(q22, a, R)</td>
+<td align="center">(q22, b, R)</td>
+<td align="center"></td>
+<td align="center">(q22, X, R)</td>
+<td align="center">(q22, B, L)</td>
+</tr>
+<tr>
+<td align="center">q23</td>
+<td align="center">(q23, a, L)</td>
+<td align="center">(q23, b, L)</td>
+<td align="center"></td>
+<td align="center">(q23, X, L)</td>
+<td align="center">(q24, B, R)</td>
+</tr>
+<tr>
+<td align="center">q24</td>
+<td align="center">(q25, a, L)</td>
+<td align="center">(q25, b, L)</td>
+<td align="center">(q25, c, L)</td>
+<td align="center">(q24, X, L)</td>
+<td align="center">(F2, B, R)</td>
+</tr>
+<tr>
+<td align="center">q25</td>
+<td align="center">(q26, X, L)</td>
+<td align="center">(q25, b, R)</td>
+<td align="center">(q25, c, R)</td>
+<td align="center">(q25, X, R)</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">q26</td>
+<td align="center"></td>
+<td align="center">(q26, b, L)</td>
+<td align="center">(q26, c, L)</td>
+<td align="center">(q26, X, L)</td>
+<td align="center">(q27, B, R)</td>
+</tr>
+<tr>
+<td align="center">q27</td>
+<td align="center">(q27, a, R)</td>
+<td align="center">(q28, X, L)</td>
+<td align="center">(q27, c, R)</td>
+<td align="center">(q27, X, R)</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">q28</td>
+<td align="center">(q28, a, L)</td>
+<td align="center"></td>
+<td align="center">(q28, c, L)</td>
+<td align="center">(q28, X, L)</td>
+<td align="center">(q28, B, R)</td>
+</tr>
+<tr>
+<td align="center">q29</td>
+<td align="center">(q29, a, R)</td>
+<td align="center">(q29, b, R)</td>
+<td align="center">(q23, c, L)</td>
+<td align="center">(q28, X, R)</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<p>下面是M的接收示例。</p>
+<p>当输入字符串 caacac 时。</p>
+<p>M的整个移动序列为：</p>
+<h3 id="编程实现"><a href="#编程实现" class="headerlink" title="编程实现"></a>编程实现</h3><h4 id="1）构造能正确识别布尔运算式的下推自动机或图灵机。"><a href="#1）构造能正确识别布尔运算式的下推自动机或图灵机。" class="headerlink" title="1）构造能正确识别布尔运算式的下推自动机或图灵机。"></a>1）构造能正确识别布尔运算式的下推自动机或图灵机。</h4><h5 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h5><p>输入：!(!a+b) a !(b !c)；!!a(b+!c)</p>
+<p>(!为否定，+为或，乘积为与；A-Z  26个字母及x1, x2, x3等为变元</p>
+<p>输出：接受</p>
+<h4 id="2）SAT可满足问题归约到CSAT的算法。"><a href="#2）SAT可满足问题归约到CSAT的算法。" class="headerlink" title="2）SAT可满足问题归约到CSAT的算法。"></a>2）SAT可满足问题归约到CSAT的算法。</h4><h5 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h5><p>输入：xy+!(y+z)+!z(x+y)  (!为否定，+为或，乘积为与；x, y, z, x1, x2, x3等为变元)</p>
+<p>输出：</p>
+<h4 id="终稿"><a href="#终稿" class="headerlink" title="终稿"></a>终稿</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Adds 1 to a binary number.</span><br><span class="line"># input: &#x27;bbabccccbaaa&#x27;</span><br><span class="line">input: &#x27;cc&#x27;</span><br><span class="line">blank: &#x27; &#x27;</span><br><span class="line">start state: q0</span><br><span class="line">table:</span><br><span class="line">  q0:</span><br><span class="line">    [b, c]: R</span><br><span class="line">    a: &#123;write: X, L: q9&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: q1&#125;</span><br><span class="line">  q1:</span><br><span class="line">    c: L</span><br><span class="line">    b: &#123;write: b, R: q2&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: F&#125; # only c</span><br><span class="line">  q2:</span><br><span class="line">    c: R</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: q3&#125;</span><br><span class="line">  q3:</span><br><span class="line">    b: L</span><br><span class="line">    c: &#123;write: c, L: q4&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: F&#125; # only b</span><br><span class="line">  q4: # bc</span><br><span class="line">    [b, c]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q5&#125;</span><br><span class="line">  q5:</span><br><span class="line">    X: R</span><br><span class="line">    b: &#123;write: X, R: q6&#125; # find b</span><br><span class="line">    c: &#123;write: X, R: q7&#125; # find c</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: F&#125;</span><br><span class="line">  q6: # need to find c</span><br><span class="line">    [b, X]: R</span><br><span class="line">    c: &#123;write: X, L: q8&#125; # find c</span><br><span class="line">  q7: # need to find b</span><br><span class="line">    [c, X]: R</span><br><span class="line">    b: &#123;write: X, L: q8&#125; # find b</span><br><span class="line">  q8:</span><br><span class="line">    [b, c, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q5&#125;</span><br><span class="line">  q9: # a</span><br><span class="line">    [b, c, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q10&#125;</span><br><span class="line">  q10: # a, maybe b c</span><br><span class="line">    [a, c, X]: R</span><br><span class="line">    b: &#123;write: X, L: q17&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: q11&#125;</span><br><span class="line">  q11: # a, no b, maybe c</span><br><span class="line">    [a, X]: L</span><br><span class="line">    c: &#123;write: X, R: q12&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: F&#125; # only a</span><br><span class="line">  q17: # a, b, maybe c</span><br><span class="line">    [a, c, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q18&#125;</span><br><span class="line">  q12: # a, c no b</span><br><span class="line">    [a, X]: R</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: q13&#125;</span><br><span class="line">  q13: # do a, c matched</span><br><span class="line">    X: L</span><br><span class="line">    a: &#123;write: X, L: q14&#125;</span><br><span class="line">    c: &#123;write: X, L: q15&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: F&#125;</span><br><span class="line">  q14: # a, need to find c</span><br><span class="line">    [a, X]: L</span><br><span class="line">    c: &#123;write: X, R: q16&#125;</span><br><span class="line">  q15:</span><br><span class="line">    [c, X]: L</span><br><span class="line">    a: &#123;write: X, R: q16&#125;</span><br><span class="line">  q16: # start new mached</span><br><span class="line">    [a, c, X]: R</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: q13&#125;</span><br><span class="line">  q18: # need to find c</span><br><span class="line">    [a, b, X]: R</span><br><span class="line">    c: &#123;write: X, L: q23&#125; # find c</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: q19&#125; # no c, only a, b</span><br><span class="line">  q23: # a, b, c</span><br><span class="line">    [a, b, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q24&#125;</span><br><span class="line">  q24:</span><br><span class="line">    [X]: R</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: F&#125; # abc matched</span><br><span class="line">    a: &#123;write: a, L: q25&#125;</span><br><span class="line">    b: &#123;write: b, L: q25&#125;</span><br><span class="line">    c: &#123;write: c, L: q25&#125;</span><br><span class="line">  q25:</span><br><span class="line">    [b, c, X]: R</span><br><span class="line">    a: &#123;write: X, L: q26&#125;</span><br><span class="line">  q26:</span><br><span class="line">    [b, c, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q27&#125;</span><br><span class="line">  q27:</span><br><span class="line">    [a, c, X]: R</span><br><span class="line">    b: &#123;write: X, L: q28&#125;</span><br><span class="line">  q28:</span><br><span class="line">    [a, c, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q29&#125;</span><br><span class="line">  q29:</span><br><span class="line">    [a, b, X]: R</span><br><span class="line">    c: &#123;write: X, L: q23&#125;</span><br><span class="line">  q19: # a, b</span><br><span class="line">    X: L</span><br><span class="line">    a: &#123;write: X, L: q20&#125; # find a</span><br><span class="line">    b: &#123;write: X, L: q21&#125; # find b</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: F&#125;</span><br><span class="line">  q20: </span><br><span class="line">    [a, X]: L</span><br><span class="line">    b: &#123;write: X, R: q22&#125; # find b</span><br><span class="line">  q21:</span><br><span class="line">    [b, X]: L</span><br><span class="line">    a: &#123;write: X, R: q22&#125; # find a</span><br><span class="line">  q22:</span><br><span class="line">    [a, b, X]: R</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: q19&#125;</span><br><span class="line"></span><br><span class="line">  F:</span><br><span class="line"># Exercises:</span><br><span class="line"></span><br><span class="line"># • Modify the machine to always halt on the leftmost digit</span><br><span class="line">#   (regardless of the number&#x27;s length).</span><br><span class="line">#   Hint: add a state between carry and done.</span><br><span class="line"></span><br><span class="line"># • Make a machine that adds 2 instead of 1.</span><br><span class="line">#   Hint: 2 is &#x27;10&#x27; in binary, so the last digit is unaffected.</span><br><span class="line">#   Alternative hint: chain together two copies of the machine from</span><br><span class="line">#   the first exercise (renaming the states of the second copy).</span><br><span class="line"></span><br><span class="line"># • Make a machine to subtract 1.</span><br><span class="line">#   To simplify things, assume the input is always greater than 0.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="草稿1"><a href="#草稿1" class="headerlink" title="草稿1"></a>草稿1</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># Adds 1 to a binary number.</span><br><span class="line"># input: &#x27;bbabccccbaaa&#x27;</span><br><span class="line">input: &#x27;cc&#x27;</span><br><span class="line">blank: &#x27; &#x27;</span><br><span class="line">start state: q00</span><br><span class="line">table:</span><br><span class="line">  q00:</span><br><span class="line">    [b, c]: R</span><br><span class="line">    a: &#123;write: X, L: q11&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: q01&#125;</span><br><span class="line">  q01:</span><br><span class="line">    c: L</span><br><span class="line">    b: &#123;write: b, R: q02&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: AC&#125; # only c</span><br><span class="line">  q02:</span><br><span class="line">    c: R</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: q03&#125;</span><br><span class="line">  q03:</span><br><span class="line">    b: L</span><br><span class="line">    c: &#123;write: c, L: q04&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: AC&#125; # only b</span><br><span class="line">  q04: # bc</span><br><span class="line">    [b, c]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q20&#125;</span><br><span class="line">  q11: # a</span><br><span class="line">    [b, c, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q12&#125;</span><br><span class="line">  q12: # a, maybe b c</span><br><span class="line">    [a, c, X]: R</span><br><span class="line">    b: &#123;write: X, L: q14&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: q13&#125;</span><br><span class="line">  q13: # a, no b, maybe c</span><br><span class="line">    [a, X]: L</span><br><span class="line">    c: &#123;write: X, R: q15&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: AC&#125; # only a</span><br><span class="line">  q14: # a, b, maybe c</span><br><span class="line">    [a, c, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q18&#125;</span><br><span class="line">  q15: # a, c no b</span><br><span class="line">    [a, X]: R</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: q16&#125;</span><br><span class="line">  q16: # do a, c matched</span><br><span class="line">    X: L</span><br><span class="line">    a: &#123;write: X, L: q1a&#125;</span><br><span class="line">    c: &#123;write: X, L: q1c&#125;</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: AC&#125;</span><br><span class="line">  q1a: # a, need to find c</span><br><span class="line">    [a, X]: L</span><br><span class="line">    c: &#123;write: X, R: q17&#125;</span><br><span class="line">  q1c:</span><br><span class="line">    [c, X]: L</span><br><span class="line">    a: &#123;write: X, R: q17&#125;</span><br><span class="line">  q17: # start new mached</span><br><span class="line">    [a, c, X]: R</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: q16&#125;</span><br><span class="line">  q18: # need to find c</span><br><span class="line">    [a, b, X]: R</span><br><span class="line">    c: &#123;write: X, L: q30&#125; # find c</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: q40&#125; # no c, only a, b</span><br><span class="line">  q30: # a, b, c</span><br><span class="line">    [a, b, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q31&#125;</span><br><span class="line">  q31:</span><br><span class="line">    [X]: R</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: AC&#125; # abc matched</span><br><span class="line">    a: &#123;write: a, L: q32&#125;</span><br><span class="line">    b: &#123;write: b, L: q32&#125;</span><br><span class="line">    c: &#123;write: c, L: q32&#125;</span><br><span class="line">  q32:</span><br><span class="line">    [b, c, X]: R</span><br><span class="line">    a: &#123;write: X, L: q33&#125;</span><br><span class="line">  q33:</span><br><span class="line">    [b, c, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q34&#125;</span><br><span class="line">  q34:</span><br><span class="line">    [a, c, X]: R</span><br><span class="line">    b: &#123;write: X, L: q35&#125;</span><br><span class="line">  q35:</span><br><span class="line">    [a, c, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q36&#125;</span><br><span class="line">  q36:</span><br><span class="line">    [a, b, X]: R</span><br><span class="line">    c: &#123;write: X, L: q30&#125;</span><br><span class="line">  q40: # a, b</span><br><span class="line">    X: L</span><br><span class="line">    a: &#123;write: X, L: q4a&#125; # find a</span><br><span class="line">    b: &#123;write: X, L: q4b&#125; # find b</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: AC&#125;</span><br><span class="line">  q4a: </span><br><span class="line">    [a, X]: L</span><br><span class="line">    b: &#123;write: X, R: q41&#125; # find b</span><br><span class="line">  q4b:</span><br><span class="line">    [b, X]: L</span><br><span class="line">    a: &#123;write: X, R: q41&#125; # find a</span><br><span class="line">  q41:</span><br><span class="line">    [a, b, X]: R</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, L: q40&#125;</span><br><span class="line">  q20:</span><br><span class="line">    X: R</span><br><span class="line">    b: &#123;write: X, R: q2b&#125; # find b</span><br><span class="line">    c: &#123;write: X, R: q2c&#125; # find c</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: AC&#125;</span><br><span class="line">  q2b: # need to find c</span><br><span class="line">    [b, X]: R</span><br><span class="line">    c: &#123;write: X, L: q21&#125; # find c</span><br><span class="line">  q2c: # need to find b</span><br><span class="line">    [c, X]: R</span><br><span class="line">    b: &#123;write: X, L: q21&#125; # find b</span><br><span class="line">  q21:</span><br><span class="line">    [b, c, X]: L</span><br><span class="line">    &#x27; &#x27;: &#123;write: &#x27; &#x27;, R: q20&#125;</span><br><span class="line">  AC:</span><br><span class="line"># Exercises:</span><br><span class="line"></span><br><span class="line"># • Modify the machine to always halt on the leftmost digit</span><br><span class="line">#   (regardless of the number&#x27;s length).</span><br><span class="line">#   Hint: add a state between carry and done.</span><br><span class="line"></span><br><span class="line"># • Make a machine that adds 2 instead of 1.</span><br><span class="line">#   Hint: 2 is &#x27;10&#x27; in binary, so the last digit is unaffected.</span><br><span class="line">#   Alternative hint: chain together two copies of the machine from</span><br><span class="line">#   the first exercise (renaming the states of the second copy).</span><br><span class="line"></span><br><span class="line"># • Make a machine to subtract 1.</span><br><span class="line">#   To simplify things, assume the input is always greater than 0.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1. </p>
+]]></content>
+      <categories>
+        <category>Formal Language &amp; Automata Theory</category>
+        <category>Turing Machine</category>
+      </categories>
+      <tags>
+        <tag>Formal Language &amp; Automata Theory</tag>
+        <tag>Turing Machine</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Gazebo疑难杂症</title>
+    <url>/2022/07/25/gazebo-issues/</url>
+    <content><![CDATA[<h1 id="Gazebo疑难杂症"><a href="#Gazebo疑难杂症" class="headerlink" title="Gazebo疑难杂症"></a>Gazebo疑难杂症</h1><h3 id="Error-1-Unable-to-find-uri-model-x2F-x2F-xxx"><a href="#Error-1-Unable-to-find-uri-model-x2F-x2F-xxx" class="headerlink" title="Error 1 : Unable to find uri [model:&#x2F;&#x2F;xxx]"></a>Error 1 : Unable to find uri [model:&#x2F;&#x2F;xxx]</h3><h4 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Error [parser.cc:581] Unable to find uri[model://sun]</span><br><span class="line">Error [parser.cc:581] Unable to find uri[model://ground_plane]</span><br></pre></td></tr></table></figure>
+
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p><code>Gazebo</code> 需要互联网连接才能下载模型文件（例如默认世界的太阳和地平面）。如果您在第一次运行 <code>Gazebo</code> 时没有访问 Internet，则会出现此错误。还可以从<a href="gazebosim.org/models">gazebosim.org&#x2F;models</a> 手动下载模型文件并将它们放在您的<code>~/.gazebo/models文件</code>夹中。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 解压缩</span><br><span class="line">tar -xzvf models.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="Error-2-gazebo闪退"><a href="#Error-2-gazebo闪退" class="headerlink" title="Error 2 : gazebo闪退"></a>Error 2 : gazebo闪退</h3><h4 id="错误描述-1"><a href="#错误描述-1" class="headerlink" title="错误描述"></a>错误描述</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[gazebo_gui-3]process has died</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/posts/gazebo-issues.assets/erro2.png" alt="无标题"></p>
+<h4 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h4><h5 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h5><p>使用以下命令关闭硬件加速</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">echo &quot; export SVGA_VGPU10=0&quot; &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<h5 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h5><p>关闭虚拟机的3D图形加速</p>
+<h5 id="方法3"><a href="#方法3" class="headerlink" title="方法3"></a>方法3</h5><p>更新<code>gazebo</code></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>]]></content>
+      <categories>
+        <category>Gazebo</category>
+        <category>Gazebo-issues</category>
+      </categories>
+      <tags>
+        <tag>Gazebo</tag>
+        <tag>Gazebo-issues</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LaTeX 中文支持</title>
+    <url>/2022/07/24/latex-chinese-supportive/</url>
+    <content><![CDATA[<h1 id="LaTeX-中文支持"><a href="#LaTeX-中文支持" class="headerlink" title="LaTeX 中文支持"></a>LaTeX 中文支持</h1><h2 id="Overleaf"><a href="#Overleaf" class="headerlink" title="Overleaf"></a>Overleaf</h2><p><strong>LaTeX</strong>在<strong>Overleaf</strong>的中文支持。</p>
+<h3 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h3><ol>
+<li><p>使用ctex包。</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;ctex&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>点击左上角的<code>Menu</code>选项，将<code>Settings-Compiler</code>设置为<code>XeLaTeX</code>或<code>LuaLaTeX</code>。</p>
+</li>
+</ol>
+<p><strong>Notes</strong>：</p>
+<ol>
+<li>最简单也不需要修改<code>\documentclass</code>。</li>
+<li>文章内容大多为中文时首先考虑。</li>
+</ol>
+<h3 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h3><ol>
+<li>使用<code>CJKutf8</code>包</li>
+</ol>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;CJKutf8&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>用<code>\begin&#123;CJK*&#125;&#123;UTF8&#125;&#123;gbsn</code>}和<code>\end&#123;CJK*&#125;</code>将中文内容进行包裹，比如</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;CJKutf8&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;CJK*&#125;&#123;UTF8&#125;&#123;gbsn&#125;</span><br><span class="line">数学、中英文皆可以混排。You can intersperse math, Chinese and English (Latin script) without adding extra environments.</span><br><span class="line"><span class="keyword">\end</span>&#123;CJK*&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;CJK*&#125;&#123;UTF8&#125;&#123;bsmi&#125;</span><br><span class="line">這是繁體中文</span><br><span class="line"><span class="keyword">\end</span>&#123;CJK*&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>Notes</strong>：</p>
+<ol>
+<li>需要多种语言混排时首先考虑；</li>
+</ol>
+<h3 id="方法3"><a href="#方法3" class="headerlink" title="方法3"></a>方法3</h3><ol>
+<li>修改<code>\documentclass</code>为<code>ctexart</code>。</li>
+</ol>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;ctexart&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>点击左上角的<code>Menu</code>选项，将<code>Settings-Compiler</code>设置为<code>XeLaTeX</code>或<code>LuaLaTeX</code>。</li>
+</ol>
+<p><strong>Notes</strong>：以上方法不起作用时考虑；</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a href="https://blog.csdn.net/m0_52037292/article/details/109768317?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1-109768317-blog-102536114.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~default-1-109768317-blog-102536114.pc_relevant_default&utm_relevant_index=2">(62条消息) 快速上手系列——用Overleaf写中文文档_DeShawnPhang的博客-CSDN博客_overleaf可以编译中文吗</a></li>
+<li><a href="https://www.overleaf.com/learn/latex/Chinese">https://www.overleaf.com/learn/latex/Chinese</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>latex</category>
+      </categories>
+      <tags>
+        <tag>latex</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LaTeX 学习笔记</title>
+    <url>/2022/07/24/latex/</url>
+    <content><![CDATA[<h1 id="LaTeX-学习笔记"><a href="#LaTeX-学习笔记" class="headerlink" title="LaTeX 学习笔记"></a>LaTeX 学习笔记</h1><h2 id="LaTeX符号大全"><a href="#LaTeX符号大全" class="headerlink" title="LaTeX符号大全"></a>LaTeX符号大全</h2><p>链接：[symbols.pdf (rice.edu)](<a href="https://www.caam.rice.edu/~heinken/latex/symbols.pdf#:~:text=LATEX">https://www.caam.rice.edu/~heinken/latex/symbols.pdf#:~:text=LATEX</a> Mathematical Symbols The more unusual symbols are, epsilon η eta γ gamma ι iota)</p>
+<h2 id="常用语法"><a href="#常用语法" class="headerlink" title="常用语法"></a>常用语法</h2><h3 id="上标"><a href="#上标" class="headerlink" title="上标"></a>上标</h3><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="built_in">$</span>q<span class="built_in">^</span>1<span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="下标"><a href="#下标" class="headerlink" title="下标"></a>下标</h3><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="built_in">$</span>q<span class="built_in">_</span>1<span class="built_in">$</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="添加标题"><a href="#添加标题" class="headerlink" title="添加标题"></a>添加标题</h2><p>参考链接：<a href="http://latexref.xyz/_005cmaketitle.html">\maketitle (LaTeX2e unofficial reference manual (May 2022)) (latexref.xyz)</a></p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\title</span>&#123;Constructing a Nuclear Reactor Using Only Coconuts&#125;</span><br><span class="line"><span class="keyword">\author</span>&#123;Jonas Grumby<span class="keyword">\thanks</span>&#123;<span class="comment">%</span></span><br><span class="line">    With the support of a Ginger Grant from the Roy Hinkley Society.&#125; <span class="keyword">\\</span></span><br><span class="line">  Skipper, <span class="keyword">\textit</span>&#123;Minnow&#125;</span><br><span class="line">  <span class="keyword">\and</span></span><br><span class="line">  Willy Gilligan<span class="keyword">\thanks</span>&#123;<span class="comment">%</span></span><br><span class="line">    Thanks to the Mary Ann Summers foundation</span><br><span class="line">    and to Thurston and Lovey Howell.&#125;           <span class="keyword">\\</span></span><br><span class="line">  Mate, <span class="keyword">\textit</span>&#123;Minnow&#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">\date</span>&#123;1964-Sep-26&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"><span class="keyword">\maketitle</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="添加表格"><a href="#添加表格" class="headerlink" title="添加表格"></a>添加表格</h2><p>参考链接：<a href="https://latexstudio.net/hulatex/package/table.htm">LaTeX 编辑部 - 常用宏包 - 表格 (latexstudio.net)</a></p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\begin</span>&#123;table&#125;[h]</span><br><span class="line"><span class="keyword">\caption</span>&#123;Experiment software <span class="keyword">\&amp;</span> hardware environment&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;center&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;tabular&#125;&#123;c|c&#125;</span><br><span class="line"><span class="keyword">\hline</span></span><br><span class="line">CPU <span class="built_in">&amp;</span> Intel(R) Core(TM) i5-10400F 2.90GHz<span class="keyword">\\</span> </span><br><span class="line"><span class="keyword">\hline</span></span><br><span class="line">Memory <span class="built_in">&amp;</span> 16.00GB<span class="keyword">\\</span> </span><br><span class="line"><span class="keyword">\hline</span></span><br><span class="line">Operation System <span class="built_in">&amp;</span> Windows 10<span class="keyword">\\</span> </span><br><span class="line"><span class="keyword">\hline</span></span><br><span class="line">Development Platform <span class="built_in">&amp;</span> Qt 5.11.2<span class="keyword">\\</span> </span><br><span class="line"><span class="keyword">\hline</span></span><br><span class="line"><span class="keyword">\end</span>&#123;tabular&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;center&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;table&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="分栏"><a href="#分栏" class="headerlink" title="分栏"></a>分栏</h3><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\documentclass</span>[a4paper]&#123;article&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;ctex&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;multicol&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">	<span class="keyword">\maketitle</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">\begin</span>&#123;multicols&#125;&#123;2&#125;</span><br><span class="line">		<span class="keyword">\LaTeX</span> </span><br><span class="line">		需要分栏的内容</span><br><span class="line">	<span class="keyword">\end</span>&#123;multicols&#125;</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="缩进"><a href="#缩进" class="headerlink" title="缩进"></a>缩进</h3><p>全局取消</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\setlength</span>&#123;<span class="keyword">\parindent</span>&#125;&#123;0pt&#125;</span><br></pre></td></tr></table></figure>
+
+<p>单段取消</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\noindent</span></span><br></pre></td></tr></table></figure>
+
+<p>整段缩进</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;CJK&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\begin</span>&#123;itemize&#125;</span><br><span class="line"><span class="keyword">\item</span>[] <span class="comment">% 括号内可填项目符号</span></span><br><span class="line">This is the indentation of the whole paragraph. I typed so many words to show you the indentation of the whole paragraph. This method will indent the whole paragraph.</span><br><span class="line"><span class="keyword">\end</span>&#123;itemize&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Notes"><a href="#Notes" class="headerlink" title="Notes"></a>Notes</h2><ol>
+<li>想支持中文需额外设置，否则会报错。</li>
+</ol>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a href="http://latexref.xyz/_005cmaketitle.html">\maketitle (LaTeX2e unofficial reference manual (May 2022)) (latexref.xyz)</a></li>
+<li><a href="https://latexstudio.net/hulatex/package/table.htm">LaTeX 编辑部 - 常用宏包 - 表格 (latexstudio.net)</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>latex</category>
+      </categories>
+      <tags>
+        <tag>latex</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 修改主机名</title>
+    <url>/2022/07/25/linux-change-hostname/</url>
+    <content><![CDATA[<h1 id="Linux-修改主机名"><a href="#Linux-修改主机名" class="headerlink" title="Linux 修改主机名"></a>Linux 修改主机名</h1><h2 id="方法1：修改配置文件"><a href="#方法1：修改配置文件" class="headerlink" title="方法1：修改配置文件"></a>方法1：修改配置文件</h2><ol>
+<li><p>修改<code>/etc/hostname</code>中的名字。</p>
+</li>
+<li><p>更新<code>/etc/hosts</code>文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/hosts</span><br></pre></td></tr></table></figure>
+
+<p>修改<code>127.0.1.1</code>后面的名字即可</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">127.0.0.1   localhost</span><br><span class="line">127.0.1.1   ml-ros-kinetic # change to your new hostname</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="方法2：hostnamectl"><a href="#方法2：hostnamectl" class="headerlink" title="方法2：hostnamectl"></a>方法2：hostnamectl</h2><ol>
+<li>修改主机名</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo hostnamectl set-hostname &lt;new-hostname&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>更新<code>/etc/hosts</code>文件。</li>
+</ol>
+<p><strong>Notes</strong>：这一方法和方法1一样，会修改配置文件，也仍然需要更新配置文件。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a href="https://blog.csdn.net/u013991521/article/details/80522269">(63条消息) 3种方法更改Linux系统的主机名(hostname)_大海深处的星星的博客-CSDN博客_sethostname</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>markdown</title>
+    <url>/2022/07/25/markdown/</url>
+    <content><![CDATA[<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1. </p>
+]]></content>
+  </entry>
+  <entry>
+    <title>ROS 分布式通信</title>
+    <url>/2022/07/25/ros-multiple-machines/</url>
+    <content><![CDATA[<h1 id="ROS-分布式通信"><a href="#ROS-分布式通信" class="headerlink" title="ROS 分布式通信"></a>ROS 分布式通信</h1><p>ROS 的设计考虑了分布式计算。一个编写良好的节点不假设它在网络中运行的位置，允许在运行时重新定位计算以匹配可用资源（有例外；例如，与硬件通信的驱动程序节点必须运行在硬件物理连接的机器上）。在多台机器上部署 ROS 系统很容易。请记住以下几点：</p>
+<ul>
+<li>你只需要一个 Master 节点。随便选择一台机器来运行它。</li>
+<li>所有节点都必须通过 ROS MASTER URI 配置为使用相同的 Master 节点。</li>
+<li>在所有端口上的所有机器对之间必须有完整的双向连接（请参阅 <a href="http://wiki.ros.org/ROS/NetworkSetup">ROS&#x2F;网络设置</a>）。</li>
+<li>每台机器都必须通过一个所有其他机器都可以解析的名称来标识自己（参见  <a href="http://wiki.ros.org/ROS/NetworkSetup">ROS&#x2F;网络设置</a>）。</li>
+</ul>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>先要保证不同计算机处于同一网络中，最好分别设置固定IP。</p>
+<p>我们在这里使用的是虚拟机，需要将网络适配器改为<strong>桥接模式</strong>；</p>
+<h2 id="修改主机名称"><a href="#修改主机名称" class="headerlink" title="修改主机名称"></a>修改主机名称</h2><p>我们准备了两台虚拟机，将其中一台命名为<code>shaun</code>，另外一台命名为<code>lea</code>。可以通过以下方式修改：</p>
+<ol>
+<li><p>直接打开<code>/etc/hostname</code>，将文本修改为<code>&lt;new-hostname&gt;</code>。或者使用<code>hostnamectl set-hostname &lt;new-hostname&gt;</code>修改主机名。</p>
+</li>
+<li><p>修改<code>/etc/hosts</code>文件，使主机名与本地<code>ip</code>地址完成映射：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">127.0.0.1   localhost</span><br><span class="line">127.0.1.1   &lt;new-hostname&gt; # change to your new hostname</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="其他主机名与IP地址的映射"><a href="#其他主机名与IP地址的映射" class="headerlink" title="其他主机名与IP地址的映射"></a>其他主机名与IP地址的映射</h2><ol>
+<li><p>使用<code>ifconfig</code>查看本机ip地址。以此获取所有主机的地址。</p>
+</li>
+<li><p>使用<code>hostname</code>查看主机名。</p>
+</li>
+<li><p>在<code>/etc/hosts</code>中继续将其他主机的ip地址和主机名添加。</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">IPAddress     		Hostname    		Alias</span><br><span class="line">127.0.0.1			localhost	 	 	deep.openna.com</span><br><span class="line">208.164.186.1		deep.openna.com		deep</span><br><span class="line">208.164.186.2		mail.openna.com		mail</span><br><span class="line">208.164.186.3		web.openna.com		web</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试连接"><a href="#测试连接" class="headerlink" title="测试连接"></a>测试连接</h2><h3 id="ping"><a href="#ping" class="headerlink" title="ping"></a>ping</h3><p>主机 <code>shaun</code>（其他主机的操作类似）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 远程连接主机，并输入明码</span><br><span class="line">ssh shaun</span><br><span class="line"># ping 自己</span><br><span class="line">ping shaun</span><br><span class="line"># ping 其他主机</span><br><span class="line">ping lea</span><br></pre></td></tr></table></figure>
+
+<p>成功后，都会出现下面类似的消息。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">PING lea (192.168.1.30) 56(84) bytes of data.</span><br><span class="line">64 bytes from lea (192.168.1.30): icmp_seq=1 ttl=64 time=0.226 ms</span><br><span class="line">64 bytes from lea (192.168.1.30): icmp_seq=2 ttl=64 time=1.71 ms</span><br><span class="line">64 bytes from lea (192.168.1.30): icmp_seq=3 ttl=64 time=4.04 ms</span><br></pre></td></tr></table></figure>
+
+<p><strong>Notes</strong>：ssh连接失败，通常是由于sshd未安装，使用相关命令安装即可。</p>
+<h3 id="netcat"><a href="#netcat" class="headerlink" title="netcat"></a>netcat</h3><p>ping 只检查 ICMP 数据包是否可以在机器之间传递，这还不够。您需要确保可以通过所有端口进行通信。<br>这很难完全检查，因为您必须迭代大约 65 K 端口。代替完整的检查，您可以使用 netcat 尝试通过任意选择的端口进行通信。<strong>一定要选择大于 1024 的端口</strong>；低于 1024 的端口需要超级用户权限。请注意，netcat 可执行文件在某些发行版上可能被命名为 nc。</p>
+<p>尝试从<code>lea</code>到<code>shaun</code>进行通信。在<code>shaun</code>使用<code>netcat</code>启动监听:</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh shaun</span><br><span class="line">netcat -l 1234</span><br></pre></td></tr></table></figure>
+
+<p>打开新终端，连接到<code>lea</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh lea</span><br><span class="line">netcat shaun 1234</span><br></pre></td></tr></table></figure>
+
+<p>连接完成后，即可在下方输入文本进行通信。反过来在测试一次即可。没有问题则说明这两台主机之间的连接时全双工且正常的。</p>
+<h2 id="分布式通信"><a href="#分布式通信" class="headerlink" title="分布式通信"></a>分布式通信</h2><p>现在，我们可以开始分别在两台主题上运行，发布订阅节点。首先选择一台主机作为 Master 运行的主节点，并在此运行 <code>roscore</code>。在<code>shaun</code>和<code>lea</code>中，我们选择<code>shaun</code>。</p>
+<h3 id="启动Master"><a href="#启动Master" class="headerlink" title="启动Master"></a>启动Master</h3><p>首先，连接到<code>shaun</code>并启动<code>roscore</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh shaun</span><br><span class="line">rocore</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动-Listener"><a href="#启动-Listener" class="headerlink" title="启动 Listener"></a>启动 Listener</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh lea</span><br><span class="line"># master host </span><br><span class="line">export ROS_MASTER_URI=http://shaun:11311</span><br><span class="line"># start listner</span><br><span class="line">rosrun rospy_tutorials listener</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动-Talker"><a href="#启动-Talker" class="headerlink" title="启动 Talker"></a>启动 Talker</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ssh shaun</span><br><span class="line"># master host </span><br><span class="line">export ROS_MASTER_URI=http://shaun:11311</span><br><span class="line"># start talker</span><br><span class="line">rosrun rospy_tutorials talker</span><br></pre></td></tr></table></figure>
+
+<p>没有问题后，可以在<code>lea</code>运行<code>talker</code>，在<code>shaun</code>运行<code>listener</code>在测试一遍。</p>
+<h2 id="rostopic"><a href="#rostopic" class="headerlink" title="rostopic"></a>rostopic</h2><p>对于测试，您可以在连接到Master的所有机器上使用 rostopic 工具。您将获得所有可用主题的列表。如果您未连接到Master，则会出现错误。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rostopic list</span><br></pre></td></tr></table></figure>
+
+<p>在无线网络中，有时需要检查是否有连接并且消息是否仍然出现。<br>对于简短的测试，打印出消息很方便。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">rostopic echo /&lt;topic_name&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting"></a>Troubleshooting</h2><p>如果上述顺序中的某些内容不起作用，则原因可能在于您的网络配置。<br>有关配置要求和故障排除提示，请参阅 <a href="http://wiki.ros.org/ROS/NetworkSetup">ROS&#x2F;NetworkSetup</a> 和<a href="http://wiki.ros.org/ROS/Troubleshooting">ROS&#x2F;Troubleshooting</a>。<br>一个常见的问题是在运行<code>talker</code>的机器上缺少对<code>ROS_IP</code> 的定义。<br>检查它： <code>echo $ROS IP</code>;<br>如果您没有定义 <code>ROS_IP</code>，那么 <code>rostopic info</code> 将确实显示发布者和侦听器的正确连接，但 <code>rostopic echo</code> 将为空。<br>您将在 LAN 上，在有通话器的机器上看到没有 TX 流量。<br>首先，在使用正确的 IP 地址（<code>export ROS_IP=machine_ip_addr</code>）定义 <code>ROS_IP</code> 后，您将看到 LAN 上的流量，并且 <code>listener</code> 将显示接收到的数据。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a href="http://wiki.ros.org/ROS/NetworkSetup">ROS&#x2F;NetworkSetup - ROS Wiki</a></li>
+<li><a href="http://wiki.ros.org/ROS/Tutorials/MultipleMachines">ROS&#x2F;Tutorials&#x2F;MultipleMachines - ROS Wiki</a></li>
+<li><a href="http://www.autolabor.com.cn/book/ROSTutorials/5/44-rosfen-bu-shi-tong-xin.html">4.7 ROS分布式通信 · Autolabor-ROS机器人入门课程《ROS理论与实践》零基础教程</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>ROS</category>
+      </categories>
+      <tags>
+        <tag>ROS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>rotors_simulator（无人机ROS仿真包）</title>
+    <url>/2022/07/25/rotors-simulator-installation/</url>
+    <content><![CDATA[<h1 id="rotors-simulator（无人机ROS仿真包）"><a href="#rotors-simulator（无人机ROS仿真包）" class="headerlink" title="rotors_simulator（无人机ROS仿真包）"></a>rotors_simulator（无人机ROS仿真包）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>RotorS is a MAV gazebo simulator. It provides some multirotor models such as the <a href="http://www.asctec.de/en/uav-uas-drone-products/asctec-hummingbird/">AscTec Hummingbird</a>, the <a href="http://www.asctec.de/en/uav-uas-drone-products/asctec-pelican/">AscTec Pelican</a>, or the <a href="http://www.asctec.de/en/uav-uas-drone-products/asctec-firefly/">AscTec Firefly</a>, but the simulator is not limited for the use with these multicopters.</p>
+<p>There are simulated sensors coming with the simulator such as an IMU, a generic odometry sensor, and the <a href="http://wiki.ros.org/vi_sensor">VI-Sensor</a>, which can be mounted on the multirotor.</p>
+<p>This package also contains some example controllers, basic worlds, a joystick interface, and example launch files.</p>
+<p>Below we provide the instructions necessary for getting started. See RotorS’ wiki for more instructions and examples (<a href="https://github.com/ethz-asl/rotors_simulator/wiki">https://github.com/ethz-asl/rotors_simulator/wiki</a>).</p>
+</blockquote>
+<p>Github链接 ： <a href="https://github.com/ethz-asl/rotors_simulator">ethz-asl&#x2F;rotors_simulator: RotorS is a UAV gazebo simulator (github.com)</a></p>
+<h2 id="安装及测试"><a href="#安装及测试" class="headerlink" title="安装及测试"></a>安装及测试</h2><h3 id="1-依赖工具-wstool"><a href="#1-依赖工具-wstool" class="headerlink" title="1 依赖工具 wstool"></a>1 依赖工具 wstool</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install python3-wstool -y</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-创建工作空间和工程"><a href="#2-创建工作空间和工程" class="headerlink" title="2 创建工作空间和工程"></a>2 创建工作空间和工程</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir -p ~/WORKSPACE_NAME/src</span><br><span class="line">cd ~/WORKSPACE_NAME/src</span><br><span class="line">catkin_init_workspace  # initialize your catkin workspace</span><br><span class="line">wstool init</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-获取simulator和其他依赖"><a href="#3-获取simulator和其他依赖" class="headerlink" title="3 获取simulator和其他依赖"></a>3 获取simulator和其他依赖</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd ~/catkin_ws/src</span><br><span class="line">git clone git@github.com:ethz-asl/rotors_simulator.git</span><br><span class="line">git clone git@github.com:ethz-asl/mav_comm.git</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-编译"><a href="#4-编译" class="headerlink" title="4 编译"></a>4 编译</h3><p>切换到工作目录下，<code>catkin_make</code></p>
+<p><img src="/../images/posts/rotors-simulator-installation.assets/image-20220628164318968.png" alt="image-20220628164318968"></p>
+<h3 id="编译过程错误及解决"><a href="#编译过程错误及解决" class="headerlink" title="编译过程错误及解决"></a>编译过程错误及解决</h3><p>每次出错最好将<code>devel</code>和<code>build</code>两个目录都删除，在重新<code>catkin_make</code></p>
+<h4 id="Error-1"><a href="#Error-1" class="headerlink" title="Error 1"></a>Error 1</h4><h5 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h5><p><img src="/../images/posts/rotors-simulator-installation.assets/image-20220628162940914.png" alt="image-20220628162940914"></p>
+<h5 id="原因及解决方案"><a href="#原因及解决方案" class="headerlink" title="原因及解决方案"></a>原因及解决方案</h5><p>错误提示说明缺少依赖包<code>octomap_ros</code>，<code>XXX_XXXConfig.cmake</code>为错误提示内容组成，包名即<code>XXX_XXX</code>，eg : <code>octomap_rosConfig.cmake</code>的包名为<code>octomap_ros</code>。而在shell命令中，需要在前面加上 <code>ros-kinetic</code> （<code>ros-安装的ros版本</code>），然后用连字符 <code>-</code> 替换下划线 <code>_</code> ，即 <code>ros-kinetic-octomap-ros</code>,安装完成即可：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install ros-kinetic-octomap-ros -y</span><br></pre></td></tr></table></figure>
+
+<h4 id="Error-2"><a href="#Error-2" class="headerlink" title="Error 2"></a>Error 2</h4><h5 id="错误描述-1"><a href="#错误描述-1" class="headerlink" title="错误描述"></a>错误描述</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">CMake Error at rotors_simulator/rotors_gazebo_plugins/cmake/FindGlog.cmake:77 (MESSAGE):</span><br><span class="line">  Failed to find glog - Could not find glog include directory, set</span><br><span class="line">  GLOG_INCLUDE_DIR to directory containing glog/logging.h</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/posts/rotors-simulator-installation.assets/image-20220628162714152.png" alt="image-20220628162714152"></p>
+<h5 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h5><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install libgoogle-glog-dev -y</span><br></pre></td></tr></table></figure>
+
+<h4 id="Error-3"><a href="#Error-3" class="headerlink" title="Error 3"></a>Error 3</h4><h5 id="错误描述-2"><a href="#错误描述-2" class="headerlink" title="错误描述"></a>错误描述</h5><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">No rule to make target &#x27;/home/ml/ws_all/rotors_test_20220628/src/rotors_simulator/rotors_gazebo_plugins/PROTOBUF_PROTOC_EXECUTABLE-NOTFOUND&#x27;, needed by &#x27;rotors_simulator/rotors_gazebo_plugins/NavSatFix.pb.cc&#x27;.  Stop.</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/posts/rotors-simulator-installation.assets/image-20220628163222050.png" alt="image-20220628163222050"></p>
+<h5 id="原因及解决"><a href="#原因及解决" class="headerlink" title="原因及解决"></a>原因及解决</h5><p>缺少<code>protobuf-compiler</code>编译器，使用如下命令安装即可</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install protobuf-compiler</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-测试"><a href="#5-测试" class="headerlink" title="5 测试"></a>5 测试</h3><p>输入以下命令，打开<code>gazebo</code>加载模型和世界：</p>
+<ul>
+<li><p>有一些基本的启动文件，可以加载带有其他传感器的不同多旋翼飞行器。在<code>WORKSPACE_PATH/src/rotors_simulator/rotors_gazebo/launch</code>中找到。</p>
+</li>
+<li><p>可以修改<code>world_name</code>后的参数加载新场景，可以在<code>WORKSPACE_PATH/src/rotors_simulator/rotors_gazebo/worlds</code>下找到其他的场景；</p>
+</li>
+</ul>
+<blockquote>
+<p>There are some basic launch files where you can load the different multicopters with additional sensors. They can all be found in <code>~/catkin_ws/src/rotors_simulator/rotors_gazebo/launch</code>.</p>
+<p>The <code>world_name</code> argument looks for a .world file with a corresponding name in <code>~/catkin_ws/src/rotors_simulator/rotors_gazebo/worlds</code>. By default, all launch files, with the exception of those that have the world name explicitly included in the file name, use the empty world described in <code>basic.world</code>.</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cd YOUR_PATH/WORKERSPACE_NAME/</span><br><span class="line">source devel/setup.bash</span><br><span class="line">roslaunch rotors_gazebo mav_hovering_example.launch mav_name:=firefly world_name:=basic</span><br></pre></td></tr></table></figure>
+
+<p>运行事件</p>
+<blockquote>
+<p>The simulator starts by default in paused mode. To start it you can either</p>
+<ul>
+<li>use the Gazebo GUI and press the play button</li>
+<li>or you can send the following service call.</li>
+</ul>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rosservice call gazebo/unpause_physics</span><br></pre></td></tr></table></figure>
+
+<p>运行结果如下：</p>
+<p><img src="/../images/posts/rotors-simulator-installation.assets/image-20220628165558532.png" alt="image-20220628165558532"></p>
+<p>使用<code>rostopic</code>查看当前发布的话题：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rostopic list</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/posts/rotors-simulator-installation.assets/image-20220629155741418.png" alt="image-20220629155741418"></p>
+<p>其中<code>/firefly/command/pose</code>为无人机位置信息话题，可以通过<code>rostopic pub 话题名 消息类型 消息内容</code>，发布新消息，以控制无人机移动：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">rostopic pub -1 /firefly/command/pose geometry_msgs/PoseStamped &quot;header:  seq: 0  stamp:    secs: 0    nsecs: 0  frame_id: &#x27;&#x27;pose:  position:    x: 1.0    y: 1.0    z: 1.0  orientation:    x: 0.0    y: 0.0    z: 0.0    w: 0.0&quot; </span><br></pre></td></tr></table></figure>
+
+<p>这表明设置的新位置为 (1.0, 1.0, 1.0)，<code>-1</code>表示发布一次消息后退出。</p>
+<p><img src="/../images/posts/rotors-simulator-installation.assets/image-20220629155920780.png" alt="image-20220629155920780"></p>
+<h2 id="其他注意事项"><a href="#其他注意事项" class="headerlink" title="其他注意事项"></a>其他注意事项</h2><p>虽然场景可以启动，但可能仍有依赖未安装，如源代码中python用到的一些三方库。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a href="https://github.com/ethz-asl/rotors_simulator">ethz-asl&#x2F;rotors_simulator: RotorS is a UAV gazebo simulator (github.com)</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>ROS</category>
+        <category>Rotors</category>
+      </categories>
+      <tags>
+        <tag>ROS</tag>
+        <tag>Rotors</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>RotorS with virtual joystick</title>
+    <url>/2022/07/25/rotors-simulator-keyboard-usage/</url>
+    <content><![CDATA[<h1 id="RotorS-with-virtual-joystick"><a href="#RotorS-with-virtual-joystick" class="headerlink" title="RotorS with virtual joystick"></a>RotorS with virtual joystick</h1><h2 id="使用键盘控制无人机"><a href="#使用键盘控制无人机" class="headerlink" title="使用键盘控制无人机"></a>使用键盘控制无人机</h2><p>使用<code>mav_with_keyboard.launch</code>可以打开<code>gazebo</code>以及相关的控制界面，但需要做一些基础配置。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">roslaunch rotors_gazebo mav_with_keyboard.launch mav_name:=firefly world_name:=basic</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置虚拟键盘控制器"><a href="#设置虚拟键盘控制器" class="headerlink" title="设置虚拟键盘控制器"></a>设置虚拟键盘控制器</h2><p>配置原文 : <a href="https://github.com/ethz-asl/rotors_simulator/wiki/Setup-virtual-keyboard-joystick">Setup virtual keyboard joystick · ethz-asl&#x2F;rotors_simulator Wiki (github.com)</a></p>
+<p>为了创建虚拟键盘控制器，需要用到<code>Python-uniput</code>(<a href="https://github.com/devbharat/python-uinput">https://github.com/devbharat/python-uinput</a>)</p>
+<h3 id="安装-Python-uniput"><a href="#安装-Python-uniput" class="headerlink" title="安装 Python-uniput"></a>安装 Python-uniput</h3><blockquote>
+<p>源仓库仅需要暂时复制一份以供安装使用</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone git@github.com:devbharat/python-uinput.git</span><br><span class="line">cd python-uinput</span><br><span class="line">python setup.py build</span><br><span class="line">sudo python setup.py install</span><br></pre></td></tr></table></figure>
+
+<p>需要加载内核的<code>uinput</code>模块，才能使用<code>Python-uniput</code>。使用以下命令加载：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">modprobe -i uinput</span><br></pre></td></tr></table></figure>
+
+<p><code>uinput</code>是一个内核模块，可以从用户空间模拟输入设备。通过写入 <code>/dev/uinput</code>（<code>/dev/input/uinput</code>）设备，进程可以创建具有特定功能的虚拟输入设备。一旦创建了这个虚拟设备，进程就可以通过它发送事件，这些事件将被传递给用户空间和内核中的使用者。</p>
+<h3 id="配置设备权限"><a href="#配置设备权限" class="headerlink" title="配置设备权限"></a>配置设备权限</h3><p>我们需要程序能够访问<code>uniput</code>设备，执行以下操作并重启：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd udev-rules</span><br><span class="line">sudo cp 40-uinput.rules /etc/udev/rules.d</span><br></pre></td></tr></table></figure>
+
+<p>如果没有生效，则需要将用户添加到<code>uniput</code>的组中，同时重启：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo addgroup uniput</span><br><span class="line">sudo adduser $USER uniput</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装Python-pygame"><a href="#安装Python-pygame" class="headerlink" title="安装Python-pygame"></a>安装Python-pygame</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">python2</span></span><br><span class="line">sudo python -m pip install -U pygame</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试虚拟键盘控制器"><a href="#测试虚拟键盘控制器" class="headerlink" title="测试虚拟键盘控制器"></a>测试虚拟键盘控制器</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">先切换到工作空间下</span></span><br><span class="line">source ./devel/setup.bash</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动控制器</span></span><br><span class="line">rosrun rotors_joy_interface key_joystick.py</span><br></pre></td></tr></table></figure>
+
+<p>如果能正常弹出虚拟键盘控制器的GUI，即说明一切正常。</p>
+<h3 id="安装ROS控制杆依赖包"><a href="#安装ROS控制杆依赖包" class="headerlink" title="安装ROS控制杆依赖包"></a>安装ROS控制杆依赖包</h3><p>根据ROS配置，可能需要安装控制杆的依赖包：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install ros-kinetic-joy</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用虚拟控制杆运行RotorS"><a href="#使用虚拟控制杆运行RotorS" class="headerlink" title="使用虚拟控制杆运行RotorS"></a>使用虚拟控制杆运行RotorS</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">roslaunch rotors_gazebo mav_with_keyboard.launch</span><br></pre></td></tr></table></figure>
+
+<h2 id="相关键盘操作"><a href="#相关键盘操作" class="headerlink" title="相关键盘操作"></a>相关键盘操作</h2><p>w - throttle up                       ↑   - pitch up</p>
+<p>s - throttle down                   ↓   - pitch down</p>
+<p>a - yaw left                             →  - roll right</p>
+<p>d - yaw right                          ←  - roll left  </p>
+<h2 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h2><h3 id="Error-1-Unable-to-find-uri-model-x2F-x2F-xxx"><a href="#Error-1-Unable-to-find-uri-model-x2F-x2F-xxx" class="headerlink" title="Error 1 : Unable to find uri [model:&#x2F;&#x2F;xxx]"></a>Error 1 : Unable to find uri [model:&#x2F;&#x2F;xxx]</h3><h4 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Error [parser.cc:581] Unable to find uri[model://sun]</span><br><span class="line">Error [parser.cc:581] Unable to find uri[model://ground_plane]</span><br></pre></td></tr></table></figure>
+
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p><code>Gazebo</code> 需要互联网连接才能下载模型文件（例如默认世界的太阳和地平面）。如果您在第一次运行 <code>Gazebo</code> 时没有访问 Internet，则会出现此错误。还可以从<a href="gazebosim.org/models">gazebosim.org&#x2F;models</a> 手动下载模型文件并将它们放在您的<code>~/.gazebo/models文件</code>夹中。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 解压缩</span><br><span class="line">tar -xzvf models.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="Error-2-gazebo闪退"><a href="#Error-2-gazebo闪退" class="headerlink" title="Error 2 : gazebo闪退"></a>Error 2 : gazebo闪退</h3><h4 id="错误描述-1"><a href="#错误描述-1" class="headerlink" title="错误描述"></a>错误描述</h4><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[gazebo_gui-3]process has died</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/posts/rotors-simulator-keyboard-usage.assets/erro2.png" alt="erro2"></p>
+<h4 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h4><h5 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h5><p>使用以下命令关闭硬件加速</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">echo &quot; export SVGA_VGPU10=0&quot; &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<h5 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h5><p>关闭虚拟机的3D图形加速</p>
+<h5 id="方法3"><a href="#方法3" class="headerlink" title="方法3"></a>方法3</h5><p>更新<code>gazebo</code></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a href="https://blog.csdn.net/KongDaQing1290/article/details/79743026#:~:text=%E9%94%AE%E7%9B%98%E6%8E%A7%E5%88%B6%E6%97%A0%E4%BA%BA%E6%9C%BA%E9%A3%9E%E8%A1%8C">(71条消息) ROS 无人机仿真系统4 —— 通过键盘控制飞行器飞行_KongDaQing1290的博客-CSDN博客_ros无人机</a></li>
+<li><a href="https://github.com/ethz-asl/rotors_simulator/wiki/Setup-virtual-keyboard-joystick">Setup virtual keyboard joystick · ethz-asl&#x2F;rotors_simulator Wiki (github.com)</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>ROS</category>
+        <category>Rotors</category>
+      </categories>
+      <tags>
+        <tag>ROS</tag>
+        <tag>Rotors</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>rotors-simulator-usage</title>
+    <url>/2022/07/25/rotors-simulator-usage/</url>
+    <content><![CDATA[<h1 id="Rotors-Simulator-Example-Usage"><a href="#Rotors-Simulator-Example-Usage" class="headerlink" title="Rotors Simulator Example Usage"></a>Rotors Simulator Example Usage</h1><h2 id="1-创建功能包"><a href="#1-创建功能包" class="headerlink" title="1 创建功能包"></a>1 创建功能包</h2><p>切换到工作空间的<code>src</code>目录下，创建<code>rotors_control_test</code>功能包</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">工作空间目录下的src</span></span><br><span class="line">cd catkin_ws/src</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建功能包，包名后面的参数是相关依赖</span></span><br><span class="line">catkin_create_pkg rotors_control_test roscpp rospy std_msgs sensor_msgs geometry_msgs mav_msgs gazebo_msgs</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-修改相关功能包相关依赖"><a href="#2-修改相关功能包相关依赖" class="headerlink" title="2 修改相关功能包相关依赖"></a>2 修改相关功能包相关依赖</h2><p>如果创建功能包的时候，少或错误添加相关依赖，可以打开<code>CMakeLists.txt</code>，修改相关内容:</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">find_package(catkin REQUIRED COMPONETS</span><br><span class="line">	roscpp</span><br><span class="line">	rospy</span><br><span class="line">	std_msgs</span><br><span class="line"><span class="meta prompt_">	# </span><span class="language-bash">以上三个是常用的依赖，以下是本功能包需要用到的额外的依赖</span></span><br><span class="line">	sensor_msgs</span><br><span class="line">	geometry_msgs</span><br><span class="line">	mav_msgs</span><br><span class="line">	gazebo_msgs</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>同时需要修改<code>package.xml</code>文件，在其中添加:</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">depend</span>&gt;</span>gazebo_msgs<span class="tag">&lt;/<span class="name">depend</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">depend</span>&gt;</span>gazebo_plugins<span class="tag">&lt;/<span class="name">depend</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">depend</span>&gt;</span>geometry_msgs<span class="tag">&lt;/<span class="name">depend</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">depend</span>&gt;</span>joy<span class="tag">&lt;/<span class="name">depend</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">depend</span>&gt;</span>mav_msgs<span class="tag">&lt;/<span class="name">depend</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">depend</span>&gt;</span>rotors_gazebo_plugins<span class="tag">&lt;/<span class="name">depend</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">depend</span>&gt;</span>sensor_msgs<span class="tag">&lt;/<span class="name">depend</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">depend</span>&gt;</span>xacro<span class="tag">&lt;/<span class="name">depend</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>添加依赖XXX，在功能包中即可以使用XXX&#x2F;XXX的消息类型，如<code>mav_msgs</code>，能够让功能包使用<code>mav_msgs/xxx</code>类型的消息。</p>
+<h2 id="3-创建源文件并修改CMakeLists-txt"><a href="#3-创建源文件并修改CMakeLists-txt" class="headerlink" title="3 创建源文件并修改CMakeLists.txt"></a>3 创建源文件并修改<code>CMakeLists.txt</code></h2><p>在<code>rotors_control_test/src</code>下创建<code>rotors_control_node.cpp</code>文件，并修改<code>CMakeLists.txt</code>：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">add_executable(</span><br><span class="line">	rotors_control_node src/rotors_control_node.cpp</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">target_link_libraries(</span><br><span class="line">	rotors_control_node $&#123;catkin_LIBRARIES&#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-编写源文件代码"><a href="#4-编写源文件代码" class="headerlink" title="4 编写源文件代码"></a>4 编写源文件代码</h2><h3 id="代码思路"><a href="#代码思路" class="headerlink" title="代码思路"></a>代码思路</h3><ol>
+<li>初始化 ROS 节点；</li>
+<li>创建<code>position_sub</code>订阅无人机位置信息话题：<ol>
+<li>话题名为<code>/odometry_sensor1/position</code>，可以通过<code>rqt</code>查询其他话题名称及对应的消息数据类型；</li>
+<li>创建<code>updateUAVPosition</code>回调函数，位置信息类型为<code>geometry_msgs::PointStamped</code>；</li>
+<li><strong>注意</strong>：当<code>GPS</code>初始化成功并能够接收到位置信息时，才开始执行任务；</li>
+</ol>
+</li>
+<li>创建名为<code>trajectory_pub</code>的控制指令<code>publisher</code>:<ol>
+<li>控制无人机移动可使用<code>rotors_simulator</code>包中的控制节点：当前<code>pulisher</code>中发布的话题即为<code>rotors_simulator</code>中已定义好的话题；</li>
+<li>值得注意的是，<code>rotors_simulator</code>中控制节点仅对无人机位置进行控制，即发送<strong>指定位置</strong>。同时，在起点与目标位置相距较远时，无人机会侧翻（对于仿真是没有什么影响，但对于将算法投入实际使用时，物理机则需要更多考量）；</li>
+<li>为避免无人机侧翻，平滑移动轨迹仍十分重要。</li>
+</ol>
+</li>
+</ol>
+<h3 id="相关API"><a href="#相关API" class="headerlink" title="相关API"></a>相关API</h3><p><code>mav_msgs::msgMultiDofJointTrajectoryFromPositionYaw</code></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Convenience method to quickly create a trajectory from a single waypoint.</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ros/ros.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;chrono&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;thread&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;Eigen/Core&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;std_srvs/Empty.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;geometry_msgs/PointStamped.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mav_msgs/conversions.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;mav_msgs/default_topics.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;trajectory_msgs/MultiDOFJointTrajectory.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">ros::Publisher trajectory_pub;</span><br><span class="line">geometry_msgs::PointStamped cur_pos_msg;</span><br><span class="line"></span><br><span class="line"><span class="type">float</span> linear_smoothing_navigation_step = <span class="number">2</span>;</span><br><span class="line"><span class="type">bool</span> gps_init_ok = <span class="literal">false</span>;</span><br><span class="line"><span class="type">bool</span> take_off_ok = <span class="literal">false</span>;</span><br><span class="line"><span class="type">int</span> tasks_ok = <span class="number">0</span>;</span><br><span class="line">Eigen::Vector3d home_pos;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *Description:</span></span><br><span class="line"><span class="comment"> *	when gps position changed, we update related parameters.</span></span><br><span class="line"><span class="comment"> *Parameters:</span></span><br><span class="line"><span class="comment"> *	msg : current position message</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">updateUAVPosition</span><span class="params">(<span class="type">const</span> geometry_msgs::PointStamped&amp; msg)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!gps_init_ok) &#123;</span><br><span class="line">		<span class="comment">// prepare to take off</span></span><br><span class="line">		gps_init_ok = <span class="literal">true</span>;</span><br><span class="line">		<span class="comment">// record current position</span></span><br><span class="line">		home_pos[<span class="number">0</span>] = msg.point.x;</span><br><span class="line">		home_pos[<span class="number">1</span>] = msg.point.y;</span><br><span class="line">		home_pos[<span class="number">2</span>] = msg.point.z;</span><br><span class="line">		<span class="built_in">ROS_INFO</span>(<span class="string">&quot;Home Position is &lt;%f, %f, %f&gt;&quot;</span>, msg.point.x, msg.point.y, msg.point.z);</span><br><span class="line">	&#125;</span><br><span class="line">	cur_pos_msg = msg;</span><br><span class="line">	<span class="comment">// ROS_INFO(&quot;Current Position is &lt;%f, %f, %f&gt;&quot;, msg.point.x, msg.point.y, msg.point.z);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *Description:</span></span><br><span class="line"><span class="comment"> *	calculate the distance between current position and target position</span></span><br><span class="line"><span class="comment"> *Parameters:</span></span><br><span class="line"><span class="comment"> *	target_pos : destination position	</span></span><br><span class="line"><span class="comment"> *Return:</span></span><br><span class="line"><span class="comment"> *	double : distance </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">getDistanceToDestination</span><span class="params">(<span class="type">const</span> Eigen::Vector3d&amp; target_pos)</span> </span>&#123;</span><br><span class="line">	<span class="type">double</span> distance = <span class="number">0.0</span>;</span><br><span class="line">	distance = <span class="built_in">pow</span>((target_pos[<span class="number">0</span>] - cur_pos_msg.point.x), <span class="number">2</span>) + </span><br><span class="line">			   <span class="built_in">pow</span>((target_pos[<span class="number">1</span>] - cur_pos_msg.point.y), <span class="number">2</span>) +</span><br><span class="line">			   <span class="built_in">pow</span>((target_pos[<span class="number">2</span>] - cur_pos_msg.point.z), <span class="number">2</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="built_in">sqrt</span>(distance);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *Description:</span></span><br><span class="line"><span class="comment"> *	</span></span><br><span class="line"><span class="comment"> *Parameters:</span></span><br><span class="line"><span class="comment"> *	target_pos : destination position	</span></span><br><span class="line"><span class="comment"> *	max_err : max error (default = 0.0001)</span></span><br><span class="line"><span class="comment"> *Return:</span></span><br><span class="line"><span class="comment"> *	true : arrival</span></span><br><span class="line"><span class="comment"> *	false : not arrival</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isReachDestination</span><span class="params">(<span class="type">const</span> Eigen::Vector3d&amp; target_pos, <span class="type">float</span> max_err = <span class="number">0.2</span>)</span> </span>&#123;</span><br><span class="line">	<span class="type">double</span> cur_err = <span class="built_in">getDistanceToDestination</span>(target_pos);</span><br><span class="line">	<span class="keyword">return</span> cur_err &lt; max_err;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">linearSmoothingNavigationTask</span><span class="params">(<span class="type">const</span> Eigen::Vector3d&amp; target_pos)</span> </span>&#123;</span><br><span class="line">	trajectory_msgs::MultiDOFJointTrajectory trajectory_msg;</span><br><span class="line">	trajectory_msg.header.stamp = ros::Time::<span class="built_in">now</span>();</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">isReachDestination</span>(target_pos)) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">double</span> dist = <span class="built_in">getDistanceToDestination</span>(target_pos);</span><br><span class="line">	Eigen::Vector3d next_pos;</span><br><span class="line">	<span class="keyword">if</span>(dist &lt; linear_smoothing_navigation_step) &#123;</span><br><span class="line">		next_pos = target_pos;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		next_pos[<span class="number">0</span>] = cur_pos_msg.point.x + </span><br><span class="line">			(target_pos[<span class="number">0</span>] - cur_pos_msg.point.x) / dist * linear_smoothing_navigation_step;</span><br><span class="line">		next_pos[<span class="number">1</span>] = cur_pos_msg.point.y + </span><br><span class="line">			(target_pos[<span class="number">1</span>] - cur_pos_msg.point.y) / dist * linear_smoothing_navigation_step;</span><br><span class="line">		next_pos[<span class="number">2</span>] = cur_pos_msg.point.z + </span><br><span class="line">			(target_pos[<span class="number">2</span>] - cur_pos_msg.point.z) / dist * linear_smoothing_navigation_step;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">double</span> target_yaw = <span class="number">0.0</span>;</span><br><span class="line">	mav_msgs::<span class="built_in">msgMultiDofJointTrajectoryFromPositionYaw</span>(target_pos, target_yaw, &amp;trajectory_msg);</span><br><span class="line">	trajectory_pub.<span class="built_in">publish</span>(trajectory_msg);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">ROS_INFO</span>(<span class="string">&quot;point %d&quot;</span>, tasks_ok);</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *Description:</span></span><br><span class="line"><span class="comment"> *	UAV reach the height of taking off.</span></span><br><span class="line"><span class="comment"> *Parameters:</span></span><br><span class="line"><span class="comment"> *	altitude : the height of taking off</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">takeOff</span><span class="params">(<span class="type">float</span> altitude)</span> </span>&#123;</span><br><span class="line">	trajectory_msgs::MultiDOFJointTrajectory trajectory_msg;</span><br><span class="line">	trajectory_msg.header.stamp = ros::Time::<span class="built_in">now</span>();</span><br><span class="line">	<span class="function"><span class="type">static</span> Eigen::Vector3d <span class="title">target_pos</span><span class="params">(cur_pos_msg.point.x, cur_pos_msg.point.y, altitude)</span></span>;</span><br><span class="line">	<span class="type">double</span> target_yaw = <span class="number">0.0</span>;</span><br><span class="line">	<span class="keyword">if</span>(<span class="built_in">isReachDestination</span>(target_pos)) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	mav_msgs::<span class="built_in">msgMultiDofJointTrajectoryFromPositionYaw</span>(target_pos, target_yaw, &amp;trajectory_msg);</span><br><span class="line">	trajectory_pub.<span class="built_in">publish</span>(trajectory_msg);</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *Description:</span></span><br><span class="line"><span class="comment"> *	Go back to the origin position. UAV move to home_pos with current altitude. Then UAV lands.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">goHome</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="type">static</span> Eigen::Vector3d <span class="title">home_pos_bar</span><span class="params">(home_pos[<span class="number">0</span>], </span></span></span><br><span class="line"><span class="params"><span class="function">										home_pos[<span class="number">1</span>],</span></span></span><br><span class="line"><span class="params"><span class="function">										cur_pos_msg.point.z)</span></span>;</span><br><span class="line">	<span class="type">static</span> <span class="type">bool</span> home_pos_ok = <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">if</span>(!home_pos_ok) &#123;</span><br><span class="line">		home_pos_ok = <span class="built_in">linearSmoothingNavigationTask</span>(home_pos_bar);	</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="built_in">linearSmoothingNavigationTask</span>(home_pos);</span><br><span class="line">		<span class="built_in">ROS_INFO</span>(<span class="string">&quot;UAV aready go back.&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span> </span>&#123;</span><br><span class="line">	<span class="comment">// set local code</span></span><br><span class="line">	<span class="built_in">setlocale</span>(LC_ALL, <span class="string">&quot;&quot;</span>);</span><br><span class="line">	<span class="comment">// ros node init</span></span><br><span class="line">	ros::<span class="built_in">init</span>(argc, argv, <span class="string">&quot;rotors_control_node&quot;</span>);</span><br><span class="line">	ros::NodeHandle nh;</span><br><span class="line">	<span class="comment">// create a private node for accessing node parameters</span></span><br><span class="line">	<span class="function">ros::NodeHandle <span class="title">nh_private</span><span class="params">(<span class="string">&quot;~&quot;</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">	std::string uav_name = <span class="string">&quot;&quot;</span>;</span><br><span class="line">	ros::param::<span class="built_in">get</span>(<span class="string">&quot;~mav_name&quot;</span>, uav_name);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// subcribe topic</span></span><br><span class="line">	<span class="comment">// uav position info : /odometry_sensor1/position</span></span><br><span class="line">	ros::Subscriber position_sub = nh.<span class="built_in">subscribe</span>(std::<span class="built_in">string</span>(<span class="string">&quot;/&quot;</span>+uav_name+<span class="string">&quot;/odometry_sensor1/position&quot;</span>).<span class="built_in">c_str</span>(), <span class="number">10</span>, &amp;updateUAVPosition);</span><br><span class="line">	<span class="comment">// global variable</span></span><br><span class="line">	trajectory_pub = nh.<span class="built_in">advertise</span>&lt;trajectory_msgs::MultiDOFJointTrajectory&gt;(mav_msgs::default_topics::COMMAND_TRAJECTORY, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// wait 5s for gazebo successfully startup</span></span><br><span class="line">	ros::<span class="built_in">Duration</span>(<span class="number">5.0</span>).<span class="built_in">sleep</span>();</span><br><span class="line"></span><br><span class="line">	<span class="comment">// make gazebo auto-play</span></span><br><span class="line">	std_srvs::Empty srv;</span><br><span class="line">	<span class="type">bool</span> unpaused = ros::service::<span class="built_in">call</span>(<span class="string">&quot;/gazebo/unpause_physics&quot;</span>, srv);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// try to make gazebo auto-play</span></span><br><span class="line">	<span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(i &lt;= <span class="number">10</span> &amp;&amp; !unpaused) &#123;</span><br><span class="line">		<span class="built_in">ROS_INFO</span>(<span class="string">&quot;Wait for 1 second before trying to unpause Gazebo again!&quot;</span>);</span><br><span class="line">		std::this_thread::<span class="built_in">sleep_for</span>(std::chrono::<span class="built_in">seconds</span>(<span class="number">1</span>));</span><br><span class="line">		unpaused = ros::service::<span class="built_in">call</span>(<span class="string">&quot;/gazebo/unpause_physics&quot;</span>, srv);</span><br><span class="line">		++i;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// if Gazebo is not auto-play, then exit</span></span><br><span class="line">	<span class="keyword">if</span>(!unpaused) &#123;</span><br><span class="line">		<span class="built_in">ROS_FATAL</span>(<span class="string">&quot;Fail to wake up Gazebo.&quot;</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;	</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="built_in">ROS_INFO</span>(<span class="string">&quot;Unpaused the Gazebo simulation.&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// trajectory</span></span><br><span class="line">	std::vector&lt;Eigen::Vector3d&gt; path;</span><br><span class="line">	path.<span class="built_in">push_back</span>(Eigen::<span class="built_in">Vector3d</span>(<span class="number">5.f</span>, <span class="number">5.f</span>, <span class="number">5.f</span>));</span><br><span class="line">	path.<span class="built_in">push_back</span>(Eigen::<span class="built_in">Vector3d</span>(<span class="number">-5.f</span>, <span class="number">5.f</span>, <span class="number">5.f</span>));</span><br><span class="line">	path.<span class="built_in">push_back</span>(Eigen::<span class="built_in">Vector3d</span>(<span class="number">-5.f</span>, <span class="number">-5.f</span>, <span class="number">5.f</span>));</span><br><span class="line">	path.<span class="built_in">push_back</span>(Eigen::<span class="built_in">Vector3d</span>(<span class="number">5.f</span>, <span class="number">-5.f</span>, <span class="number">5.f</span>));</span><br><span class="line">	path.<span class="built_in">push_back</span>(Eigen::<span class="built_in">Vector3d</span>(<span class="number">5.f</span>, <span class="number">5.f</span>, <span class="number">5.f</span>));</span><br><span class="line">	<span class="built_in">ROS_INFO</span>(<span class="string">&quot;Trajectory has %d points.&quot;</span>, path.<span class="built_in">size</span>());</span><br><span class="line"></span><br><span class="line">	<span class="function">ros::Rate <span class="title">loop_rate</span><span class="params">(<span class="number">10</span>)</span></span>;</span><br><span class="line">	<span class="keyword">while</span>(ros::<span class="built_in">ok</span>()) &#123;</span><br><span class="line">		<span class="keyword">if</span>(gps_init_ok &amp;&amp; !take_off_ok) &#123;</span><br><span class="line">			take_off_ok = <span class="built_in">takeOff</span>(<span class="number">3</span>);</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span>(take_off_ok &amp;&amp; tasks_ok &lt; path.<span class="built_in">size</span>()) &#123;</span><br><span class="line">			<span class="built_in">ROS_INFO</span>(<span class="string">&quot;Move&quot;</span>);</span><br><span class="line">			<span class="keyword">if</span>(tasks_ok &lt; path.<span class="built_in">size</span>()) &#123;</span><br><span class="line">				<span class="type">bool</span> tmp = <span class="built_in">linearSmoothingNavigationTask</span>(path[tasks_ok]);</span><br><span class="line">				<span class="keyword">if</span>(tmp) &#123;</span><br><span class="line">					tasks_ok++;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span>(tasks_ok &gt;= path.<span class="built_in">size</span>()) &#123;</span><br><span class="line">			<span class="built_in">goHome</span>();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">ROS_INFO</span>(<span class="string">&quot;take off : %d, task number : %d&quot;</span>, take_off_ok, tasks_ok);</span><br><span class="line">		ros::<span class="built_in">spinOnce</span>();</span><br><span class="line">		loop_rate.<span class="built_in">sleep</span>();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-launch文件配置"><a href="#5-launch文件配置" class="headerlink" title="5 launch文件配置"></a>5 <code>launch</code>文件配置</h2><p>在<code>rotors_control_test</code>目录下创建<code>launch</code>文件夹，在<code>launch</code>文件夹下创建<code>rotors_control_test.launch</code>文件</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">launch</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;mav_name&quot;</span> <span class="attr">default</span>=<span class="string">&quot;firefly&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;world_name&quot;</span> <span class="attr">default</span>=<span class="string">&quot;basic&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;enable_logging&quot;</span> <span class="attr">default</span>=<span class="string">&quot;false&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;enable_ground_truth&quot;</span> <span class="attr">default</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;log_file&quot;</span> <span class="attr">default</span>=<span class="string">&quot;$(arg mav_name)&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;debug&quot;</span> <span class="attr">default</span>=<span class="string">&quot;false&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;gui&quot;</span> <span class="attr">default</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;paused&quot;</span> <span class="attr">default</span>=<span class="string">&quot;false&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- The following line causes gzmsg and gzerr messages to be printed to the console</span></span><br><span class="line"><span class="comment">        (even when Gazebo is started through roslaunch) --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;verbose&quot;</span> <span class="attr">default</span>=<span class="string">&quot;false&quot;</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--Run Gazebo--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">env</span> <span class="attr">name</span>=<span class="string">&quot;GAZEBO_MODEL_PATH&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;GAZEBO_MODEL_PATH&#125;:$(find rotors_gazebo)/models&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">env</span> <span class="attr">name</span>=<span class="string">&quot;GAZEBO_RESOURCE_PATH&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;GAZEBO_RESOURCE_PATH&#125;:$(find rotors_gazebo)/models&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">file</span>=<span class="string">&quot;$(find gazebo_ros)/launch/empty_world.launch&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;world_name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$(find rotors_gazebo)/worlds/$(arg world_name).world&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;debug&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$(arg debug)&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;paused&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$(arg paused)&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;gui&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$(arg gui)&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;verbose&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$(arg verbose)&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--Run UAV model and control node--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">group</span> <span class="attr">ns</span>=<span class="string">&quot;$(arg mav_name)&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">file</span>=<span class="string">&quot;$(find rotors_gazebo)/launch/spawn_mav.launch&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;mav_name&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$(arg mav_name)&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;model&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$(find rotors_description)/urdf/mav_generic_odometry_sensor.gazebo&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;enable_logging&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$(arg enable_logging)&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;enable_ground_truth&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$(arg enable_ground_truth)&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">arg</span> <span class="attr">name</span>=<span class="string">&quot;log_file&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$(arg log_file)&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">include</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">node</span> <span class="attr">name</span>=<span class="string">&quot;lee_position_controller_node&quot;</span> <span class="attr">pkg</span>=<span class="string">&quot;rotors_control&quot;</span> <span class="attr">type</span>=<span class="string">&quot;lee_position_controller_node&quot;</span> <span class="attr">output</span>=<span class="string">&quot;screen&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">rosparam</span> <span class="attr">command</span>=<span class="string">&quot;load&quot;</span> <span class="attr">file</span>=<span class="string">&quot;$(find rotors_gazebo)/resource/lee_controller_$(arg mav_name).yaml&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">rosparam</span> <span class="attr">command</span>=<span class="string">&quot;load&quot;</span> <span class="attr">file</span>=<span class="string">&quot;$(find rotors_gazebo)/resource/$(arg mav_name).yaml&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">remap</span> <span class="attr">from</span>=<span class="string">&quot;odometry&quot;</span> <span class="attr">to</span>=<span class="string">&quot;odometry_sensor1/odometry&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">node</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">node</span> <span class="attr">name</span>=<span class="string">&quot;robot_state_publisher&quot;</span> <span class="attr">pkg</span>=<span class="string">&quot;robot_state_publisher&quot;</span> <span class="attr">type</span>=<span class="string">&quot;robot_state_publisher&quot;</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">node</span> <span class="attr">name</span>=<span class="string">&quot;joint_state_publisher&quot;</span> <span class="attr">pkg</span>=<span class="string">&quot;joint_state_publisher&quot;</span> <span class="attr">type</span>=<span class="string">&quot;joint_state_publisher&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">node</span> <span class="attr">name</span>=<span class="string">&quot;rotors_control_node&quot;</span> <span class="attr">pkg</span>=<span class="string">&quot;rotors_control_test&quot;</span> <span class="attr">type</span>=<span class="string">&quot;rotors_control_node&quot;</span> <span class="attr">output</span>=<span class="string">&quot;screen&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">&quot;mav_name&quot;</span> <span class="attr">type</span>=<span class="string">&quot;string&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$(arg mav_name)&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">node</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;/<span class="name">group</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">launch</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="6-编译并运行"><a href="#6-编译并运行" class="headerlink" title="6 编译并运行"></a>6 编译并运行</h2><p>当前文件目录结构</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">| -- catkin_ws</span><br><span class="line">	| -- build</span><br><span class="line">	| -- devel</span><br><span class="line">	| -- src</span><br><span class="line">    	| -- rotors_control_test</span><br><span class="line">        	| -- launch</span><br><span class="line">            	| -- rotors_control_test.launch</span><br><span class="line">			| -- src</span><br><span class="line">            	| -- rotors_control_test.cpp</span><br><span class="line">			CMakeLists.txt</span><br><span class="line">		| -- mav_comm</span><br><span class="line">		| -- rotors_simulator</span><br><span class="line">        CMakeLists.txt</span><br></pre></td></tr></table></figure>
+
+<p>先切换到工作空间下，編譯，運行</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">先切换到工作空间下</span></span><br><span class="line">cd ./catkin_ws</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">编译</span></span><br><span class="line">catkin_make</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">运行</span></span><br><span class="line">source ./devel/setup.bash</span><br><span class="line">roslaunch rotors_control_test rotors_control_test.launch</span><br></pre></td></tr></table></figure>
+
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1. </p>
+]]></content>
+      <categories>
+        <category>ROS</category>
+        <category>Rotors</category>
+      </categories>
+      <tags>
+        <tag>ROS</tag>
+        <tag>Rotors</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>图灵机 &amp; LaTeX</title>
+    <url>/2022/07/23/turing-machine-latex/</url>
+    <content><![CDATA[<h1 id="图灵机-amp-LaTeX"><a href="#图灵机-amp-LaTeX" class="headerlink" title="图灵机 &amp; LaTeX"></a>图灵机 &amp; LaTeX</h1><p>使用 LaTeX 的 TikZ 库，可以绘制非常标准的教科书式的<strong>自动机</strong>：<a href="https://texample.net/tikz/examples/">TikZ and PGF examples (texample.net)</a></p>
+<h2 id="状态机（State-machine）"><a href="#状态机（State-machine）" class="headerlink" title="状态机（State machine）"></a>状态机（State machine）</h2><p>在 <strong>Features</strong> 中，找到 <strong>Automata and Petri nets</strong> ，目前示例有5个。其中的 <strong>State machine</strong> 与我们需要绘制的图灵机（Turing machine）最为接近。事实上也并没有区别，仅仅是个图而已，可以按照我们的需求随意增删。</p>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>Author: Till Tantau</p>
+<p>Source: The PGF&#x2F;TikZ manual</p>
+<p>Download as: [<a href="https://texample.net/media/tikz/examples/PDF/state-machine.pdf">PDF</a>] [<a href="https://texample.net/media/tikz/examples/TEX/state-machine.tex">TEX</a>]</p>
+<p><img src="/../images/posts/turing-machine-latex.assets/state-machine.png" alt="State machine"></p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="comment">% Author: Till Tantau</span></span><br><span class="line"><span class="comment">% Source: The PGF/TikZ manual</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\usepackage</span>&#123;pgf&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>&#123;tikz&#125;</span><br><span class="line"><span class="keyword">\usetikzlibrary</span>&#123;arrows,automata&#125;</span><br><span class="line"><span class="keyword">\usepackage</span>[latin1]&#123;inputenc&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;tikzpicture&#125;[-&gt;,&gt;=stealth&#x27;,shorten &gt;=1pt,auto,node distance=2.8cm, semithick]</span><br><span class="line">  <span class="keyword">\tikzstyle</span>&#123;every state&#125;=[fill=red,draw=none,text=white]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">\node</span>[initial,state] (A)                    &#123;<span class="built_in">$</span>q<span class="built_in">_</span>a<span class="built_in">$</span>&#125;;</span><br><span class="line">  <span class="keyword">\node</span>[state]         (B) [above right of=A] &#123;<span class="built_in">$</span>q<span class="built_in">_</span>b<span class="built_in">$</span>&#125;;</span><br><span class="line">  <span class="keyword">\node</span>[state]         (D) [below right of=A] &#123;<span class="built_in">$</span>q<span class="built_in">_</span>d<span class="built_in">$</span>&#125;;</span><br><span class="line">  <span class="keyword">\node</span>[state]         (C) [below right of=B] &#123;<span class="built_in">$</span>q<span class="built_in">_</span>c<span class="built_in">$</span>&#125;;</span><br><span class="line">  <span class="keyword">\node</span>[state]         (E) [below of=D]       &#123;<span class="built_in">$</span>q<span class="built_in">_</span>e<span class="built_in">$</span>&#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">\path</span> (A) edge              node &#123;0,1,L&#125; (B)</span><br><span class="line">            edge              node &#123;1,1,R&#125; (C)</span><br><span class="line">        (B) edge [loop above] node &#123;1,1,L&#125; (B)</span><br><span class="line">            edge              node &#123;0,1,L&#125; (C)</span><br><span class="line">        (C) edge              node &#123;0,1,L&#125; (D)</span><br><span class="line">            edge [bend left]  node &#123;1,0,R&#125; (E)</span><br><span class="line">        (D) edge [loop below] node &#123;1,1,R&#125; (D)</span><br><span class="line">            edge              node &#123;0,1,R&#125; (A)</span><br><span class="line">        (E) edge [bend left]  node &#123;1,0,R&#125; (A);</span><br><span class="line"><span class="keyword">\end</span>&#123;tikzpicture&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="代码解释"><a href="#代码解释" class="headerlink" title="代码解释"></a>代码解释</h3><figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\tikzstyle</span>&#123;every state&#125;=[fill=red,draw=none,text=white]</span><br></pre></td></tr></table></figure>
+
+<p>设置每个节点的样式，主要是填充、边框和文字的颜色。</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\node</span>[initial,state] (A)                    &#123;<span class="built_in">$</span>q<span class="built_in">_</span>a<span class="built_in">$</span>&#125;;</span><br><span class="line"><span class="keyword">\node</span>[state]         (B) [above right of=A] &#123;<span class="built_in">$</span>q<span class="built_in">_</span>b<span class="built_in">$</span>&#125;;</span><br><span class="line"><span class="keyword">\node</span>[state]         (D) [below right of=A] &#123;<span class="built_in">$</span>q<span class="built_in">_</span>d<span class="built_in">$</span>&#125;;</span><br><span class="line"><span class="keyword">\node</span>[state]         (C) [below right of=B] &#123;<span class="built_in">$</span>q<span class="built_in">_</span>c<span class="built_in">$</span>&#125;;</span><br><span class="line"><span class="keyword">\node</span>[state]         (E) [below of=D]       &#123;<span class="built_in">$</span>q<span class="built_in">_</span>e<span class="built_in">$</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>创建节点，并设置相关属性。<code>\node[initial, state]</code>中 initial 表示初始状态，state 表示状态，<code>(A)</code>表示状态在 latex 中的变量名，<code>[above right of=A]</code>表示该状态在 <code>A</code> 的右上方，<code>&#123;$q_a$&#125;</code>为显示在图上的节点的名字，<code>$q_a$</code>为latex语法，目的是让 a 作为 q 的下标。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>1. </p>
+]]></content>
+      <categories>
+        <category>Turing-machine</category>
+        <category>LaTeX</category>
+      </categories>
+      <tags>
+        <tag>Turing-machine</tag>
+        <tag>LaTeX</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>图灵机基本概念</title>
+    <url>/2022/07/25/turing-machine/</url>
+    <content><![CDATA[<h1 id="图灵机"><a href="#图灵机" class="headerlink" title="图灵机"></a>图灵机</h1><h2 id="基本图灵机"><a href="#基本图灵机" class="headerlink" title="基本图灵机"></a>基本图灵机</h2><h2 id="通用图灵机"><a href="#通用图灵机" class="headerlink" title="通用图灵机"></a>通用图灵机</h2><p>直观地，一台通用的计算机，如果不受存储空间和运行时间的限制的话，它应该可以实现所有的有效算法。实际上,在前面的论述中，我们一直是将图灵机构造成一个算法的实现装置。按照丘奇-图灵论题，图灵机应该是现代计算机的形式化模型。既然如此，应该存在一个图灵机，它可以实现对所有图灵机的模拟。也就是说，它可以实现所 有的有效算法。这就是通用图灵机(Universal Turing Machine)。本节简单地对其进行讨论。 </p>
+<p>要想使一个图灵机能够实现对所有图灵机的模拟, 我们首先需要设计一种编码系统,它在实现对图灵机的表示的同时, 可以实现对该图灵机处理的句子的表示。当我们 考察一个输入串是否可以被一个给定的图灵机接受时，就将这个给定的图灵机和相应的输入串的编码作为通用图灵机的输入，由通用图灵机去模拟给定图灵机的执行。 </p>
+<p>初始想来，由于通用图灵机需要模拟所有的图灵机，所以它的字母表可能是非常大的，甚至可能是无穷的。但是，我们首先研究的就是用有穷去表示无穷。一个最简单的 思路是用 0 和 1 对除空白符以外的其他带符号进行编码，同时也可以用 0 和 1 对图灵 机的移动函数进行编码。这样一来，通用图灵机的带符号集就是{0, 1, B}，而输入符号 集就是{0 ,1}。另外, 在任何图灵机中,我们都将终止状态设计成接受并停机的状态，所以，只需要设置一个终止状态。设</p>
+<p>$$M &#x3D; ( { q_1 , q_2 ,…, q_n } , {0 ,1} , {0 ,1 , B} , δ, q_1 , B, { q_2 } )$$</p>
+<p>为任意一个图灵机。为了叙述方便, 我们用 $$X_1，X_2，X_3$$ 分别表示 0，1，B，用 $$D_1, D_2$$ 分别 表示 R，L。那么，对于一般的一个动作</p>
+<p> $$\delta( q_i, X_j ) &#x3D; ( q_k, X_l, D_m )$$ </p>
+<p>可以用如下编码表示，</p>
+<p>$$0^i 1 0^j 1 0^k 1 0^l 1 0^m $$</p>
+<p>这样一来,我们就可以用如下字符串表示 M, </p>
+<p>$$111 code_1 11 code_2 11 … 11 code_r 111 $$</p>
+<p>其中, $$code_t$$ 就是动作$$\delta( q_i , X_j ) &#x3D; ( q_k , X_l , D_m )$$ 的形如$$ 0^i 1 0^j 1 0^k 1 0^l 1 0^m $$的编码。图灵机 M 和它的输入串 w 则可以表示成 </p>
+<p>$$111 code_1 11 code_2 11 … 11 code_r 111 w $$</p>
+<p>的形式。 </p>
+<p>下面举个例子，设图灵机$$M2 &#x3D; ( { q_1 , q_2 , q_3 , q_4 } , {0, 1} , {0, 1, B} , δ, q4 , B, { q_3 } ) $$, 其中 δ 的定义如下, </p>
+<p>$$δ( q_4 , 0) &#x3D; ( q_4 , 0, R) $$</p>
+<p>$$δ( q_4 , 1) &#x3D; ( q_1 , 1, R) $$</p>
+<p>$$δ( q_1 , 0) &#x3D; ( q_1 , 0, R) $$</p>
+<p>$$δ( q_1 , 1) &#x3D; ( q_2 , 1, R) $$</p>
+<p>$$δ( q_2 , 0) &#x3D; ( q_2 , 0, R) $$</p>
+<p>$$δ( q_2 , 1) &#x3D; ( q_3 , 1, R) $$</p>
+<p>该图灵机的编码为 </p>
+<p>1110000101000010101100001001010010110101010101101001001001011001010010 101100100100010010111 </p>
+<p>如果要用通用图灵机检查 M 是否接受字符串 001101110, 则将以下字符串输入到 通用图灵机中, 1110000101000010101100001001010010110101010101101001001001011001010010 101100100100010010111001101110 </p>
+<p>在这里,读者可能会考虑 001101110 中的子串 11 和子串 111 与通用图灵机编码中 的相应分割符混淆。实际上这个问题是不会出现的。 有了这个编码系统之后,我们可以用 0, 1 符号行表示所有的输入符号行和图灵机。 对这些符号行,我们可以按照 以下规范顺序分别对表示图灵机的符号行和表示输入的符号行进行排序。</p>
+<ol>
+<li><p>多头图灵机（multi-head Turing machine）</p>
+</li>
+<li><p>离线图灵机（off-line Turing machine）</p>
+</li>
+<li><p>作为枚举器的图灵机（Turing machine as enumerator）</p>
+</li>
+<li><p>多栈机（multi-stack machine）</p>
+</li>
+<li><p>计数机（counter machine）</p>
+</li>
+<li><p>丘奇-图灵论题与随机存取机（Random access machine）</p>
+</li>
+</ol>
+<p>用 i 表示第 i 个图灵机, 用 j 表示第 j 个输入串, 我们用 一个无穷的二维阵列表示图灵机和输入串之间的关系。其中 i 按照行展开, j 按照列展 开。如果第 i 个图灵机接受第 j 个输入串, 阵列中第 i 行第 j 列的元素的值为 1; 否则 为 0。根据上述定义的阵列,我们构造这样一个语言, </p>
+<p>$$L_d &#x3D; { w | w 是第 j 个句子,并且第 j 个图灵机不接受它} $$</p>
+<p>容易证明, 不存在图灵机, 它接受的语言为$$ L_d $$。这就是说, 该语言不是递归可枚举语 言。这也表明,存在非递归可枚举语言。 </p>
+<p>另外,根据这里给出的编码系统, 我们定义如下语言, </p>
+<p>$$L_u &#x3D; { &lt; M, w &gt; | M 接受 w} $$</p>
+<p>其中$$ &lt; M, w &gt; $$为形如 </p>
+<p>$$111 code_1 11 code_2 11… 11 code_r 111 w $$</p>
+<p>的 0, 1 串,表示图灵机$$ M &#x3D; ( { q_1 , q_2 , …, q_n } , {0 ,1} , {0, 1, B} , δ, q_1 , B , { q_2 } ) $$和它的 输入串 w。我们称 Lu为通用语言( universal language )。可以证明 Lu是递归可枚举的, 但不是递归的。通用图灵机就是接受通用语言的图灵机。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li>《形式语言与自动机理论》蒋宗礼等著，第九章；</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Truing-machine</category>
+      </categories>
+      <tags>
+        <tag>Truing-machine</tag>
+      </tags>
+  </entry>
 </search>

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"merlotliu.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="图灵机基本图灵机通用图灵机直观地，一台通用的计算机，如果不受存储空间和运行时间的限制的话，它应该可以实现所有的有效算法。实际上,在前面的论述中，我们一直是将图灵机构造成一个算法的实现装置。按照丘奇-图灵论题，图灵机应该是现代计算机的形式化模型。既然如此，应该存在一个图灵机，它可以实现对所有图灵机的模拟。也就是说，它可以实现所 有的有效算法。这就是通用图灵机(Universal Turing Mac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图灵机基本概念">
+<meta property="og:url" content="https://merlotliu.github.io/2022/07/25/turing-machine/index.html">
+<meta property="og:site_name" content="吟游">
+<meta property="og:description" content="图灵机基本图灵机通用图灵机直观地，一台通用的计算机，如果不受存储空间和运行时间的限制的话，它应该可以实现所有的有效算法。实际上,在前面的论述中，我们一直是将图灵机构造成一个算法的实现装置。按照丘奇-图灵论题，图灵机应该是现代计算机的形式化模型。既然如此，应该存在一个图灵机，它可以实现对所有图灵机的模拟。也就是说，它可以实现所 有的有效算法。这就是通用图灵机(Universal Turing Mac">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-25T03:44:36.000Z">
+<meta property="article:modified_time" content="2022-07-25T03:44:36.000Z">
+<meta property="article:author" content="晚灯">
+<meta property="article:tag" content="Truing-machine">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://merlotliu.github.io/2022/07/25/turing-machine/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://merlotliu.github.io/2022/07/25/turing-machine/","path":"2022/07/25/turing-machine/","title":"图灵机基本概念"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>图灵机基本概念 | 吟游</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">吟游</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">喜欢孤独，不是野兽便是神灵。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tv"><a href="/watching/" rel="section"><i class="fa fa-film fa-fw"></i>TV</a></li><li class="menu-item menu-item-札记"><a href="/essay/" rel="section"><i class="fa fa-sticky-note fa-fw"></i>札记</a></li><li class="menu-item menu-item-留言"><a href="/msg/" rel="section"><i class="fa fa-comment fa-fw"></i>留言</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9B%BE%E7%81%B5%E6%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">图灵机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%9B%BE%E7%81%B5%E6%9C%BA"><span class="nav-number">1.1.</span> <span class="nav-text">基本图灵机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E7%94%A8%E5%9B%BE%E7%81%B5%E6%9C%BA"><span class="nav-number">1.2.</span> <span class="nav-text">通用图灵机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.3.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="晚灯"
+      src="/images/avatar/avatar-2.jpg">
+  <p class="site-author-name" itemprop="name">晚灯</p>
+  <div class="site-description" itemprop="description">认真且浪漫</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/merlotliu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;merlotliu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:merlotliu@mail.nwpu.edu.com" title="E-Mail → mailto:merlotliu@mail.nwpu.edu.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://wiki.ros.org/" title="http:&#x2F;&#x2F;wiki.ros.org" rel="noopener" target="_blank">ROS Wiki</a>
+        </li>
+    </ul>
+  </div>
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/25/turing-machine/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
+      <meta itemprop="name" content="晚灯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吟游">
+      <meta itemprop="description" content="认真且浪漫">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="图灵机基本概念 | 吟游">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          图灵机基本概念
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-25 11:44:36" itemprop="dateCreated datePublished" datetime="2022-07-25T11:44:36+08:00">2022-07-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Truing-machine/" itemprop="url" rel="index"><span itemprop="name">Truing-machine</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="图灵机"><a href="#图灵机" class="headerlink" title="图灵机"></a>图灵机</h1><h2 id="基本图灵机"><a href="#基本图灵机" class="headerlink" title="基本图灵机"></a>基本图灵机</h2><h2 id="通用图灵机"><a href="#通用图灵机" class="headerlink" title="通用图灵机"></a>通用图灵机</h2><p>直观地，一台通用的计算机，如果不受存储空间和运行时间的限制的话，它应该可以实现所有的有效算法。实际上,在前面的论述中，我们一直是将图灵机构造成一个算法的实现装置。按照丘奇-图灵论题，图灵机应该是现代计算机的形式化模型。既然如此，应该存在一个图灵机，它可以实现对所有图灵机的模拟。也就是说，它可以实现所 有的有效算法。这就是通用图灵机(Universal Turing Machine)。本节简单地对其进行讨论。 </p>
+<p>要想使一个图灵机能够实现对所有图灵机的模拟, 我们首先需要设计一种编码系统,它在实现对图灵机的表示的同时, 可以实现对该图灵机处理的句子的表示。当我们 考察一个输入串是否可以被一个给定的图灵机接受时，就将这个给定的图灵机和相应的输入串的编码作为通用图灵机的输入，由通用图灵机去模拟给定图灵机的执行。 </p>
+<p>初始想来，由于通用图灵机需要模拟所有的图灵机，所以它的字母表可能是非常大的，甚至可能是无穷的。但是，我们首先研究的就是用有穷去表示无穷。一个最简单的 思路是用 0 和 1 对除空白符以外的其他带符号进行编码，同时也可以用 0 和 1 对图灵 机的移动函数进行编码。这样一来，通用图灵机的带符号集就是{0, 1, B}，而输入符号 集就是{0 ,1}。另外, 在任何图灵机中,我们都将终止状态设计成接受并停机的状态，所以，只需要设置一个终止状态。设</p>
+<p>$$M &#x3D; ( { q_1 , q_2 ,…, q_n } , {0 ,1} , {0 ,1 , B} , δ, q_1 , B, { q_2 } )$$</p>
+<p>为任意一个图灵机。为了叙述方便, 我们用 $$X_1，X_2，X_3$$ 分别表示 0，1，B，用 $$D_1, D_2$$ 分别 表示 R，L。那么，对于一般的一个动作</p>
+<p> $$\delta( q_i, X_j ) &#x3D; ( q_k, X_l, D_m )$$ </p>
+<p>可以用如下编码表示，</p>
+<p>$$0^i 1 0^j 1 0^k 1 0^l 1 0^m $$</p>
+<p>这样一来,我们就可以用如下字符串表示 M, </p>
+<p>$$111 code_1 11 code_2 11 … 11 code_r 111 $$</p>
+<p>其中, $$code_t$$ 就是动作$$\delta( q_i , X_j ) &#x3D; ( q_k , X_l , D_m )$$ 的形如$$ 0^i 1 0^j 1 0^k 1 0^l 1 0^m $$的编码。图灵机 M 和它的输入串 w 则可以表示成 </p>
+<p>$$111 code_1 11 code_2 11 … 11 code_r 111 w $$</p>
+<p>的形式。 </p>
+<p>下面举个例子，设图灵机$$M2 &#x3D; ( { q_1 , q_2 , q_3 , q_4 } , {0, 1} , {0, 1, B} , δ, q4 , B, { q_3 } ) $$, 其中 δ 的定义如下, </p>
+<p>$$δ( q_4 , 0) &#x3D; ( q_4 , 0, R) $$</p>
+<p>$$δ( q_4 , 1) &#x3D; ( q_1 , 1, R) $$</p>
+<p>$$δ( q_1 , 0) &#x3D; ( q_1 , 0, R) $$</p>
+<p>$$δ( q_1 , 1) &#x3D; ( q_2 , 1, R) $$</p>
+<p>$$δ( q_2 , 0) &#x3D; ( q_2 , 0, R) $$</p>
+<p>$$δ( q_2 , 1) &#x3D; ( q_3 , 1, R) $$</p>
+<p>该图灵机的编码为 </p>
+<p>1110000101000010101100001001010010110101010101101001001001011001010010 101100100100010010111 </p>
+<p>如果要用通用图灵机检查 M 是否接受字符串 001101110, 则将以下字符串输入到 通用图灵机中, 1110000101000010101100001001010010110101010101101001001001011001010010 101100100100010010111001101110 </p>
+<p>在这里,读者可能会考虑 001101110 中的子串 11 和子串 111 与通用图灵机编码中 的相应分割符混淆。实际上这个问题是不会出现的。 有了这个编码系统之后,我们可以用 0, 1 符号行表示所有的输入符号行和图灵机。 对这些符号行,我们可以按照 以下规范顺序分别对表示图灵机的符号行和表示输入的符号行进行排序。</p>
+<ol>
+<li><p>多头图灵机（multi-head Turing machine）</p>
+</li>
+<li><p>离线图灵机（off-line Turing machine）</p>
+</li>
+<li><p>作为枚举器的图灵机（Turing machine as enumerator）</p>
+</li>
+<li><p>多栈机（multi-stack machine）</p>
+</li>
+<li><p>计数机（counter machine）</p>
+</li>
+<li><p>丘奇-图灵论题与随机存取机（Random access machine）</p>
+</li>
+</ol>
+<p>用 i 表示第 i 个图灵机, 用 j 表示第 j 个输入串, 我们用 一个无穷的二维阵列表示图灵机和输入串之间的关系。其中 i 按照行展开, j 按照列展 开。如果第 i 个图灵机接受第 j 个输入串, 阵列中第 i 行第 j 列的元素的值为 1; 否则 为 0。根据上述定义的阵列,我们构造这样一个语言, </p>
+<p>$$L_d &#x3D; { w | w 是第 j 个句子,并且第 j 个图灵机不接受它} $$</p>
+<p>容易证明, 不存在图灵机, 它接受的语言为$$ L_d $$。这就是说, 该语言不是递归可枚举语 言。这也表明,存在非递归可枚举语言。 </p>
+<p>另外,根据这里给出的编码系统, 我们定义如下语言, </p>
+<p>$$L_u &#x3D; { &lt; M, w &gt; | M 接受 w} $$</p>
+<p>其中$$ &lt; M, w &gt; $$为形如 </p>
+<p>$$111 code_1 11 code_2 11… 11 code_r 111 w $$</p>
+<p>的 0, 1 串,表示图灵机$$ M &#x3D; ( { q_1 , q_2 , …, q_n } , {0 ,1} , {0, 1, B} , δ, q_1 , B , { q_2 } ) $$和它的 输入串 w。我们称 Lu为通用语言( universal language )。可以证明 Lu是递归可枚举的, 但不是递归的。通用图灵机就是接受通用语言的图灵机。</p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li>《形式语言与自动机理论》蒋宗礼等著，第九章；</li>
+</ol>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer"><div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------------- 触即底线<i class="fa fa-paw"></i>阅读结束 --------------------</div>
+    
+</div>
+          <div class="post-tags">
+              <a href="/tags/Truing-machine/" rel="tag"># Truing-machine</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/24/latex/" rel="prev" title="LaTeX 学习笔记">
+                  <i class="fa fa-chevron-left"></i> LaTeX 学习笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/07/25/markdown/" rel="next" title="markdown">
+                  markdown <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">晚灯</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">113k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:42</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"merlotliu","repo":"merlotliu.github.io","client_id":"8083b542e918a9c44ae9","client_secret":"470f3355d931b6df64d44703d5f906d414077e44","admin_user":"merlotliu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"c1af5494b743ff08ac64f4b7479a3ecc"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"merlotliu.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="RotorS with virtual joystick使用键盘控制无人机使用mav_with_keyboard.launch可以打开gazebo以及相关的控制界面，但需要做一些基础配置。 1roslaunch rotors_gazebo mav_with_keyboard.launch mav_name:&#x3D;firefly world_name:&#x3D;basic  设置虚拟键盘控制器">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RotorS with virtual joystick">
+<meta property="og:url" content="https://merlotliu.github.io/2022/07/25/rotors-simulator-keyboard-usage/index.html">
+<meta property="og:site_name" content="吟游">
+<meta property="og:description" content="RotorS with virtual joystick使用键盘控制无人机使用mav_with_keyboard.launch可以打开gazebo以及相关的控制界面，但需要做一些基础配置。 1roslaunch rotors_gazebo mav_with_keyboard.launch mav_name:&#x3D;firefly world_name:&#x3D;basic  设置虚拟键盘控制器">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://merlotliu.github.io/images/posts/rotors-simulator-keyboard-usage.assets/erro2.png">
+<meta property="article:published_time" content="2022-07-25T08:26:42.000Z">
+<meta property="article:modified_time" content="2022-07-25T08:26:42.000Z">
+<meta property="article:author" content="晚灯">
+<meta property="article:tag" content="ROS">
+<meta property="article:tag" content="Rotors">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://merlotliu.github.io/images/posts/rotors-simulator-keyboard-usage.assets/erro2.png">
+
+
+<link rel="canonical" href="https://merlotliu.github.io/2022/07/25/rotors-simulator-keyboard-usage/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://merlotliu.github.io/2022/07/25/rotors-simulator-keyboard-usage/","path":"2022/07/25/rotors-simulator-keyboard-usage/","title":"RotorS with virtual joystick"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>RotorS with virtual joystick | 吟游</title>
+  
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">吟游</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">喜欢孤独，不是野兽便是神灵。</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-tv"><a href="/watching/" rel="section"><i class="fa fa-film fa-fw"></i>TV</a></li><li class="menu-item menu-item-札记"><a href="/essay/" rel="section"><i class="fa fa-sticky-note fa-fw"></i>札记</a></li><li class="menu-item menu-item-留言"><a href="/msg/" rel="section"><i class="fa fa-comment fa-fw"></i>留言</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RotorS-with-virtual-joystick"><span class="nav-number">1.</span> <span class="nav-text">RotorS with virtual joystick</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E9%94%AE%E7%9B%98%E6%8E%A7%E5%88%B6%E6%97%A0%E4%BA%BA%E6%9C%BA"><span class="nav-number">1.1.</span> <span class="nav-text">使用键盘控制无人机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E8%99%9A%E6%8B%9F%E9%94%AE%E7%9B%98%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">1.2.</span> <span class="nav-text">设置虚拟键盘控制器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-Python-uniput"><span class="nav-number">1.2.1.</span> <span class="nav-text">安装 Python-uniput</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E8%AE%BE%E5%A4%87%E6%9D%83%E9%99%90"><span class="nav-number">1.2.2.</span> <span class="nav-text">配置设备权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Python-pygame"><span class="nav-number">1.2.3.</span> <span class="nav-text">安装Python-pygame</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E8%99%9A%E6%8B%9F%E9%94%AE%E7%9B%98%E6%8E%A7%E5%88%B6%E5%99%A8"><span class="nav-number">1.2.4.</span> <span class="nav-text">测试虚拟键盘控制器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85ROS%E6%8E%A7%E5%88%B6%E6%9D%86%E4%BE%9D%E8%B5%96%E5%8C%85"><span class="nav-number">1.2.5.</span> <span class="nav-text">安装ROS控制杆依赖包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%99%9A%E6%8B%9F%E6%8E%A7%E5%88%B6%E6%9D%86%E8%BF%90%E8%A1%8CRotorS"><span class="nav-number">1.2.6.</span> <span class="nav-text">使用虚拟控制杆运行RotorS</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%94%AE%E7%9B%98%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.</span> <span class="nav-text">相关键盘操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.</span> <span class="nav-text">相关问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-1-Unable-to-find-uri-model-x2F-x2F-xxx"><span class="nav-number">1.4.1.</span> <span class="nav-text">Error 1 : Unable to find uri [model:&#x2F;&#x2F;xxx]</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">错误描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-2-gazebo%E9%97%AA%E9%80%80"><span class="nav-number">1.4.2.</span> <span class="nav-text">Error 2 : gazebo闪退</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E6%8F%8F%E8%BF%B0-1"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">错误描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88-1"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%B3%951"><span class="nav-number">1.4.2.2.1.</span> <span class="nav-text">方法1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%B3%952"><span class="nav-number">1.4.2.2.2.</span> <span class="nav-text">方法2</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%96%B9%E6%B3%953"><span class="nav-number">1.4.2.2.3.</span> <span class="nav-text">方法3</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">1.5.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="晚灯"
+      src="/images/avatar/avatar-2.jpg">
+  <p class="site-author-name" itemprop="name">晚灯</p>
+  <div class="site-description" itemprop="description">认真且浪漫</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">40</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/merlotliu" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;merlotliu" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:merlotliu@mail.nwpu.edu.com" title="E-Mail → mailto:merlotliu@mail.nwpu.edu.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://wiki.ros.org/" title="http:&#x2F;&#x2F;wiki.ros.org" rel="noopener" target="_blank">ROS Wiki</a>
+        </li>
+    </ul>
+  </div>
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/25/rotors-simulator-keyboard-usage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
+      <meta itemprop="name" content="晚灯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吟游">
+      <meta itemprop="description" content="认真且浪漫">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="RotorS with virtual joystick | 吟游">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          RotorS with virtual joystick
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-25 16:26:42" itemprop="dateCreated datePublished" datetime="2022-07-25T16:26:42+08:00">2022-07-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ROS/" itemprop="url" rel="index"><span itemprop="name">ROS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ROS/Rotors/" itemprop="url" rel="index"><span itemprop="name">Rotors</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="RotorS-with-virtual-joystick"><a href="#RotorS-with-virtual-joystick" class="headerlink" title="RotorS with virtual joystick"></a>RotorS with virtual joystick</h1><h2 id="使用键盘控制无人机"><a href="#使用键盘控制无人机" class="headerlink" title="使用键盘控制无人机"></a>使用键盘控制无人机</h2><p>使用<code>mav_with_keyboard.launch</code>可以打开<code>gazebo</code>以及相关的控制界面，但需要做一些基础配置。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roslaunch rotors_gazebo mav_with_keyboard.launch mav_name:=firefly world_name:=basic</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置虚拟键盘控制器"><a href="#设置虚拟键盘控制器" class="headerlink" title="设置虚拟键盘控制器"></a>设置虚拟键盘控制器</h2><p>配置原文 : <a target="_blank" rel="noopener" href="https://github.com/ethz-asl/rotors_simulator/wiki/Setup-virtual-keyboard-joystick">Setup virtual keyboard joystick · ethz-asl&#x2F;rotors_simulator Wiki (github.com)</a></p>
+<p>为了创建虚拟键盘控制器，需要用到<code>Python-uniput</code>(<a target="_blank" rel="noopener" href="https://github.com/devbharat/python-uinput">https://github.com/devbharat/python-uinput</a>)</p>
+<h3 id="安装-Python-uniput"><a href="#安装-Python-uniput" class="headerlink" title="安装 Python-uniput"></a>安装 Python-uniput</h3><blockquote>
+<p>源仓库仅需要暂时复制一份以供安装使用</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:devbharat/python-uinput.git</span><br><span class="line">cd python-uinput</span><br><span class="line">python setup.py build</span><br><span class="line">sudo python setup.py install</span><br></pre></td></tr></table></figure>
+
+<p>需要加载内核的<code>uinput</code>模块，才能使用<code>Python-uniput</code>。使用以下命令加载：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">modprobe -i uinput</span><br></pre></td></tr></table></figure>
+
+<p><code>uinput</code>是一个内核模块，可以从用户空间模拟输入设备。通过写入 <code>/dev/uinput</code>（<code>/dev/input/uinput</code>）设备，进程可以创建具有特定功能的虚拟输入设备。一旦创建了这个虚拟设备，进程就可以通过它发送事件，这些事件将被传递给用户空间和内核中的使用者。</p>
+<h3 id="配置设备权限"><a href="#配置设备权限" class="headerlink" title="配置设备权限"></a>配置设备权限</h3><p>我们需要程序能够访问<code>uniput</code>设备，执行以下操作并重启：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd udev-rules</span><br><span class="line">sudo cp 40-uinput.rules /etc/udev/rules.d</span><br></pre></td></tr></table></figure>
+
+<p>如果没有生效，则需要将用户添加到<code>uniput</code>的组中，同时重启：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo addgroup uniput</span><br><span class="line">sudo adduser $USER uniput</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装Python-pygame"><a href="#安装Python-pygame" class="headerlink" title="安装Python-pygame"></a>安装Python-pygame</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">python2</span></span><br><span class="line">sudo python -m pip install -U pygame</span><br></pre></td></tr></table></figure>
+
+<h3 id="测试虚拟键盘控制器"><a href="#测试虚拟键盘控制器" class="headerlink" title="测试虚拟键盘控制器"></a>测试虚拟键盘控制器</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">先切换到工作空间下</span></span><br><span class="line">source ./devel/setup.bash</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动控制器</span></span><br><span class="line">rosrun rotors_joy_interface key_joystick.py</span><br></pre></td></tr></table></figure>
+
+<p>如果能正常弹出虚拟键盘控制器的GUI，即说明一切正常。</p>
+<h3 id="安装ROS控制杆依赖包"><a href="#安装ROS控制杆依赖包" class="headerlink" title="安装ROS控制杆依赖包"></a>安装ROS控制杆依赖包</h3><p>根据ROS配置，可能需要安装控制杆的依赖包：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install ros-kinetic-joy</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用虚拟控制杆运行RotorS"><a href="#使用虚拟控制杆运行RotorS" class="headerlink" title="使用虚拟控制杆运行RotorS"></a>使用虚拟控制杆运行RotorS</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roslaunch rotors_gazebo mav_with_keyboard.launch</span><br></pre></td></tr></table></figure>
+
+<h2 id="相关键盘操作"><a href="#相关键盘操作" class="headerlink" title="相关键盘操作"></a>相关键盘操作</h2><p>w - throttle up                       ↑   - pitch up</p>
+<p>s - throttle down                   ↓   - pitch down</p>
+<p>a - yaw left                             →  - roll right</p>
+<p>d - yaw right                          ←  - roll left  </p>
+<h2 id="相关问题"><a href="#相关问题" class="headerlink" title="相关问题"></a>相关问题</h2><h3 id="Error-1-Unable-to-find-uri-model-x2F-x2F-xxx"><a href="#Error-1-Unable-to-find-uri-model-x2F-x2F-xxx" class="headerlink" title="Error 1 : Unable to find uri [model:&#x2F;&#x2F;xxx]"></a>Error 1 : Unable to find uri [model:&#x2F;&#x2F;xxx]</h3><h4 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Error [parser.cc:581] Unable to find uri[model://sun]</span><br><span class="line">Error [parser.cc:581] Unable to find uri[model://ground_plane]</span><br></pre></td></tr></table></figure>
+
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p><code>Gazebo</code> 需要互联网连接才能下载模型文件（例如默认世界的太阳和地平面）。如果您在第一次运行 <code>Gazebo</code> 时没有访问 Internet，则会出现此错误。还可以从<a href="gazebosim.org/models">gazebosim.org&#x2F;models</a> 手动下载模型文件并将它们放在您的<code>~/.gazebo/models文件</code>夹中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 解压缩</span><br><span class="line">tar -xzvf models.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h3 id="Error-2-gazebo闪退"><a href="#Error-2-gazebo闪退" class="headerlink" title="Error 2 : gazebo闪退"></a>Error 2 : gazebo闪退</h3><h4 id="错误描述-1"><a href="#错误描述-1" class="headerlink" title="错误描述"></a>错误描述</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[gazebo_gui-3]process has died</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../images/posts/rotors-simulator-keyboard-usage.assets/erro2.png" alt="erro2"></p>
+<h4 id="解决方案-1"><a href="#解决方案-1" class="headerlink" title="解决方案"></a>解决方案</h4><h5 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h5><p>使用以下命令关闭硬件加速</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot; export SVGA_VGPU10=0&quot; &gt;&gt; ~/.bashrc</span><br><span class="line">source ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<h5 id="方法2"><a href="#方法2" class="headerlink" title="方法2"></a>方法2</h5><p>关闭虚拟机的3D图形加速</p>
+<h5 id="方法3"><a href="#方法3" class="headerlink" title="方法3"></a>方法3</h5><p>更新<code>gazebo</code></p>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/KongDaQing1290/article/details/79743026#:~:text=%E9%94%AE%E7%9B%98%E6%8E%A7%E5%88%B6%E6%97%A0%E4%BA%BA%E6%9C%BA%E9%A3%9E%E8%A1%8C">(71条消息) ROS 无人机仿真系统4 —— 通过键盘控制飞行器飞行_KongDaQing1290的博客-CSDN博客_ros无人机</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/ethz-asl/rotors_simulator/wiki/Setup-virtual-keyboard-joystick">Setup virtual keyboard joystick · ethz-asl&#x2F;rotors_simulator Wiki (github.com)</a></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer"><div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------------- 触即底线<i class="fa fa-paw"></i>阅读结束 --------------------</div>
+    
+</div>
+          <div class="post-tags">
+              <a href="/tags/ROS/" rel="tag"># ROS</a>
+              <a href="/tags/Rotors/" rel="tag"># Rotors</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/07/25/rotors-simulator-installation/" rel="prev" title="rotors_simulator（无人机ROS仿真包）">
+                  <i class="fa fa-chevron-left"></i> rotors_simulator（无人机ROS仿真包）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/07/25/gazebo-issues/" rel="next" title="Gazebo疑难杂症">
+                  Gazebo疑难杂症 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2021 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">晚灯</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">113k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">4:42</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"merlotliu","repo":"merlotliu.github.io","client_id":"8083b542e918a9c44ae9","client_secret":"470f3355d931b6df64d44703d5f906d414077e44","admin_user":"merlotliu","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-CN","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.7.2/gitalk.min.js","integrity":"sha256-Pmj85ojLaPOWwRtlMJwmezB/Qg8BzvJp5eTzvXaYAfA="},"path_md5":"a7aae38b4b5583220cf57826a49217b2"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

@@ -156,18 +156,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-count">28</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">29</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -224,7 +224,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/18/ros-parameter-server/">
+    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/25/rotors-simulator-usage/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
@@ -242,7 +242,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/18/ros-parameter-server/" class="post-title-link" itemprop="url">ROS 参数服务器</a>
+          <a href="/2022/07/25/rotors-simulator-usage/" class="post-title-link" itemprop="url">rotors-simulator-usage</a>
         </h2>
 
         <div class="post-meta-container">
@@ -253,7 +253,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-07-18 14:31:54" itemprop="dateCreated datePublished" datetime="2022-07-18T14:31:54+08:00">2022-07-18</time>
+      <time title="创建时间：2022-07-25 17:09:11" itemprop="dateCreated datePublished" datetime="2022-07-25T17:09:11+08:00">2022-07-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -265,693 +265,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ROS/beginner-tutorials/" itemprop="url" rel="index"><span itemprop="name">beginner-tutorials</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ROS/ParameterServer/" itemprop="url" rel="index"><span itemprop="name">ParameterServer</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>4.7k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>12 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="ROS-参数服务器"><a href="#ROS-参数服务器" class="headerlink" title="ROS 参数服务器"></a>ROS 参数服务器</h1><p>ROS 参数服务器可以存储字符串、整数、浮点数、布尔值、列表、字典、iso8601 日期和 base64 编码的数据。字典必须有字符串键。</p>
-<p>roscpp 的参数 API 支持以上所有数据类型，并在字符串、整数、浮点数和布尔值的操作方面非常方便。使用 <a target="_blank" rel="noopener" href="http://docs.ros.org/api/xmlrpcpp/html/classXmlRpc_1_1XmlRpcValue.html">XmlRpc::XmlRpcValue class</a> 完成对其他选项的支持。</p>
-<p><code>roscpp</code> 提供了两套不同的参数 API：存在于 <code>ros::param</code> 命名空间中的“bare”版本，以及通过 <code>ros::NodeΗandle</code> 接口调用的“handle”版本。<br>下面将针对每个操作说明这两个版本。</p>
-<h2 id="获取参数"><a href="#获取参数" class="headerlink" title="获取参数"></a>获取参数</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/18/ros-parameter-server/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/18/ros-writing-service-client-cpp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
-      <meta itemprop="name" content="晚灯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吟游">
-      <meta itemprop="description" content="认真且浪漫">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 吟游">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/18/ros-writing-service-client-cpp/" class="post-title-link" itemprop="url">ROS Service 通信简单示例</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-18 13:49:27" itemprop="dateCreated datePublished" datetime="2022-07-18T13:49:27+08:00">2022-07-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ROS/" itemprop="url" rel="index"><span itemprop="name">ROS</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ROS/beginner-tutorials/" itemprop="url" rel="index"><span itemprop="name">beginner-tutorials</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ROS/Service/" itemprop="url" rel="index"><span itemprop="name">Service</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>5.7k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>14 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="ROS-Service-通信简单示例"><a href="#ROS-Service-通信简单示例" class="headerlink" title="ROS Service 通信简单示例"></a>ROS Service 通信简单示例</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>在无人机任务执行的过程中，可能会遇到不可识别的单位，需要将采集到的数据，传输给数据处理节点，并获取有关信息。</p>
-<p>在此，我们将实现client提交两个整数，server负责计算并返回给client。</p>
-<h3 id="服务端-Service-Node"><a href="#服务端-Service-Node" class="headerlink" title="服务端 Service Node"></a>服务端 Service Node</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/18/ros-writing-service-client-cpp/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/18/ros-establishing-service-connection/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
-      <meta itemprop="name" content="晚灯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吟游">
-      <meta itemprop="description" content="认真且浪漫">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 吟游">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/18/ros-establishing-service-connection/" class="post-title-link" itemprop="url">ROS Service 理论模型</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-18 11:37:52" itemprop="dateCreated datePublished" datetime="2022-07-18T11:37:52+08:00">2022-07-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ROS/" itemprop="url" rel="index"><span itemprop="name">ROS</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ROS/beginner-tutorials/" itemprop="url" rel="index"><span itemprop="name">beginner-tutorials</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ROS/Service/" itemprop="url" rel="index"><span itemprop="name">Service</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>6 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="ROS-Service-理论模型"><a href="#ROS-Service-理论模型" class="headerlink" title="ROS Service 理论模型"></a>ROS Service 理论模型</h1><h2 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h2><p>基于请求响应的服务通信，被视为是话题通信的简化版本。值得注意的是，话题可以有多个发布者，而提供服务的只能有一个，且以最近注册该服务的server为准。服务的client可以有多个，且不一定是 ROS 节点。服务通信要求，在client提交请求后，server能够在有限时间内实时的回复。大体实现流程如下：</p>
-<ol>
-<li>server和 client 分别在 Master 注册，提交服务名称、自身的URI；（XMLRPC）</li>
-<li>client 查看 Master 中对应的服务，并获取对应的 TCP 地址；（XMLRPC）</li>
-<li>client 向 server发起 TCP&#x2F;IP 连接；（TCPROS）</li>
-<li>client 填写 request，向server调用服务；（TCPROS）</li>
-<li>server 收到 request，处理信息，填写 response ，返回给 client，调用完成；（TCPROS）</li>
-</ol>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/18/ros-establishing-service-connection/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/18/ros-esablishing-topic-connection/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
-      <meta itemprop="name" content="晚灯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吟游">
-      <meta itemprop="description" content="认真且浪漫">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 吟游">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/18/ros-esablishing-topic-connection/" class="post-title-link" itemprop="url">ROS Topic 理论模型</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-18 11:10:28" itemprop="dateCreated datePublished" datetime="2022-07-18T11:10:28+08:00">2022-07-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ROS/" itemprop="url" rel="index"><span itemprop="name">ROS</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ROS/beginner-tutorials/" itemprop="url" rel="index"><span itemprop="name">beginner-tutorials</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ROS/Topic/" itemprop="url" rel="index"><span itemprop="name">Topic</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>4.1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>10 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="ROS-Topic-理论模型"><a href="#ROS-Topic-理论模型" class="headerlink" title="ROS Topic 理论模型"></a>ROS Topic 理论模型</h1><h2 id="实现流程"><a href="#实现流程" class="headerlink" title="实现流程"></a>实现流程</h2><ol>
-<li>publisher 向 Master 注册，并提供 话题名称、消息类型和节点URI（RPC 地址）。Master会维护一个 publisher table。（XMLRPC）</li>
-<li>subscriber 向 Master 注册，并提供 话题名称、消息类型和节点URI（RPC 地址）。Master会维护一个 subscriber table。Master返回给 subscriber 一个 publisher URIs list，并会在新的 publihser到来时更新。（XMLRPC）</li>
-<li>subscriber 根据 publisher URIs list ，向订阅话题的 publisher 发起 Topic 连接 请求，并协商一个传输协议（TCPROS…）。（XMLRPC）</li>
-<li>publishers 将选定的传输协议发送给 subscriber。（XMLRPC）</li>
-<li>subscriber 使用 publishers 选定的协议建立连接。（TCPROS, etc …）</li>
-<li>publishers 使用选定的协议发送话题数据。（TCPROS, etc …）</li>
-</ol>
-<p><strong>Notes</strong>：</p>
-<ol>
-<li>publisher 和 subscriber 的注册并无严格的先后顺序；</li>
-<li>同一话题的 publisher 和 subscriber 都可以有多个；</li>
-<li>匿名通信，publisher 并不关心谁订阅消息也不会知道，subscriber 不关心谁发布消息。前者仅向对应话题发布消息，后者向对应话题读取而已；</li>
-<li>连接建立完成后，数据流并不通过 Master 节点，即 Master 的关闭不会影响通信；</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/18/ros-esablishing-topic-connection/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/17/hexo-next-404/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
-      <meta itemprop="name" content="晚灯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吟游">
-      <meta itemprop="description" content="认真且浪漫">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 吟游">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/17/hexo-next-404/" class="post-title-link" itemprop="url">Hexo & NexT 添加404页面</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-17 00:20:09" itemprop="dateCreated datePublished" datetime="2022-07-17T00:20:09+08:00">2022-07-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Hexo/theme/" itemprop="url" rel="index"><span itemprop="name">theme</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Hexo/theme/NexT/" itemprop="url" rel="index"><span itemprop="name">NexT</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>663</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="自定义-404-页面"><a href="#自定义-404-页面" class="headerlink" title="自定义 404 页面"></a>自定义 404 页面</h3><p>在终端中，切换到站点根目录的文件夹。创建一个名为 的新文件夹，然后在其中创建一个新页面：<code>source``404</code></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">cd</span> hexo-site</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">hexo new page 404</span></span><br></pre></td></tr></table></figure>
-
-<p>确保在 Hexo 配置文件中禁用：<code>relative_link</code></p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">Hexo</span> <span class="string">配置文件</span></span><br><span class="line"><span class="attr">relative_link:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/17/hexo-next-404/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/17/hexo-next-schedule/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
-      <meta itemprop="name" content="晚灯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吟游">
-      <meta itemprop="description" content="认真且浪漫">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 吟游">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/17/hexo-next-schedule/" class="post-title-link" itemprop="url">Hexo & NexT Schedule与Google日历关联</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-17 00:09:25" itemprop="dateCreated datePublished" datetime="2022-07-17T00:09:25+08:00">2022-07-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Hexo/theme/" itemprop="url" rel="index"><span itemprop="name">theme</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Hexo/theme/NexT/" itemprop="url" rel="index"><span itemprop="name">NexT</span></a>
-        </span>
-    </span>
-
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>926</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="添加Google日历"><a href="#添加Google日历" class="headerlink" title="添加Google日历"></a>添加Google日历</h2><p>与菜单栏<code>Schedule</code>相对应的功能，即与Google日历相关联：</p>
-<p>请注意，您需要首先确保添加设置为公共的日历。如果您不确定，请<a target="_blank" rel="noopener" href="https://docs.simplecalendar.io/make-google-calendar-public/">首先按照这些说明设置Google日历公开</a>在添加之前。</p>
-<p>有关创建和管理公共Google日历的更多详细信息文档：<a target="_blank" rel="noopener" href="https://support.google.com/calendar/answer/37083">https://support.google.com/calendar/answer/37083</a></p>
-<h3 id="设置谷歌日历"><a href="#设置谷歌日历" class="headerlink" title="设置谷歌日历"></a>设置谷歌日历</h3>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/07/17/hexo-next-schedule/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/16/ros-writing-publisher-subscriber-cpp/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
-      <meta itemprop="name" content="晚灯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="吟游">
-      <meta itemprop="description" content="认真且浪漫">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 吟游">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/16/ros-writing-publisher-subscriber-cpp/" class="post-title-link" itemprop="url">ROS Topic 通信简单示例</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-07-16 15:07:50" itemprop="dateCreated datePublished" datetime="2022-07-16T15:07:50+08:00">2022-07-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ROS/" itemprop="url" rel="index"><span itemprop="name">ROS</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ROS/beginner-tutorials/" itemprop="url" rel="index"><span itemprop="name">beginner-tutorials</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ROS/Topic/" itemprop="url" rel="index"><span itemprop="name">Topic</span></a>
+          <a href="/categories/ROS/Rotors/" itemprop="url" rel="index"><span itemprop="name">Rotors</span></a>
         </span>
     </span>
 
@@ -969,7 +283,7 @@
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>27 分钟</span>
+      <span>29 分钟</span>
     </span>
 </div>
 
@@ -980,12 +294,13 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="ROS-Topic-通信简单示例"><a href="#ROS-Topic-通信简单示例" class="headerlink" title="ROS Topic 通信简单示例"></a>ROS Topic 通信简单示例</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><p>正如前面所提到的，我们有时需要可视化激光扫描数据。需要将数据从激光测距仪传输到 rviz ，为了控制 Hokuyo 激光测距仪，我们启动 hokuyo_node 节点，该节点与激光对话并在扫描主题上发布 sensor_msgs&#x2F;Laser Scan 消息。为了可视化激光扫描数据，我们启动 rviz 节点并订阅扫描主题。订阅后，rviz 节点开始接收激光扫描消息，并将其呈现到屏幕上。</p>
-<p>对该示例简化后，让发布方以 10 hz的频率发布文本消息，订阅方接收消息并打印。</p>
-<h3 id="发布节点-Publisher-Node"><a href="#发布节点-Publisher-Node" class="headerlink" title="发布节点 Publisher Node"></a>发布节点 Publisher Node</h3>
+          <h1 id="Rotors-Simulator-Example-Usage"><a href="#Rotors-Simulator-Example-Usage" class="headerlink" title="Rotors Simulator Example Usage"></a>Rotors Simulator Example Usage</h1><h2 id="1-创建功能包"><a href="#1-创建功能包" class="headerlink" title="1 创建功能包"></a>1 创建功能包</h2><p>切换到工作空间的<code>src</code>目录下，创建<code>rotors_control_test</code>功能包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">工作空间目录下的src</span></span><br><span class="line">cd catkin_ws/src</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建功能包，包名后面的参数是相关依赖</span></span><br><span class="line">catkin_create_pkg rotors_control_test roscpp rospy std_msgs sensor_msgs geometry_msgs mav_msgs gazebo_msgs</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-修改相关功能包相关依赖"><a href="#2-修改相关功能包相关依赖" class="headerlink" title="2 修改相关功能包相关依赖"></a>2 修改相关功能包相关依赖</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/07/16/ros-writing-publisher-subscriber-cpp/#more" rel="contents">
+              <a class="btn" href="/2022/07/25/rotors-simulator-usage/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1016,7 +331,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/16/hexo-github-multi-terminal-sync/">
+    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/25/gazebo-issues/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
@@ -1034,7 +349,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/16/hexo-github-multi-terminal-sync/" class="post-title-link" itemprop="url">Hexo & Github Pages 多端同步</a>
+          <a href="/2022/07/25/gazebo-issues/" class="post-title-link" itemprop="url">Gazebo疑难杂症</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1045,7 +360,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-07-16 13:48:32" itemprop="dateCreated datePublished" datetime="2022-07-16T13:48:32+08:00">2022-07-16</time>
+      <time title="创建时间：2022-07-25 16:31:25" itemprop="dateCreated datePublished" datetime="2022-07-25T16:31:25+08:00">2022-07-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1053,15 +368,11 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+          <a href="/categories/Gazebo/" itemprop="url" rel="index"><span itemprop="name">Gazebo</span></a>
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Hexo/" itemprop="url" rel="index"><span itemprop="name">Hexo</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Github/" itemprop="url" rel="index"><span itemprop="name">Github</span></a>
+          <a href="/categories/Gazebo/Gazebo-issues/" itemprop="url" rel="index"><span itemprop="name">Gazebo-issues</span></a>
         </span>
     </span>
 
@@ -1072,14 +383,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
+      <span>508</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
+      <span>1 分钟</span>
     </span>
 </div>
 
@@ -1090,21 +401,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>最近，使用 Hexo &amp; Github pages 搭建了一个静态的网站。不得不说，Hexo 生成网页的速度非常的快，几分钟就搞定了。不过国内访问 Github ，时不时总是会有连接不上的情况，目前未能根治。</p>
-<p>为了能够实现，<strong>在教研室和宿舍电脑上都能同步 Hexo 站点内容并发布</strong>的功能。<br>查找相关资料，分析 Hexo 站点目录，发现我们需要同步的文件目录主要有：</p>
-<ol>
-<li>scaffolds ：模板文件夹；</li>
-<li>source ：最重要的资源文件夹（甚至可以说只同步这一个目录）；</li>
-<li>themes ：主题文件夹，存放主题相关文件（主题文件夹中的<code>.git</code>记得删掉）；</li>
-<li>_config.next.yml ：主题的配置文件；</li>
-<li>_config.yml ：站点的配置文件； </li>
-<li>package.json：项目相关属性，主要是同步其依赖项，方便在其他终端快速安装；<br>当然，可以根据情况具体添加删减。实际上，在主题配置完后，通常变动的只有<code>source</code>里的文章内容。</li>
-</ol>
-<p>实现流程如下：</p>
-<h2 id="创建-Github-仓库"><a href="#创建-Github-仓库" class="headerlink" title="创建 Github 仓库"></a>创建 Github 仓库</h2>
+          <h1 id="Gazebo疑难杂症"><a href="#Gazebo疑难杂症" class="headerlink" title="Gazebo疑难杂症"></a>Gazebo疑难杂症</h1><h3 id="Error-1-Unable-to-find-uri-model-x2F-x2F-xxx"><a href="#Error-1-Unable-to-find-uri-model-x2F-x2F-xxx" class="headerlink" title="Error 1 : Unable to find uri [model:&#x2F;&#x2F;xxx]"></a>Error 1 : Unable to find uri [model:&#x2F;&#x2F;xxx]</h3><h4 id="错误描述"><a href="#错误描述" class="headerlink" title="错误描述"></a>错误描述</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Error [parser.cc:581] Unable to find uri[model://sun]</span><br><span class="line">Error [parser.cc:581] Unable to find uri[model://ground_plane]</span><br></pre></td></tr></table></figure>
+
+<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/07/16/hexo-github-multi-terminal-sync/#more" rel="contents">
+              <a class="btn" href="/2022/07/25/gazebo-issues/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1135,7 +437,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/16/git/">
+    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/25/rotors-simulator-keyboard-usage/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
@@ -1153,7 +455,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/16/git/" class="post-title-link" itemprop="url">git</a>
+          <a href="/2022/07/25/rotors-simulator-keyboard-usage/" class="post-title-link" itemprop="url">RotorS with virtual joystick</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1164,7 +466,443 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-07-16 13:20:18" itemprop="dateCreated datePublished" datetime="2022-07-16T13:20:18+08:00">2022-07-16</time>
+      <time title="创建时间：2022-07-25 16:26:42" itemprop="dateCreated datePublished" datetime="2022-07-25T16:26:42+08:00">2022-07-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ROS/" itemprop="url" rel="index"><span itemprop="name">ROS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ROS/Rotors/" itemprop="url" rel="index"><span itemprop="name">Rotors</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="RotorS-with-virtual-joystick"><a href="#RotorS-with-virtual-joystick" class="headerlink" title="RotorS with virtual joystick"></a>RotorS with virtual joystick</h1><h2 id="使用键盘控制无人机"><a href="#使用键盘控制无人机" class="headerlink" title="使用键盘控制无人机"></a>使用键盘控制无人机</h2><p>使用<code>mav_with_keyboard.launch</code>可以打开<code>gazebo</code>以及相关的控制界面，但需要做一些基础配置。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roslaunch rotors_gazebo mav_with_keyboard.launch mav_name:=firefly world_name:=basic</span><br></pre></td></tr></table></figure>
+
+<h2 id="设置虚拟键盘控制器"><a href="#设置虚拟键盘控制器" class="headerlink" title="设置虚拟键盘控制器"></a>设置虚拟键盘控制器</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/07/25/rotors-simulator-keyboard-usage/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/25/rotors-simulator-installation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
+      <meta itemprop="name" content="晚灯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吟游">
+      <meta itemprop="description" content="认真且浪漫">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 吟游">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/25/rotors-simulator-installation/" class="post-title-link" itemprop="url">rotors_simulator（无人机ROS仿真包）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-25 16:11:14" itemprop="dateCreated datePublished" datetime="2022-07-25T16:11:14+08:00">2022-07-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ROS/" itemprop="url" rel="index"><span itemprop="name">ROS</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ROS/Rotors/" itemprop="url" rel="index"><span itemprop="name">Rotors</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>8 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="rotors-simulator（无人机ROS仿真包）"><a href="#rotors-simulator（无人机ROS仿真包）" class="headerlink" title="rotors_simulator（无人机ROS仿真包）"></a>rotors_simulator（无人机ROS仿真包）</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>RotorS is a MAV gazebo simulator. It provides some multirotor models such as the <a target="_blank" rel="noopener" href="http://www.asctec.de/en/uav-uas-drone-products/asctec-hummingbird/">AscTec Hummingbird</a>, the <a target="_blank" rel="noopener" href="http://www.asctec.de/en/uav-uas-drone-products/asctec-pelican/">AscTec Pelican</a>, or the <a target="_blank" rel="noopener" href="http://www.asctec.de/en/uav-uas-drone-products/asctec-firefly/">AscTec Firefly</a>, but the simulator is not limited for the use with these multicopters.</p>
+<p>There are simulated sensors coming with the simulator such as an IMU, a generic odometry sensor, and the <a target="_blank" rel="noopener" href="http://wiki.ros.org/vi_sensor">VI-Sensor</a>, which can be mounted on the multirotor.</p>
+<p>This package also contains some example controllers, basic worlds, a joystick interface, and example launch files.</p>
+<p>Below we provide the instructions necessary for getting started. See RotorS’ wiki for more instructions and examples (<a target="_blank" rel="noopener" href="https://github.com/ethz-asl/rotors_simulator/wiki">https://github.com/ethz-asl/rotors_simulator/wiki</a>).</p>
+</blockquote>
+<p>Github链接 ： <a target="_blank" rel="noopener" href="https://github.com/ethz-asl/rotors_simulator">ethz-asl&#x2F;rotors_simulator: RotorS is a UAV gazebo simulator (github.com)</a></p>
+<h2 id="安装及测试"><a href="#安装及测试" class="headerlink" title="安装及测试"></a>安装及测试</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/07/25/rotors-simulator-installation/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/25/linux-change-hostname/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
+      <meta itemprop="name" content="晚灯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吟游">
+      <meta itemprop="description" content="认真且浪漫">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 吟游">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/25/linux-change-hostname/" class="post-title-link" itemprop="url">Linux 修改主机名</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-25 13:40:40" itemprop="dateCreated datePublished" datetime="2022-07-25T13:40:40+08:00">2022-07-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>351</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Linux-修改主机名"><a href="#Linux-修改主机名" class="headerlink" title="Linux 修改主机名"></a>Linux 修改主机名</h1><h2 id="方法1：修改配置文件"><a href="#方法1：修改配置文件" class="headerlink" title="方法1：修改配置文件"></a>方法1：修改配置文件</h2><ol>
+<li><p>修改<code>/etc/hostname</code>中的名字。</p>
+</li>
+<li><p>更新<code>/etc/hosts</code>文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/hosts</span><br></pre></td></tr></table></figure>
+
+<p>修改<code>127.0.1.1</code>后面的名字即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1   localhost</span><br><span class="line">127.0.1.1   ml-ros-kinetic # change to your new hostname</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="方法2：hostnamectl"><a href="#方法2：hostnamectl" class="headerlink" title="方法2：hostnamectl"></a>方法2：hostnamectl</h2><ol>
+<li>修改主机名</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/07/25/linux-change-hostname/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/25/ros-multiple-machines/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
+      <meta itemprop="name" content="晚灯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吟游">
+      <meta itemprop="description" content="认真且浪漫">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 吟游">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/25/ros-multiple-machines/" class="post-title-link" itemprop="url">ROS 分布式通信</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-25 12:21:36" itemprop="dateCreated datePublished" datetime="2022-07-25T12:21:36+08:00">2022-07-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/ROS/" itemprop="url" rel="index"><span itemprop="name">ROS</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="ROS-分布式通信"><a href="#ROS-分布式通信" class="headerlink" title="ROS 分布式通信"></a>ROS 分布式通信</h1><p>ROS 的设计考虑了分布式计算。一个编写良好的节点不假设它在网络中运行的位置，允许在运行时重新定位计算以匹配可用资源（有例外；例如，与硬件通信的驱动程序节点必须运行在硬件物理连接的机器上）。在多台机器上部署 ROS 系统很容易。请记住以下几点：</p>
+<ul>
+<li>你只需要一个 Master 节点。随便选择一台机器来运行它。</li>
+<li>所有节点都必须通过 ROS MASTER URI 配置为使用相同的 Master 节点。</li>
+<li>在所有端口上的所有机器对之间必须有完整的双向连接（请参阅 <a target="_blank" rel="noopener" href="http://wiki.ros.org/ROS/NetworkSetup">ROS&#x2F;网络设置</a>）。</li>
+<li>每台机器都必须通过一个所有其他机器都可以解析的名称来标识自己（参见  <a target="_blank" rel="noopener" href="http://wiki.ros.org/ROS/NetworkSetup">ROS&#x2F;网络设置</a>）。</li>
+</ul>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>先要保证不同计算机处于同一网络中，最好分别设置固定IP。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/07/25/ros-multiple-machines/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/25/markdown/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
+      <meta itemprop="name" content="晚灯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吟游">
+      <meta itemprop="description" content="认真且浪漫">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 吟游">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/25/markdown/" class="post-title-link" itemprop="url">markdown</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-25 11:53:11" itemprop="dateCreated datePublished" datetime="2022-07-25T11:53:11+08:00">2022-07-25</time>
     </span>
 
   
@@ -1219,7 +957,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/15/ros-filesys/">
+    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/25/turing-machine/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
@@ -1237,7 +975,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/15/ros-filesys/" class="post-title-link" itemprop="url">ROS 架構</a>
+          <a href="/2022/07/25/turing-machine/" class="post-title-link" itemprop="url">图灵机基本概念</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1248,7 +986,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-07-15 15:45:12" itemprop="dateCreated datePublished" datetime="2022-07-15T15:45:12+08:00">2022-07-15</time>
+      <time title="创建时间：2022-07-25 11:44:36" itemprop="dateCreated datePublished" datetime="2022-07-25T11:44:36+08:00">2022-07-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1256,11 +994,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ROS/" itemprop="url" rel="index"><span itemprop="name">ROS</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ROS/beginner-tutorials/" itemprop="url" rel="index"><span itemprop="name">beginner-tutorials</span></a>
+          <a href="/categories/Truing-machine/" itemprop="url" rel="index"><span itemprop="name">Truing-machine</span></a>
         </span>
     </span>
 
@@ -1271,14 +1005,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>15k</span>
+      <span>2.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>37 分钟</span>
+      <span>6 分钟</span>
     </span>
 </div>
 
@@ -1289,14 +1023,219 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="ROS文件系統"><a href="#ROS文件系統" class="headerlink" title="ROS文件系統"></a>ROS文件系統</h3><p>ROS文件系统级指的是在硬盘上ROS源代码的组织形式，其结构大致可以如下图所示：</p>
-<p><img src="/../images/posts/ros-filesys.assets/%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F.jpg" alt="img"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">WorkSpace --- 自定义的工作空间</span><br><span class="line"></span><br><span class="line">    |--- build:编译空间，用于存放CMake和catkin的缓存信息、配置信息和其他中间文件。</span><br><span class="line"></span><br><span class="line">    |--- devel:开发空间，用于存放编译后生成的目标文件，包括头文件、动态&amp;静态链接库、可执行文件等。</span><br><span class="line"></span><br><span class="line">    |--- src: 源码</span><br><span class="line"></span><br><span class="line">        |-- package：功能包(ROS基本单元)包含多个节点、库与配置文件，包名所有字母小写，只能由字母、数字与下划线组成</span><br><span class="line"></span><br><span class="line">            |-- CMakeLists.txt 配置编译规则，比如源文件、依赖项、目标文件</span><br><span class="line"></span><br><span class="line">            |-- package.xml 包信息，比如:包名、版本、作者、依赖项...(以前版本是 manifest.xml)</span><br><span class="line"></span><br><span class="line">            |-- scripts 存储python文件</span><br><span class="line"></span><br><span class="line">            |-- src 存储C++源文件</span><br><span class="line"></span><br><span class="line">            |-- include 头文件</span><br><span class="line"></span><br><span class="line">            |-- msg 消息通信格式文件</span><br><span class="line"></span><br><span class="line">            |-- srv 服务通信格式文件</span><br><span class="line"></span><br><span class="line">            |-- action 动作格式文件</span><br><span class="line"></span><br><span class="line">            |-- launch 可一次性运行多个节点 </span><br><span class="line"></span><br><span class="line">            |-- config 配置信息</span><br><span class="line"></span><br><span class="line">        |-- CMakeLists.txt: 编译的基本配置</span><br><span class="line">        </span><br></pre></td></tr></table></figure>
-
-<h4 id="launch文件"><a href="#launch文件" class="headerlink" title="launch文件"></a>launch文件</h4>
+          <h1 id="图灵机"><a href="#图灵机" class="headerlink" title="图灵机"></a>图灵机</h1><h2 id="基本图灵机"><a href="#基本图灵机" class="headerlink" title="基本图灵机"></a>基本图灵机</h2><h2 id="通用图灵机"><a href="#通用图灵机" class="headerlink" title="通用图灵机"></a>通用图灵机</h2><p>直观地，一台通用的计算机，如果不受存储空间和运行时间的限制的话，它应该可以实现所有的有效算法。实际上,在前面的论述中，我们一直是将图灵机构造成一个算法的实现装置。按照丘奇-图灵论题，图灵机应该是现代计算机的形式化模型。既然如此，应该存在一个图灵机，它可以实现对所有图灵机的模拟。也就是说，它可以实现所 有的有效算法。这就是通用图灵机(Universal Turing Machine)。本节简单地对其进行讨论。 </p>
+<p>要想使一个图灵机能够实现对所有图灵机的模拟, 我们首先需要设计一种编码系统,它在实现对图灵机的表示的同时, 可以实现对该图灵机处理的句子的表示。当我们 考察一个输入串是否可以被一个给定的图灵机接受时，就将这个给定的图灵机和相应的输入串的编码作为通用图灵机的输入，由通用图灵机去模拟给定图灵机的执行。 </p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2022/07/15/ros-filesys/#more" rel="contents">
+              <a class="btn" href="/2022/07/25/turing-machine/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/24/latex/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
+      <meta itemprop="name" content="晚灯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吟游">
+      <meta itemprop="description" content="认真且浪漫">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 吟游">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/24/latex/" class="post-title-link" itemprop="url">LaTeX 学习笔记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-24 12:21:44" itemprop="dateCreated datePublished" datetime="2022-07-24T12:21:44+08:00">2022-07-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/latex/" itemprop="url" rel="index"><span itemprop="name">latex</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="LaTeX-学习笔记"><a href="#LaTeX-学习笔记" class="headerlink" title="LaTeX 学习笔记"></a>LaTeX 学习笔记</h1><h2 id="LaTeX符号大全"><a href="#LaTeX符号大全" class="headerlink" title="LaTeX符号大全"></a>LaTeX符号大全</h2><p>链接：[symbols.pdf (rice.edu)](<a target="_blank" rel="noopener" href="https://www.caam.rice.edu/~heinken/latex/symbols.pdf#:~:text=LATEX">https://www.caam.rice.edu/~heinken/latex/symbols.pdf#:~:text=LATEX</a> Mathematical Symbols The more unusual symbols are, epsilon η eta γ gamma ι iota)</p>
+<h2 id="常用语法"><a href="#常用语法" class="headerlink" title="常用语法"></a>常用语法</h2><h3 id="上标"><a href="#上标" class="headerlink" title="上标"></a>上标</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/07/24/latex/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://merlotliu.github.io/2022/07/24/latex-chinese-supportive/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar/avatar-2.jpg">
+      <meta itemprop="name" content="晚灯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吟游">
+      <meta itemprop="description" content="认真且浪漫">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 吟游">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/07/24/latex-chinese-supportive/" class="post-title-link" itemprop="url">LaTeX 中文支持</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-07-24 11:40:20" itemprop="dateCreated datePublished" datetime="2022-07-24T11:40:20+08:00">2022-07-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/latex/" itemprop="url" rel="index"><span itemprop="name">latex</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>952</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="LaTeX-中文支持"><a href="#LaTeX-中文支持" class="headerlink" title="LaTeX 中文支持"></a>LaTeX 中文支持</h1><h2 id="Overleaf"><a href="#Overleaf" class="headerlink" title="Overleaf"></a>Overleaf</h2><p><strong>LaTeX</strong>在<strong>Overleaf</strong>的中文支持。</p>
+<h3 id="方法1"><a href="#方法1" class="headerlink" title="方法1"></a>方法1</h3><ol>
+<li><p>使用ctex包。</p>
+<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\usepackage</span>&#123;ctex&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>点击左上角的<code>Menu</code>选项，将<code>Settings-Compiler</code>设置为<code>XeLaTeX</code>或<code>LuaLaTeX</code>。</p>
+</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/07/24/latex-chinese-supportive/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1320,7 +1259,7 @@
 
 
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>
@@ -1344,14 +1283,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">74k</span>
+    <span title="站点总字数">113k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">3:04</span>
+    <span title="站点阅读时长">4:42</span>
   </span>
 </div>
 <div class="busuanzi-count">
