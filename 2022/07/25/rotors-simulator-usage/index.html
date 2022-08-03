@@ -20,18 +20,18 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"merlotliu.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":{"gitalk":{"order":-2}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Rotors Simulator Example Usage1 创建功能包切换到工作空间的src目录下，创建rotors_control_test功能包 1234# 工作空间目录下的srccd catkin_ws&#x2F;src# 创建功能包，包名后面的参数是相关依赖catkin_create_pkg rotors_control_test roscpp rospy std_msgs sensor_msg">
+    <meta name="description" content="Rotors Simulator Example Usage1 创建功能包切换到工作空间的src目录下，创建rotors_control_test功能包 12345# 工作空间目录下的srccd catkin_ws&#x2F;src# 创建功能包，包名后面的参数是相关依赖catkin_create_pkg rotors_control_test roscpp rospy std_msgs # sensor_">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RotorS 简单示例">
 <meta property="og:url" content="https://merlotliu.github.io/2022/07/25/rotors-simulator-usage/index.html">
 <meta property="og:site_name" content="吟游">
-<meta property="og:description" content="Rotors Simulator Example Usage1 创建功能包切换到工作空间的src目录下，创建rotors_control_test功能包 1234# 工作空间目录下的srccd catkin_ws&#x2F;src# 创建功能包，包名后面的参数是相关依赖catkin_create_pkg rotors_control_test roscpp rospy std_msgs sensor_msg">
+<meta property="og:description" content="Rotors Simulator Example Usage1 创建功能包切换到工作空间的src目录下，创建rotors_control_test功能包 12345# 工作空间目录下的srccd catkin_ws&#x2F;src# 创建功能包，包名后面的参数是相关依赖catkin_create_pkg rotors_control_test roscpp rospy std_msgs # sensor_">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-07-25T09:09:11.000Z">
 <meta property="article:modified_time" content="2022-07-25T09:09:11.000Z">
 <meta property="article:author" content="晚灯">
 <meta property="article:tag" content="ROS">
-<meta property="article:tag" content="Rotors">
+<meta property="article:tag" content="RotorS">
 <meta name="twitter:card" content="summary">
 
 
@@ -160,18 +160,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">41</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">28</span>
+        <span class="site-state-item-count">34</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -270,7 +270,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/ROS/Rotors/" itemprop="url" rel="index"><span itemprop="name">Rotors</span></a>
+          <a href="/categories/ROS/RotorS/" itemprop="url" rel="index"><span itemprop="name">RotorS</span></a>
         </span>
     </span>
 
@@ -307,7 +307,7 @@
     
     <div class="post-body" itemprop="articleBody">
         <h1 id="Rotors-Simulator-Example-Usage"><a href="#Rotors-Simulator-Example-Usage" class="headerlink" title="Rotors Simulator Example Usage"></a>Rotors Simulator Example Usage</h1><h2 id="1-创建功能包"><a href="#1-创建功能包" class="headerlink" title="1 创建功能包"></a>1 创建功能包</h2><p>切换到工作空间的<code>src</code>目录下，创建<code>rotors_control_test</code>功能包</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">工作空间目录下的src</span></span><br><span class="line">cd catkin_ws/src</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建功能包，包名后面的参数是相关依赖</span></span><br><span class="line">catkin_create_pkg rotors_control_test roscpp rospy std_msgs sensor_msgs geometry_msgs mav_msgs gazebo_msgs</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">工作空间目录下的src</span></span><br><span class="line">cd catkin_ws/src</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建功能包，包名后面的参数是相关依赖</span></span><br><span class="line">catkin_create_pkg rotors_control_test roscpp rospy std_msgs </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">sensor_msgs geometry_msgs mav_msgs gazebo_msgs</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="2-修改相关功能包相关依赖"><a href="#2-修改相关功能包相关依赖" class="headerlink" title="2 修改相关功能包相关依赖"></a>2 修改相关功能包相关依赖</h2><p>如果创建功能包的时候，少或错误添加相关依赖，可以打开<code>CMakeLists.txt</code>，修改相关内容:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">find_package(catkin REQUIRED COMPONETS</span><br><span class="line">	roscpp</span><br><span class="line">	rospy</span><br><span class="line">	std_msgs</span><br><span class="line"><span class="meta prompt_">	# </span><span class="language-bash">以上三个是常用的依赖，以下是本功能包需要用到的额外的依赖</span></span><br><span class="line">	sensor_msgs</span><br><span class="line">	geometry_msgs</span><br><span class="line">	mav_msgs</span><br><span class="line">	gazebo_msgs</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
@@ -365,7 +365,7 @@
 </div>
           <div class="post-tags">
               <a href="/tags/ROS/" rel="tag"># ROS</a>
-              <a href="/tags/Rotors/" rel="tag"># Rotors</a>
+              <a href="/tags/RotorS/" rel="tag"># RotorS</a>
           </div>
 
         
@@ -377,6 +377,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2022/07/28/formal-language-automata-theory-sat-csat-3sat-is/" rel="next" title="布尔可满足性问题 SAT & CSAT & 3SAT & IS">
+                  布尔可满足性问题 SAT & CSAT & 3SAT & IS <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -410,14 +413,14 @@
       <i class="fa fa-chart-line"></i>
     </span>
       <span>站点总字数：</span>
-    <span title="站点总字数">113k</span>
+    <span title="站点总字数">134k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span>站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">4:43</span>
+    <span title="站点阅读时长">5:34</span>
   </span>
 </div>
 <div class="busuanzi-count">
