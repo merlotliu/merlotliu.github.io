@@ -2568,8 +2568,8 @@
     <title>RotorS 分布式通信综合案例</title>
     <url>/2022/07/31/rotors_distributed_comm_comprehensive_case/</url>
     <content><![CDATA[<h1 id="RotorS-分布式通信综合案例"><a href="#RotorS-分布式通信综合案例" class="headerlink" title="RotorS 分布式通信综合案例"></a>RotorS 分布式通信综合案例</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>该示例将使用两台虚拟机，分别在两台虚拟机运行一个节点，以完成分布式通信。</p>
-<p>现在我们假定其中一台虚拟机为<strong>Sakura</strong>，将运行节点<strong>ctl_center</strong>。另外一台为<strong>Haruko</strong>，运行节点<strong>uav</strong>。</p>
-<p>此外，我们将涉及到两个服务<strong>execute_task</strong>和**&#x2F;ctl_center&#x2F;shutdown<strong>，两个话题</strong>pics_data<strong>和</strong>pics_process_result**。</p>
+<p>现在我们假定其中一台虚拟机为 Sakura ，将运行节点 ctl_center。另外一台为 Haruko ，运行节点 uav。</p>
+<p>此外，我们将涉及到两个服务 execute_task 和 &#x2F;ctl_center&#x2F;shutdown，两个话题 pics_data 和pics_process_result。</p>
 <h3 id="服务-execute-task"><a href="#服务-execute-task" class="headerlink" title="服务 execute_task"></a>服务 execute_task</h3><p>该服务由 ctl_center 提供， uav 进行调用。uav 在调用前填写 request 部分，随后发起服务调用。 ctl_center 接收到服务请求后，检查 request 内容，依据 request 内容填写 reponse ，并返回给 uav 节点。</p>
 <p>传输的消息为自定义的 <strong>Task.srv</strong>。request 部分为标识当前 uav 节点是否正常连接到 gazebo 的bool值，response 为飞行路径及任务开始的位置信息。</p>
 <h3 id="话题-pics-data"><a href="#话题-pics-data" class="headerlink" title="话题 pics_data"></a>话题 pics_data</h3><p>该话题由 uav 发布，ctl_center 订阅。</p>
@@ -2611,7 +2611,7 @@
 <li>订阅 pics_data 话题以获取图片信息；</li>
 <li>在话题 pics_process_result 发布图片处理结果；</li>
 </ol>
-<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>在主机 <strong>Sakura</strong>，在工作空间下，创建新功能包 <strong>ctl_center</strong>，切换到其 src 目录下，创建 ctl_center.cpp 文件。</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>在主机 Sakura，在工作空间下，创建新功能包 ctl_center，切换到其 src 目录下，创建 ctl_center.cpp 文件。</p>
 <p>接下来将讲述具体的实现内容，关于 ROS 的初始化、 spin() 等基础内容将略过。</p>
 <p>对于 ctl_center 的功能实现，并不需要 RotorS的相关内容。</p>
 <p>根据需求创建、订阅、发布对应的服务、话题并编写配套的处理函数即可。</p>
@@ -2709,6 +2709,24 @@
       <tags>
         <tag>Windows</tag>
         <tag>Files-Sharing</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Typora 安装破解</title>
+    <url>/2022/09/16/typora_activate/</url>
+    <content><![CDATA[<h1 id="Typora-安装破解"><a href="#Typora-安装破解" class="headerlink" title="Typora 安装破解"></a>Typora 安装破解</h1><p>破解链接文件：</p>
+<blockquote>
+<p>链接：<a href="https://pan.xunlei.com/s/VNC4YXULkgUmouVvnAVAJhKmA1#">https://pan.xunlei.com/s/VNC4YXULkgUmouVvnAVAJhKmA1#</a><br>提取码：kvrv<br>复制这段内容后打开手机迅雷App，查看更方便</p>
+</blockquote>
+<h2 id="破解激活"><a href="#破解激活" class="headerlink" title="破解激活"></a>破解激活</h2><p>安装完成后，将压缩包zip中的<code>app.asar</code>文件复制到<code>C:\Program Files\Typora\resources</code>路径下（通常是这个路径，具体可能不同）</p>
+<p>再打开文件，复制激活码，激活即可。</p>
+<h2 id="右键添加markdown"><a href="#右键添加markdown" class="headerlink" title="右键添加markdown"></a>右键添加markdown</h2><p>双击破解文件夹中的<code>markdown_newcreate_reg.reg</code>即可。</p>
+]]></content>
+      <categories>
+        <category>Typora</category>
+      </categories>
+      <tags>
+        <tag>Typora</tag>
       </tags>
   </entry>
 </search>
