@@ -1,8 +1,8 @@
 ## Lu 的个人主页
 
 - [About](./about/)
-- [Articles](./articles/index)
-- [Categories](./categories/index)
-- [Journals](./journals/index)
-- [Tags](./tags/index)
-- [Utils](./utils/index)
+- [Articles](./articles/)
+- [Categories](./categories/)
+- [Journals](./journals/)
+- [Tags](./tags/)
+- [Utils](./utils/)
