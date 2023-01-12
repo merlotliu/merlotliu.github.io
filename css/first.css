@@ -1,0 +1,30 @@
+body {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+#nav {
+    width: 10%;
+    float: right;
+}
+
+#article {
+    margin-right: 0;
+    float: left;
+}
+
+#article_frame {
+    position: absolute; 
+    width: 80%;
+    height: 100%;
+}
+
+#aside {
+    /* top: 0px; */
+    width: 10%;
+    float: right;
+}
+
+#footer {
+    
+}
