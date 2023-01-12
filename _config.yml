@@ -8,3 +8,8 @@ gist:
 kramdown:
   math_engine: mathjax
   syntax_highlighter: rouge
+  
+plugins:
+  - jekyll-archives # Sorry, not GitHub pages friendly!
+  - jekyll-sitemap
+  - jekyll-paginate-v2
