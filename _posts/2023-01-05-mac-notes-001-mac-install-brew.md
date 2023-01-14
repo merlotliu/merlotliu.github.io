@@ -1,14 +1,12 @@
 ---
 layout: post
-title: Mac Install Brew
+title: Mac 安装包管理工具 brew
 date: 2023-01-05 17:54:00 +0800
 updated: 2023-01-05 17:54:00 +0800
 tags: [mac, brew]
 categories: [mac]
 comments: true
 ---
-
-# Mac 安装包管理工具 brew
 
 ## 终端
 
