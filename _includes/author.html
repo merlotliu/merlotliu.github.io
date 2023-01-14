@@ -23,6 +23,11 @@
         <a onclick="sessionStorage.setItem('forceCheckScroll', 'true')" href="{{ nav.url | relative_url }}">{{ nav.title | escape }}</a>
       </li>
     {%- endfor -%}
+    {%- for nav in site.data.notes -%}
+      <li class="navigation-item" style="display: inline-block; margin-right: 5%;">
+        <a onclick="sessionStorage.setItem('forceCheckScroll', 'true')" href="{{ nav.url | relative_url }}">{{ nav.title | escape }}</a>
+      </li>
+    {%- endfor -%}
     {%- for nav in site.data.navigation -%}
       <li class="navigation-item" style="display: inline-block;">
         <a onclick="sessionStorage.setItem('forceCheckScroll', 'true')" href="{{ nav.url | relative_url }}">{{ nav.title | escape }}</a>

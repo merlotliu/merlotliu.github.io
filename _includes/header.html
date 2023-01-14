@@ -11,6 +11,13 @@
           </li>
         {% endfor %}
       {% endif %}
+      {% if site.data.notes %}
+        {% for item in site.data.notes %}
+          <li class="pure-menu-item">
+            <a href="{{ item.url | relative_url }}" class="pure-menu-link {% if page.url == item.url %}current-item{% endif %}"">{{ item.title }}</a>
+          </li>
+        {% endfor %}
+      {% endif %}
       {% if site.data.navigation %}
         {% for item in site.data.navigation %}
           <li class="pure-menu-item">
