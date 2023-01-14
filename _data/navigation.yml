@@ -1,4 +1,4 @@
-- title: Blog
-  url: /
-- title: About
+- type: about
+  title: About
+  title-zh: 关于
   url: /about/

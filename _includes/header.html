@@ -1,0 +1,23 @@
+<div class="home-header pure-menu pure-menu-horizontal">
+  <div class="home-header-bar">
+    <ul class="home-header-menu pure-menu-list">
+      <li class="pure-menu-item">
+        <a href="/" class="pure-menu-link {% if page.url == item.url %}current-item{% endif %}"">{{ site.title }}</a>
+      </li>
+      {% if site.data.archive %}
+        {% for item in site.data.archive %}
+          <li class="pure-menu-item">
+            <a href="{{ item.url | relative_url }}" class="pure-menu-link {% if page.url == item.url %}current-item{% endif %}"">{{ item.title }}</a>
+          </li>
+        {% endfor %}
+      {% endif %}
+      {% if site.data.navigation %}
+        {% for item in site.data.navigation %}
+          <li class="pure-menu-item">
+            <a href="{{ item.url | relative_url }}" class="pure-menu-link {% if page.url == item.url %}current-item{% endif %}"">{{ item.title }}</a>
+          </li>
+        {% endfor %}
+      {% endif %}
+    </ul>
+  </div>
+</div>

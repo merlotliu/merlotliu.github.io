@@ -1,28 +1,29 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
+  {%- include head.html -%}
 
-  {% include head.html %}
-
+  {%- assign cover_bg_color = site.cover_bg_color | default: "rgb(40, 73, 77)" -%}
+  {%- assign cover_color    = site.cover_color    | default: "rgb(255, 255, 255)" -%}
+  {%- assign cover_image    = site.cover_image -%}
+  {%- if page.cover_bg_color -%}
+    {%- assign cover_bg_color  = page.cover_bg_color -%}
+  {%- endif -%}
+  {%- if page.cover_color -%}
+    {%- assign cover_color     = page.cover_color -%}
+  {%- endif -%}
+  {%- if page.cover_image -%}
+    {%- assign cover_image     = page.cover_image -%}
+  {%- endif -%}
+  
+  {% if page.type == 'cover' %}
+  <body style="background-size: 100%; background-color: {{ cover_bg_color }}; color: {{ cover_color}}; {% if cover_image %}background-image: url({{ cover_image | relative_url }});{% endif %}">
+  {%- else -%}
   <body>
-
+  {%- endif -%}
     <div class="container pure-g">
-      {%- assign cover_bg_color = site.cover_bg_color | default: "rgb(40, 73, 77)" -%}
-      {%- assign cover_color    = site.cover_color    | default: "rgb(255, 255, 255)" -%}
-      {%- assign cover_image    = site.cover_image -%}
-      {%- if page.cover_bg_color -%}
-        {%- assign cover_bg_color  = page.cover_bg_color -%}
-      {%- endif -%}
-      {%- if page.cover_color -%}
-        {%- assign cover_color     = page.cover_color -%}
-      {%- endif -%}
-      {%- if page.cover_image -%}
-        {%- assign cover_image     = page.cover_image -%}
-      {%- endif -%}
-      <div class="sidebar-left pure-u-1 pure-u-md-1-4" style="background-color: {{ cover_bg_color }}; color: {{ cover_color}}; {% if cover_image %}background-image: url({{ cover_image | relative_url }});{% endif %}">
-        {%- include sidebar-left.html -%}
-      </div>
 
       <div class="content pure-u-1 pure-u-md-1-2">
+        {%- include header.html -%}
         {%- include content.html -%}
       </div>
       <div class="sidebar-right pure-u-1 pure-u-md-1-4">

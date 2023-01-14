@@ -1,6 +1,7 @@
 ---
 layout: archive-taxonomies
-permalink: /categories/
 title: Categories
+title-zh: 分类
+permalink: /categories/
 type: categories
 ---

@@ -6,11 +6,13 @@
       {%- else -%}
         {%- assign avatar = site.avatar | relative_url -%}
       {%- endif -%}
-      <img src="{{ avatar }}" class="avatar-image" alt="{{ site.author.name }}">
+      <a href="{{ "/articles/" | relative_url }}" >
+        <img src="{{ avatar }}" class="avatar-image" alt="{{ site.author.name }}">
+      </a>
     </div>
   {%- endif %}
   <div class="masthead-title">
-    <a href="{{ "/" | relative_url }}" title="Home">{{ site.title }}</a>
+    <a href="{{ "/articles/" | relative_url }}" title="Articles">{{ site.title }}</a>
   </div>
   <div class="masthead-tagline">
     <small>{{ site.description }}</small>
@@ -18,8 +20,13 @@
   {%- if site.data.navigation -%}
   <nav class="navigation">
     <ul class="navigation-list">
+    {%- for nav in site.data.archive -%}
+      <li class="navigation-item" style="display: inline-block; margin-right: 5%;">
+        <a onclick="sessionStorage.setItem('forceCheckScroll', 'true')" href="{{ nav.url | relative_url }}">{{ nav.title | escape }}</a>
+      </li>
+    {%- endfor -%}
     {%- for nav in site.data.navigation -%}
-      <li class="navigation-item">
+      <li class="navigation-item" style="display: inline-block;">
         <a onclick="sessionStorage.setItem('forceCheckScroll', 'true')" href="{{ nav.url | relative_url }}">{{ nav.title | escape }}</a>
       </li>
     {%- endfor -%}

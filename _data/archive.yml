@@ -1,9 +1,19 @@
+- type: articles
+  title: Articles
+  title-zh: 博客
+  url: /articles/
+
 - type: dates
   title: Dates
+  title-zh: 日期
   url: /dates/
-#- type: categories
-#  title: Categories
-#  url: /categories/
+
+- type: categories
+  title: Categories
+  title-zh: 分类
+  url: /categories/
+
 - type: tags
   title: Tags
+  title-zh: 标签
   url: /tags/
