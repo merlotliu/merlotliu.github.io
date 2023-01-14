@@ -8,8 +8,6 @@ categories: [cpp]
 comments: true
 ---
 
-# 判断文件是否为空
-
 ## 函数 & 宏
 
 - fopen() ：打开一个文件，返回 FILE 指针；

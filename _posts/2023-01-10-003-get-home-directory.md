@@ -8,8 +8,6 @@ categories: [cpp]
 comments: true
 ---
 
-# 获取当前用户的家目录
-
 ## 函数 & 宏
 
 - sysconf()：根据给定的宏获取系统变量；
