@@ -1,11 +1,11 @@
 ---
+layout: post
 title: RotorS 简单示例
 comments: true
 date: 2022-07-25 17:09:11
 updated: 2022-07-25 17:09:11
 tags: [ROS, RotorS]
-categories:
-- [ROS, RotorS]
+categories: [ROS, RotorS]
 ---
 
 # RotorS 简单示例

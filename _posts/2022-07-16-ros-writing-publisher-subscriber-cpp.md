@@ -1,12 +1,11 @@
 ---
+layout: post
 title: ROS Topic 通信简单示例
 comments: true
 date: 2022-07-16 15:07:50
 updated: 2022-07-16 15:07:50
 tags: [ROS,ROS-Topic]
-categories:
-- [ROS,beginner-tutorials]
-- [ROS,Topic]
+categories: [ROS,beginner-tutorials]
 ---
 
 # ROS Topic 通信简单示例

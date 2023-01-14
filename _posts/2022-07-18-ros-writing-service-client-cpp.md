@@ -1,12 +1,11 @@
 ---
+layout: post
 title: ROS Service 通信简单示例
 comments: true
 date: 2022-07-18 13:49:27
 updated: 2022-07-18 13:49:27
 tags: [ROS,ROS-Service]
-categories:
-- [ROS,beginner-tutorials]
-- [ROS,Service]
+categories: [ROS,beginner-tutorials]
 ---
 
 # ROS Service 通信简单示例

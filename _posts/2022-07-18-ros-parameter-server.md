@@ -1,12 +1,11 @@
 ---
+layout: post
 title: ROS 参数服务器
 comments: true
 date: 2022-07-18 14:31:54
 updated: 2022-07-18 14:31:54
 tags: [ROS,ROS-ParameterServer]
-categories:
-- [ROS,beginner-tutorials]
-- [ROS,ParameterServer]
+categories: [ROS,beginner-tutorials]
 ---
 
 # ROS 参数服务器

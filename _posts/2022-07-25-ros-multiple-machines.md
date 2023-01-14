@@ -1,11 +1,11 @@
 ---
+layout: post
 title: ROS 分布式通信
 comments: true
 date: 2022-07-25 12:21:36
 updated: 2022-07-25 12:21:36
 tags: [ROS]
-categories:
-- [ROS]
+categories: [ROS]
 ---
 
 # ROS 分布式通信

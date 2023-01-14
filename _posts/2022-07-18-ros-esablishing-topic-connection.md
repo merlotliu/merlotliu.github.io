@@ -1,12 +1,11 @@
 ---
+layout: post
 title: ROS Topic 理论模型
 comments: true
 date: 2022-07-18 11:10:28
 updated: 2022-07-18 11:10:28
 tags: [ROS,ROS-Topic]
-categories:
-- [ROS,beginner-tutorials]
-- [ROS,Topic]
+categories: [ROS,beginner-tutorials]
 ---
 
 # ROS Topic 理论模型

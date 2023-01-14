@@ -1,11 +1,11 @@
 ---
+layout: post
 title: RotorS 分布式通信综合案例
 comments: true
 date: 2022-07-31 21:29:36
 updated: 2022-07-31 21:29:36
 tags: [ROS, RotorS]
-categories:
-- [ROS, RotorS]
+categories: [ROS, RotorS]
 ---
 
 # RotorS 分布式通信综合案例

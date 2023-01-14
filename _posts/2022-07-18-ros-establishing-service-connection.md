@@ -1,12 +1,11 @@
 ---
+layout: post
 title: ROS Service 理论模型
 comments: true
 date: 2022-07-18 11:37:52
 updated: 2022-07-18 11:37:52
 tags: [ROS,ROS-Service]
-categories:
-- [ROS,beginner-tutorials]
-- [ROS,Service]
+categories: [ROS,beginner-tutorials]
 ---
 
 # ROS Service 理论模型

@@ -1,10 +1,10 @@
 ---
+layout: post
 title: ROS Installation
 date: 2022-06-30 21:10:00
 updated: 2022-06-30 21:10:00
 tags: [ROS,Ubuntu,VMware]
-categories:
-- ROS
+categories: [ROS]
 comments: true 
 ---
 

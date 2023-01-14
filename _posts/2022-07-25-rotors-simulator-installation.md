@@ -1,11 +1,11 @@
 ---
+layout: post
 title: rotors_simulator（无人机ROS仿真包）
 comments: true
 date: 2022-07-25 16:11:14
 updated: 2022-07-25 16:11:14
 tags: [ROS, RotorS]
-categories:
-- [ROS, RotorS]
+categories: [ROS, RotorS]
 ---
 
 # rotors_simulator（无人机ROS仿真包）
